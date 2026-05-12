@@ -37,6 +37,37 @@
   @media (min-width: 1024px) {
     .market-tier .figure { font-size: 2rem; }
   }
+
+  /* Tab system — mobile-first */
+  .tabs {
+    display: flex;
+    gap: var(--s-1);
+    border-bottom: 1px solid var(--c-border);
+    margin: var(--s-5) 0 var(--s-5);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tab-btn {
+    background: transparent;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    padding: var(--s-3) var(--s-4);
+    font-family: var(--ff-base);
+    font-size: 1rem;
+    font-weight: var(--fw-regular);
+    color: var(--c-text-2);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 160ms ease, border-color 160ms ease;
+  }
+  .tab-btn[aria-selected="true"] {
+    color: var(--c-primary);
+    border-bottom-color: var(--c-accent);
+    font-weight: var(--fw-medium);
+  }
+  .tab-btn:hover { color: var(--c-primary); }
+  .tab-panel { display: none; }
+  .tab-panel.is-active { display: block; }
 </style>
 </head>
 <body class="detail">
@@ -167,56 +198,138 @@
   <h2 style="margin-top: var(--s-7);">Adreslenebilir Pazar Hunisi</h2>
   <div id="marketFunnel" class="chart chart-lg"></div>
 
-  <!-- AYLIK SOM HEDEF -->
+  <!-- AYLIK SOM HEDEF — TAB SİSTEMİ -->
   <h2 style="margin-top: var(--s-7);">Aylık SOM Pay Hedefi — Mayıs 2026 → Aralık 2027</h2>
   <p class="soft" style="max-width:780px;">
-    20 aylık yörünge, kümülatif ödeyen üye sayısı bazında. Her senaryoda SOM doygunluğu
-    (3.000 üye = %100) referans alınır. İyimser senaryoda Ay 18+ sonrası İstanbul dışı bölgelere
-    (Bursa, Ankara, İzmir) yayılım kaçınılmazdır.
+    20 aylık yörünge, iki görünüm: <b>Kümülatif</b> (toplam aktif ödeyen üye) ve
+    <b>Aylık Δ</b> (her ay net yeni eklenen üye). SOM doygunluğu (3.000 üye = %100) referans alınır.
   </p>
-  <div id="somMonthly" class="chart chart-lg"></div>
 
-  <h3 style="margin-top: var(--s-6);">Aylık SOM Payı (%)</h3>
-  <div id="somPenetration" class="chart chart-lg"></div>
+  <!-- Tab navigasyon -->
+  <div class="tabs" role="tablist" aria-label="Görünüm">
+    <button class="tab-btn" role="tab" aria-selected="true"  aria-controls="tab-cum" id="tab-cum-btn">
+      <i class="ph ph-stack" aria-hidden="true"></i> Kümülatif
+    </button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-delta" id="tab-delta-btn">
+      <i class="ph ph-trend-up" aria-hidden="true"></i> Aylık Δ (Yeni Üye)
+    </button>
+  </div>
 
-  <h2 style="margin-top: var(--s-7);">Aylık Hedef Tablosu (3 Senaryo)</h2>
-  <table class="tbl">
-    <thead>
-      <tr>
-        <th>Ay</th>
-        <th>Tarih</th>
-        <th class="num">Kötümser (Üye)</th>
-        <th class="num">Kötümser SOM%</th>
-        <th class="num">Medyan (Üye)</th>
-        <th class="num">Medyan SOM%</th>
-        <th class="num">İyimser (Üye)</th>
-        <th class="num">İyimser SOM%</th>
-        <th class="num">Medyan ARR ($K)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>1</td><td>May 2026</td><td class="num">3</td><td class="num">0.1%</td><td class="num">5</td><td class="num">0.2%</td><td class="num">7</td><td class="num">0.2%</td><td class="num">12</td></tr>
-      <tr><td>2</td><td>Haz 2026</td><td class="num">12</td><td class="num">0.4%</td><td class="num">20</td><td class="num">0.7%</td><td class="num">28</td><td class="num">0.9%</td><td class="num">48</td></tr>
-      <tr><td>3</td><td>Tem 2026</td><td class="num">30</td><td class="num">1.0%</td><td class="num">50</td><td class="num">1.7%</td><td class="num">70</td><td class="num">2.3%</td><td class="num">120</td></tr>
-      <tr><td>4</td><td>Ağu 2026</td><td class="num">57</td><td class="num">1.9%</td><td class="num">95</td><td class="num">3.2%</td><td class="num">133</td><td class="num">4.4%</td><td class="num">228</td></tr>
-      <tr><td>5</td><td>Eyl 2026</td><td class="num">96</td><td class="num">3.2%</td><td class="num">160</td><td class="num">5.3%</td><td class="num">224</td><td class="num">7.5%</td><td class="num">384</td></tr>
-      <tr><td>6</td><td>Eki 2026</td><td class="num">138</td><td class="num">4.6%</td><td class="num">230</td><td class="num">7.7%</td><td class="num">322</td><td class="num">10.7%</td><td class="num">552</td></tr>
-      <tr><td>7</td><td>Kas 2026</td><td class="num">186</td><td class="num">6.2%</td><td class="num">310</td><td class="num">10.3%</td><td class="num">434</td><td class="num">14.5%</td><td class="num">744</td></tr>
-      <tr><td>8</td><td>Ara 2026</td><td class="num">237</td><td class="num">7.9%</td><td class="num">395</td><td class="num">13.2%</td><td class="num">553</td><td class="num">18.4%</td><td class="num">948</td></tr>
-      <tr><td>9</td><td>Oca 2027</td><td class="num">291</td><td class="num">9.7%</td><td class="num">485</td><td class="num">16.2%</td><td class="num">679</td><td class="num">22.6%</td><td class="num">1.164</td></tr>
-      <tr><td>10</td><td>Şub 2027</td><td class="num">348</td><td class="num">11.6%</td><td class="num">580</td><td class="num">19.3%</td><td class="num">812</td><td class="num">27.1%</td><td class="num">1.392</td></tr>
-      <tr><td>11</td><td>Mar 2027</td><td class="num">408</td><td class="num">13.6%</td><td class="num">680</td><td class="num">22.7%</td><td class="num">952</td><td class="num">31.7%</td><td class="num">1.632</td></tr>
-      <tr><td>12</td><td>Nis 2027</td><td class="num">468</td><td class="num">15.6%</td><td class="num">780</td><td class="num">26.0%</td><td class="num">1.092</td><td class="num">36.4%</td><td class="num">1.872</td></tr>
-      <tr><td>13</td><td>May 2027</td><td class="num">528</td><td class="num">17.6%</td><td class="num">880</td><td class="num">29.3%</td><td class="num">1.232</td><td class="num">41.1%</td><td class="num">2.112</td></tr>
-      <tr><td>14</td><td>Haz 2027</td><td class="num">588</td><td class="num">19.6%</td><td class="num">980</td><td class="num">32.7%</td><td class="num">1.372</td><td class="num">45.7%</td><td class="num">2.352</td></tr>
-      <tr><td>15</td><td>Tem 2027</td><td class="num">648</td><td class="num">21.6%</td><td class="num">1.080</td><td class="num">36.0%</td><td class="num">1.512</td><td class="num">50.4%</td><td class="num">2.592</td></tr>
-      <tr><td>16</td><td>Ağu 2027</td><td class="num">705</td><td class="num">23.5%</td><td class="num">1.175</td><td class="num">39.2%</td><td class="num">1.645</td><td class="num">54.8%</td><td class="num">2.820</td></tr>
-      <tr><td>17</td><td>Eyl 2027</td><td class="num">759</td><td class="num">25.3%</td><td class="num">1.265</td><td class="num">42.2%</td><td class="num">1.771</td><td class="num">59.0%</td><td class="num">3.036</td></tr>
-      <tr><td>18</td><td>Eki 2027</td><td class="num">810</td><td class="num">27.0%</td><td class="num">1.350</td><td class="num">45.0%</td><td class="num">1.890</td><td class="num">63.0%</td><td class="num">3.240</td></tr>
-      <tr><td>19</td><td>Kas 2027</td><td class="num">858</td><td class="num">28.6%</td><td class="num">1.430</td><td class="num">47.7%</td><td class="num">2.002</td><td class="num">66.7%</td><td class="num">3.432</td></tr>
-      <tr><td>20</td><td>Ara 2027</td><td class="num">900</td><td class="num">30.0%</td><td class="num">1.500</td><td class="num">50.0%</td><td class="num">2.100</td><td class="num">70.0%</td><td class="num">3.600</td></tr>
-    </tbody>
-  </table>
+  <!-- TAB 1: KÜMÜLATİF -->
+  <div class="tab-panel is-active" id="tab-cum" role="tabpanel" aria-labelledby="tab-cum-btn">
+    <h3>Kümülatif Üye Yörüngesi</h3>
+    <p class="soft" style="max-width:780px;">
+      Her ay sonu toplam aktif ödeyen üye sayısı. İyimser senaryoda Ay 18+ sonrası İstanbul dışı
+      bölgelere (Bursa, Ankara, İzmir) yayılım gerekir.
+    </p>
+    <div id="somMonthly" class="chart chart-lg"></div>
+
+    <h3 style="margin-top: var(--s-6);">SOM Payı (%)</h3>
+    <div id="somPenetration" class="chart chart-lg"></div>
+
+    <h3 style="margin-top: var(--s-6);">Aylık Hedef Tablosu — Kümülatif</h3>
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th>Ay</th>
+          <th>Tarih</th>
+          <th class="num">Kötümser (Üye)</th>
+          <th class="num">Kötümser SOM%</th>
+          <th class="num">Medyan (Üye)</th>
+          <th class="num">Medyan SOM%</th>
+          <th class="num">İyimser (Üye)</th>
+          <th class="num">İyimser SOM%</th>
+          <th class="num">Medyan ARR ($K)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>May 2026</td><td class="num">3</td><td class="num">0.1%</td><td class="num">5</td><td class="num">0.2%</td><td class="num">7</td><td class="num">0.2%</td><td class="num">12</td></tr>
+        <tr><td>2</td><td>Haz 2026</td><td class="num">12</td><td class="num">0.4%</td><td class="num">20</td><td class="num">0.7%</td><td class="num">28</td><td class="num">0.9%</td><td class="num">48</td></tr>
+        <tr><td>3</td><td>Tem 2026</td><td class="num">30</td><td class="num">1.0%</td><td class="num">50</td><td class="num">1.7%</td><td class="num">70</td><td class="num">2.3%</td><td class="num">120</td></tr>
+        <tr><td>4</td><td>Ağu 2026</td><td class="num">57</td><td class="num">1.9%</td><td class="num">95</td><td class="num">3.2%</td><td class="num">133</td><td class="num">4.4%</td><td class="num">228</td></tr>
+        <tr><td>5</td><td>Eyl 2026</td><td class="num">96</td><td class="num">3.2%</td><td class="num">160</td><td class="num">5.3%</td><td class="num">224</td><td class="num">7.5%</td><td class="num">384</td></tr>
+        <tr><td>6</td><td>Eki 2026</td><td class="num">138</td><td class="num">4.6%</td><td class="num">230</td><td class="num">7.7%</td><td class="num">322</td><td class="num">10.7%</td><td class="num">552</td></tr>
+        <tr><td>7</td><td>Kas 2026</td><td class="num">186</td><td class="num">6.2%</td><td class="num">310</td><td class="num">10.3%</td><td class="num">434</td><td class="num">14.5%</td><td class="num">744</td></tr>
+        <tr><td>8</td><td>Ara 2026</td><td class="num">237</td><td class="num">7.9%</td><td class="num">395</td><td class="num">13.2%</td><td class="num">553</td><td class="num">18.4%</td><td class="num">948</td></tr>
+        <tr><td>9</td><td>Oca 2027</td><td class="num">291</td><td class="num">9.7%</td><td class="num">485</td><td class="num">16.2%</td><td class="num">679</td><td class="num">22.6%</td><td class="num">1.164</td></tr>
+        <tr><td>10</td><td>Şub 2027</td><td class="num">348</td><td class="num">11.6%</td><td class="num">580</td><td class="num">19.3%</td><td class="num">812</td><td class="num">27.1%</td><td class="num">1.392</td></tr>
+        <tr><td>11</td><td>Mar 2027</td><td class="num">408</td><td class="num">13.6%</td><td class="num">680</td><td class="num">22.7%</td><td class="num">952</td><td class="num">31.7%</td><td class="num">1.632</td></tr>
+        <tr><td>12</td><td>Nis 2027</td><td class="num">468</td><td class="num">15.6%</td><td class="num">780</td><td class="num">26.0%</td><td class="num">1.092</td><td class="num">36.4%</td><td class="num">1.872</td></tr>
+        <tr><td>13</td><td>May 2027</td><td class="num">528</td><td class="num">17.6%</td><td class="num">880</td><td class="num">29.3%</td><td class="num">1.232</td><td class="num">41.1%</td><td class="num">2.112</td></tr>
+        <tr><td>14</td><td>Haz 2027</td><td class="num">588</td><td class="num">19.6%</td><td class="num">980</td><td class="num">32.7%</td><td class="num">1.372</td><td class="num">45.7%</td><td class="num">2.352</td></tr>
+        <tr><td>15</td><td>Tem 2027</td><td class="num">648</td><td class="num">21.6%</td><td class="num">1.080</td><td class="num">36.0%</td><td class="num">1.512</td><td class="num">50.4%</td><td class="num">2.592</td></tr>
+        <tr><td>16</td><td>Ağu 2027</td><td class="num">705</td><td class="num">23.5%</td><td class="num">1.175</td><td class="num">39.2%</td><td class="num">1.645</td><td class="num">54.8%</td><td class="num">2.820</td></tr>
+        <tr><td>17</td><td>Eyl 2027</td><td class="num">759</td><td class="num">25.3%</td><td class="num">1.265</td><td class="num">42.2%</td><td class="num">1.771</td><td class="num">59.0%</td><td class="num">3.036</td></tr>
+        <tr><td>18</td><td>Eki 2027</td><td class="num">810</td><td class="num">27.0%</td><td class="num">1.350</td><td class="num">45.0%</td><td class="num">1.890</td><td class="num">63.0%</td><td class="num">3.240</td></tr>
+        <tr><td>19</td><td>Kas 2027</td><td class="num">858</td><td class="num">28.6%</td><td class="num">1.430</td><td class="num">47.7%</td><td class="num">2.002</td><td class="num">66.7%</td><td class="num">3.432</td></tr>
+        <tr><td>20</td><td>Ara 2027</td><td class="num">900</td><td class="num">30.0%</td><td class="num">1.500</td><td class="num">50.0%</td><td class="num">2.100</td><td class="num">70.0%</td><td class="num">3.600</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- TAB 2: AYLIK Δ -->
+  <div class="tab-panel" id="tab-delta" role="tabpanel" aria-labelledby="tab-delta-btn">
+    <h3>Aylık Yeni Üye Akışı (Δ)</h3>
+    <p class="soft" style="max-width:780px;">
+      Her ay net yeni eklenen ödeyen üye sayısı. S-eğrisinin türevidir — Ay 11–15 arası tepe (medyan
+      ~100 üye/ay), sonrası doygunluk eğimi yavaşlatır.
+    </p>
+    <div id="somMonthlyDelta" class="chart chart-lg"></div>
+
+    <h3 style="margin-top: var(--s-6);">Aylık SOM% Artışı (Δ pp)</h3>
+    <div id="somPenetrationDelta" class="chart chart-lg"></div>
+
+    <h3 style="margin-top: var(--s-6);">Aylık Hedef Tablosu — Δ (Net Yeni)</h3>
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th>Ay</th>
+          <th>Tarih</th>
+          <th class="num">Kötümser (Δ Üye)</th>
+          <th class="num">Kötümser Δ SOM% (pp)</th>
+          <th class="num">Medyan (Δ Üye)</th>
+          <th class="num">Medyan Δ SOM% (pp)</th>
+          <th class="num">İyimser (Δ Üye)</th>
+          <th class="num">İyimser Δ SOM% (pp)</th>
+          <th class="num">Medyan Δ MRR ($K)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>May 2026</td><td class="num">3</td><td class="num">0.10</td><td class="num">5</td><td class="num">0.17</td><td class="num">7</td><td class="num">0.23</td><td class="num">1.0</td></tr>
+        <tr><td>2</td><td>Haz 2026</td><td class="num">9</td><td class="num">0.30</td><td class="num">15</td><td class="num">0.50</td><td class="num">21</td><td class="num">0.70</td><td class="num">3.0</td></tr>
+        <tr><td>3</td><td>Tem 2026</td><td class="num">18</td><td class="num">0.60</td><td class="num">30</td><td class="num">1.00</td><td class="num">42</td><td class="num">1.40</td><td class="num">6.0</td></tr>
+        <tr><td>4</td><td>Ağu 2026</td><td class="num">27</td><td class="num">0.90</td><td class="num">45</td><td class="num">1.50</td><td class="num">63</td><td class="num">2.10</td><td class="num">9.0</td></tr>
+        <tr><td>5</td><td>Eyl 2026</td><td class="num">39</td><td class="num">1.30</td><td class="num">65</td><td class="num">2.17</td><td class="num">91</td><td class="num">3.03</td><td class="num">13.0</td></tr>
+        <tr><td>6</td><td>Eki 2026</td><td class="num">42</td><td class="num">1.40</td><td class="num">70</td><td class="num">2.33</td><td class="num">98</td><td class="num">3.27</td><td class="num">14.0</td></tr>
+        <tr><td>7</td><td>Kas 2026</td><td class="num">48</td><td class="num">1.60</td><td class="num">80</td><td class="num">2.67</td><td class="num">112</td><td class="num">3.73</td><td class="num">16.0</td></tr>
+        <tr><td>8</td><td>Ara 2026</td><td class="num">51</td><td class="num">1.70</td><td class="num">85</td><td class="num">2.83</td><td class="num">119</td><td class="num">3.97</td><td class="num">17.0</td></tr>
+        <tr><td>9</td><td>Oca 2027</td><td class="num">54</td><td class="num">1.80</td><td class="num">90</td><td class="num">3.00</td><td class="num">126</td><td class="num">4.20</td><td class="num">18.0</td></tr>
+        <tr><td>10</td><td>Şub 2027</td><td class="num">57</td><td class="num">1.90</td><td class="num">95</td><td class="num">3.17</td><td class="num">133</td><td class="num">4.43</td><td class="num">19.0</td></tr>
+        <tr><td>11</td><td>Mar 2027</td><td class="num">60</td><td class="num">2.00</td><td class="num">100</td><td class="num">3.33</td><td class="num">140</td><td class="num">4.67</td><td class="num">20.0</td></tr>
+        <tr><td>12</td><td>Nis 2027</td><td class="num">60</td><td class="num">2.00</td><td class="num">100</td><td class="num">3.33</td><td class="num">140</td><td class="num">4.67</td><td class="num">20.0</td></tr>
+        <tr><td>13</td><td>May 2027</td><td class="num">60</td><td class="num">2.00</td><td class="num">100</td><td class="num">3.33</td><td class="num">140</td><td class="num">4.67</td><td class="num">20.0</td></tr>
+        <tr><td>14</td><td>Haz 2027</td><td class="num">60</td><td class="num">2.00</td><td class="num">100</td><td class="num">3.33</td><td class="num">140</td><td class="num">4.67</td><td class="num">20.0</td></tr>
+        <tr><td>15</td><td>Tem 2027</td><td class="num">60</td><td class="num">2.00</td><td class="num">100</td><td class="num">3.33</td><td class="num">140</td><td class="num">4.67</td><td class="num">20.0</td></tr>
+        <tr><td>16</td><td>Ağu 2027</td><td class="num">57</td><td class="num">1.90</td><td class="num">95</td><td class="num">3.17</td><td class="num">133</td><td class="num">4.43</td><td class="num">19.0</td></tr>
+        <tr><td>17</td><td>Eyl 2027</td><td class="num">54</td><td class="num">1.80</td><td class="num">90</td><td class="num">3.00</td><td class="num">126</td><td class="num">4.20</td><td class="num">18.0</td></tr>
+        <tr><td>18</td><td>Eki 2027</td><td class="num">51</td><td class="num">1.70</td><td class="num">85</td><td class="num">2.83</td><td class="num">119</td><td class="num">3.97</td><td class="num">17.0</td></tr>
+        <tr><td>19</td><td>Kas 2027</td><td class="num">48</td><td class="num">1.60</td><td class="num">80</td><td class="num">2.67</td><td class="num">112</td><td class="num">3.73</td><td class="num">16.0</td></tr>
+        <tr><td>20</td><td>Ara 2027</td><td class="num">42</td><td class="num">1.40</td><td class="num">70</td><td class="num">2.33</td><td class="num">98</td><td class="num">3.27</td><td class="num">14.0</td></tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="2">20 Ay Toplam</td>
+          <td class="num">900</td>
+          <td class="num">30.0</td>
+          <td class="num">1.500</td>
+          <td class="num">50.0</td>
+          <td class="num">2.100</td>
+          <td class="num">70.0</td>
+          <td class="num">300.0</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
 
   <h2 style="margin-top: var(--s-7);">Aralık 2027 Sonu — 3 Senaryo Özet</h2>
   <div id="endStateBars" class="chart chart-lg"></div>
@@ -386,6 +499,62 @@
       { name: 'İyimser',   type: 'line', smooth: true, data: pOpt,  areaStyle: { opacity: 0.1 } }
     ]
   });
+
+  // -------- AYLIK Δ (DELTA) chart'ları --------
+  const pessimistDelta = [3,9,18,27,39,42,48,51,54,57,60,60,60,60,60,57,54,51,48,42];
+  const medianDelta    = [5,15,30,45,65,70,80,85,90,95,100,100,100,100,100,95,90,85,80,70];
+  const optimistDelta  = [7,21,42,63,91,98,112,119,126,133,140,140,140,140,140,133,126,119,112,98];
+
+  echarts.init(document.getElementById('somMonthlyDelta')).setOption({
+    color: ['#991b1b','#1e40af','#166534'],
+    textStyle: baseFont,
+    legend: { top: 10 },
+    tooltip: { trigger: 'axis' },
+    grid: { left: 60, right: 30, top: 60, bottom: 40 },
+    xAxis: { type: 'category', data: months },
+    yAxis: { type: 'value', name: 'Δ Üye / Ay' },
+    series: [
+      { name: 'Kötümser Δ', type: 'bar', data: pessimistDelta },
+      { name: 'Medyan Δ',   type: 'bar', data: medianDelta },
+      { name: 'İyimser Δ',  type: 'bar', data: optimistDelta }
+    ]
+  });
+
+  const pPessDelta = pessimistDelta.map(v => (v/3000*100).toFixed(2));
+  const pMedDelta  = medianDelta.map(v => (v/3000*100).toFixed(2));
+  const pOptDelta  = optimistDelta.map(v => (v/3000*100).toFixed(2));
+
+  echarts.init(document.getElementById('somPenetrationDelta')).setOption({
+    color: ['#991b1b','#1e40af','#166534'],
+    textStyle: baseFont,
+    legend: { top: 10 },
+    tooltip: { trigger: 'axis', valueFormatter: v => v + ' pp' },
+    grid: { left: 60, right: 30, top: 60, bottom: 40 },
+    xAxis: { type: 'category', data: months },
+    yAxis: { type: 'value', name: 'Δ SOM% (pp)', axisLabel: { formatter: '{value} pp' } },
+    series: [
+      { name: 'Kötümser Δ', type: 'line', smooth: true, data: pPessDelta },
+      { name: 'Medyan Δ',   type: 'line', smooth: true, data: pMedDelta, lineStyle: { width: 3 } },
+      { name: 'İyimser Δ',  type: 'line', smooth: true, data: pOptDelta }
+    ]
+  });
+
+  // -------- Tab geçişi + resize --------
+  (function () {
+    const tabs = document.querySelectorAll('.tab-btn');
+    const panels = document.querySelectorAll('.tab-panel');
+    tabs.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const target = btn.getAttribute('aria-controls');
+        tabs.forEach(function (b) { b.setAttribute('aria-selected', b === btn ? 'true' : 'false'); });
+        panels.forEach(function (p) { p.classList.toggle('is-active', p.id === target); });
+        // ECharts yeni görünür hale gelen container'ları resize'la
+        setTimeout(function () {
+          window.dispatchEvent(new Event('resize'));
+        }, 50);
+      });
+    });
+  })();
 
   // End state — Aralık 2027 comparison
   echarts.init(document.getElementById('endStateBars')).setOption({
