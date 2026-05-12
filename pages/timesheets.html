@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Timesheets — istoc.com</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<script src="../assets/charts.js"></script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="detail">
+<div class="container">
+
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">Operasyon · Mesai allocation</span>
+      <h1>Timesheets — Mesai Yapısı</h1>
+      <p class="soft" style="max-width:760px;">
+        Rol bazlı haftalık saat dağılımı, ajan/proje eşleşmesi, aylık mesai matrisi.
+      </p>
+    </div>
+    <span class="tag"><i class="ph ph-clock-counter-clockwise"></i> Haftalık 40 saat</span>
+  </div>
+
+  <div class="grid grid-4" style="margin-bottom: var(--s-6);">
+    <div class="kpi"><span class="label">Toplam Saat / Hafta</span><span class="value">400+</span><span class="delta">9 çekirdek × 40 + 8 saha × 20</span></div>
+    <div class="kpi"><span class="label">AI Ajan Geliştirme</span><span class="value">~140 saat</span><span class="delta">Mühendislik ekip</span></div>
+    <div class="kpi"><span class="label">Saha + Demo</span><span class="value">~160 saat</span><span class="delta">Üniversiteli ordu</span></div>
+    <div class="kpi"><span class="label">İçerik + Pazarlama</span><span class="value">~50 saat</span><span class="delta">Pazarlama Lideri + Growth</span></div>
+  </div>
+
+  <h2>Rol × Ajan Allocation Matrisi (Saat / Hafta)</h2>
+  <div id="allocMatrix" class="chart chart-xl"></div>
+
+  <h2 style="margin-top: var(--s-7);">Haftalık Saat Dağılımı — Rol Bazlı</h2>
+  <div id="weeklyDist" class="chart chart-lg"></div>
+
+  <h2 style="margin-top: var(--s-7);">Aylık Mesai Tablosu (Ay 3 Örnek)</h2>
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>Rol</th>
+        <th class="num">Çalışılan Hafta</th>
+        <th class="num">Saat / Hafta</th>
+        <th class="num">Aylık Saat</th>
+        <th class="num">Ana Ajan / Proje</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Frontend Dev</td><td class="num">4</td><td class="num">40</td><td class="num">160</td><td class="num">WhatsApp UI · Tablet PWA · Web Dashboard</td></tr>
+      <tr><td>Backend Dev</td><td class="num">4</td><td class="num">40</td><td class="num">160</td><td class="num">RFQ Matchmaker · CS Agent · API</td></tr>
+      <tr><td>Data Eng</td><td class="num">4</td><td class="num">40</td><td class="num">160</td><td class="num">Qdrant · ImportGenius · Apollo</td></tr>
+      <tr><td>DevOps / AI Infra</td><td class="num">4</td><td class="num">40</td><td class="num">160</td><td class="num">Langfuse · Sales Coach Agent</td></tr>
+      <tr><td>AI Engineer</td><td class="num">4</td><td class="num">40</td><td class="num">160</td><td class="num">Translation · Outbound · eval</td></tr>
+      <tr><td>Growth Engineer</td><td class="num">4</td><td class="num">40</td><td class="num">160</td><td class="num">GEO · Outbound · A/B test</td></tr>
+      <tr><td>Pazarlama Ekip Lideri</td><td class="num">4</td><td class="num">40</td><td class="num">160</td><td class="num">İçerik makinesi · esnaf vaka</td></tr>
+      <tr><td>CS Manager</td><td class="num">4</td><td class="num">40</td><td class="num">160</td><td class="num">CS Agent · trial activation</td></tr>
+      <tr><td>Stratejik Yönetici</td><td class="num">4</td><td class="num">40</td><td class="num">160</td><td class="num">Tüm — karar destek</td></tr>
+      <tr><td>Hemşehri Saha Lideri</td><td class="num">4</td><td class="num">40</td><td class="num">160</td><td class="num">RFQ onay · saha yönlendirme</td></tr>
+      <tr><td>Üniversiteli × 8</td><td class="num">4</td><td class="num">20</td><td class="num">640 (toplam)</td><td class="num">Saha demo · ziyaret raporu</td></tr>
+    </tbody>
+    <tfoot>
+      <tr><td colspan="3">Toplam Saat / Ay</td><td class="num">2.080</td><td></td></tr>
+    </tfoot>
+  </table>
+
+  <h2 style="margin-top: var(--s-7);">Kişi × Hafta Heatmap (4 Hafta)</h2>
+  <div id="personHeat" class="chart chart-lg"></div>
+
+  <h2 style="margin-top: var(--s-7);">Saatlik Maliyet × Allocation</h2>
+  <div id="costAlloc" class="chart chart-lg"></div>
+
+</div>
+
+<script>
+  const palette = ['#1f2937','#c2410c','#166534','#1e40af','#6b21a8','#155e75','#be123c','#0f766e'];
+  const baseFont = { fontFamily: 'Roboto, sans-serif', fontWeight: 300, fontSize: 13 };
+
+  const roles = ['Frontend','Backend','Data','DevOps','AI Eng','Growth','Pazarlama','CS Mgr','Saha Lider','Üniversiteli'];
+  const projects = ['RFQ Mtch','Translation','Photo','Outbound','Sales Coach','CS Agent','Content/GEO','UI/PWA','Saha Demo','Veri/RAG'];
+
+  // role × project hours (per week)
+  const alloc = [
+    // F   T   P   O   SC  CS  GE  UI  SD  VR
+    [0,   0,  4,  0,  0,  0,  0, 30,  0,  6], // Frontend
+    [20,  4,  0,  0,  0,  8,  0,  0,  0,  8], // Backend
+    [0,   0,  0,  6,  0,  0,  0,  0,  0, 34], // Data
+    [0,   2,  2,  0, 14,  0,  0,  0,  0,  4], // DevOps
+    [12, 14,  4,  6,  0,  0,  0,  0,  0,  4], // AI Eng
+    [0,   0,  0, 28,  0,  0, 10,  0,  0,  2], // Growth
+    [0,   0,  0,  0,  0,  0, 36,  4,  0,  0], // Pazarlama
+    [0,   0,  0,  0,  0, 30,  0,  4,  6,  0], // CS Mgr
+    [4,   2,  0,  4,  2,  0,  0,  0, 28,  0], // Saha Lideri
+    [0,   0,  0,  0,  0,  0,  0,  0, 20,  0]  // Üniversiteli (her biri ~20)
+  ];
+  const allocData = [];
+  roles.forEach((_, yi) => projects.forEach((_, xi) => allocData.push([xi, yi, alloc[yi][xi]])));
+  echarts.init(document.getElementById('allocMatrix')).setOption({
+    textStyle: baseFont,
+    tooltip: { position: 'top' },
+    grid: { left: 140, right: 30, top: 50, bottom: 80 },
+    xAxis: { type: 'category', data: projects, splitArea: { show: true } },
+    yAxis: { type: 'category', data: roles, splitArea: { show: true } },
+    visualMap: { min: 0, max: 36, calculable: true, orient: 'horizontal', left: 'center', bottom: 10, inRange: { color: ['#fafaf9','#1f2937'] } },
+    series: [{ name: 'Saat / hafta', type: 'heatmap', data: allocData, label: { show: true } }]
+  });
+
+  // Weekly distribution per role (stacked bar)
+  echarts.init(document.getElementById('weeklyDist')).setOption({
+    color: palette,
+    textStyle: baseFont,
+    tooltip: { trigger: 'axis' },
+    legend: { top: 10 },
+    grid: { left: 140, right: 30, top: 60, bottom: 40 },
+    xAxis: { type: 'value', name: 'Saat / hafta' },
+    yAxis: { type: 'category', data: roles },
+    series: projects.map((p, i) => ({
+      name: p, type: 'bar', stack: 'h',
+      data: roles.map((_, ri) => alloc[ri][i])
+    }))
+  });
+
+  // Person × Week heatmap (4 weeks utilization)
+  const people = ['F. Dev','B. Dev','Data','DevOps','AI Eng','Growth','Pazarlama Lideri','CS Mgr','Saha L.','Üniv-1','Üniv-2','Üniv-3','Üniv-4','Üniv-5','Üniv-6','Üniv-7','Üniv-8'];
+  const weeks = ['H1','H2','H3','H4'];
+  const usage = [
+    [38,40,42,40],[40,42,40,38],[42,38,40,40],[40,40,42,38],
+    [44,42,40,40],[40,42,44,40],[36,38,40,40],[38,40,40,42],
+    [40,42,40,38],[18,20,22,20],[20,20,22,18],[22,20,20,20],
+    [18,22,20,20],[20,20,22,18],[22,20,20,20],[18,20,22,20],[20,18,22,20]
+  ];
+  const usageData = [];
+  people.forEach((_, yi) => weeks.forEach((_, xi) => usageData.push([xi, yi, usage[yi][xi]])));
+  echarts.init(document.getElementById('personHeat')).setOption({
+    textStyle: baseFont,
+    tooltip: { position: 'top' },
+    grid: { left: 100, right: 30, top: 50, bottom: 60 },
+    xAxis: { type: 'category', data: weeks },
+    yAxis: { type: 'category', data: people },
+    visualMap: { min: 0, max: 50, calculable: true, orient: 'horizontal', left: 'center', bottom: 10, inRange: { color: ['#fafaf9','#166534'] } },
+    series: [{ type: 'heatmap', data: usageData, label: { show: true } }]
+  });
+
+  // Hourly cost × allocation
+  echarts.init(document.getElementById('costAlloc')).setOption({
+    color: ['#1f2937','#c2410c'],
+    textStyle: baseFont,
+    legend: { top: 10 },
+    tooltip: { trigger: 'axis' },
+    grid: { left: 160, right: 60, top: 60, bottom: 40 },
+    xAxis: { type: 'category', data: roles },
+    yAxis: [
+      { type: 'value', name: 'Saatlik $ (brüt)' },
+      { type: 'value', name: 'Saat / hafta', position: 'right' }
+    ],
+    series: [
+      { name: 'Saatlik maliyet', type: 'bar', data: [22, 26, 25, 26, 30, 26, 19, 16, 14, 4] },
+      { name: 'Allocation saat', type: 'line', smooth: true, yAxisIndex: 1, data: [40, 40, 40, 40, 40, 40, 40, 40, 40, 20] }
+    ]
+  });
+</script>
+</body>
+</html>

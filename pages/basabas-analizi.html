@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Başabaş Analizi — istoc.com</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<script src="../assets/charts.js"></script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="detail">
+<div class="container">
+
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">Finans · Senaryo analizi</span>
+      <h1>Başabaş Analizi</h1>
+      <p class="soft" style="max-width:760px;">
+        Ödeyen üye sayısı × ARPU = aylık gelir denklemi. Sabit + değişken giderlere
+        karşı 3 senaryolu başabaş ayı tespiti.
+      </p>
+    </div>
+    <span class="tag"><i class="ph ph-target"></i> 3 Senaryo</span>
+  </div>
+
+  <h2>Senaryolar — Üye Yörüngesi</h2>
+  <div id="scenarios" class="chart chart-lg"></div>
+
+  <h2 style="margin-top: var(--s-7);">Senaryo Parametreleri</h2>
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>Parametre</th>
+        <th class="num">Kötümser</th>
+        <th class="num">Baz</th>
+        <th class="num">İyimser</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Ay 3 ödeyen üye</td><td class="num">30</td><td class="num">50</td><td class="num">70</td></tr>
+      <tr><td>Ay 6 ödeyen üye</td><td class="num">138</td><td class="num">230</td><td class="num">322</td></tr>
+      <tr><td>Ay 12 ödeyen üye</td><td class="num">468</td><td class="num">780</td><td class="num">1.092</td></tr>
+      <tr><td>Ortalama ARPU / ay</td><td class="num">$160</td><td class="num">$200</td><td class="num">$230</td></tr>
+      <tr><td>Komisyon GMV %3 (Ay 12 GMV)</td><td class="num">$1.1M</td><td class="num">$1.9M</td><td class="num">$3.6M</td></tr>
+      <tr><td>Aylık sabit gider (ortalama)</td><td class="num">$48K</td><td class="num">$70K</td><td class="num">$92K</td></tr>
+      <tr><td>Değişken gider (gelirin %)</td><td class="num">%18</td><td class="num">%14</td><td class="num">%11</td></tr>
+      <tr><td><b>Başabaş ayı (yaklaşık)</b></td><td class="num">Ay 12</td><td class="num">Ay 9</td><td class="num">Ay 6</td></tr>
+    </tbody>
+  </table>
+
+  <h2 style="margin-top: var(--s-7);">Başabaş Noktası — Birim Ekonomisi</h2>
+  <div class="grid grid-2">
+    <div id="breakEven" class="chart chart-lg"></div>
+    <div>
+      <h3>Birim Ekonomi Formülü</h3>
+      <p class="soft">
+        <b>Aylık başabaş üye sayısı</b> = Sabit Gider ÷ (ARPU × (1 − Değişken Gider %)).
+        Baz senaryoda: $70.000 ÷ ($200 × 0.86) ≈ <b>~407 ödeyen üye</b>.
+        Bu eşik TAM/SAM/SOM medyan yörüngesinde <b>Ay 8–9 (Aralık 2026 – Ocak 2027)</b> civarı geçilir.
+      </p>
+      <table class="tbl">
+        <thead><tr><th>Metrik</th><th class="num">Değer</th></tr></thead>
+        <tbody>
+          <tr><td>ARPU (aylık)</td><td class="num">$200</td></tr>
+          <tr><td>Brüt marj</td><td class="num">%86</td></tr>
+          <tr><td>Katkı marjı / üye</td><td class="num">$172.0</td></tr>
+          <tr><td>Sabit gider / ay (baz)</td><td class="num">$70.000</td></tr>
+          <tr><td>Başabaş üye sayısı</td><td class="num">~407</td></tr>
+          <tr><td>CAC (baz)</td><td class="num">$700–1.100</td></tr>
+          <tr><td>LTV / CAC hedef</td><td class="num">3.0×</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h2 style="margin-top: var(--s-7);">Hassasiyet — ARPU & Üye Sayısı</h2>
+  <div id="sensitivity" class="chart chart-lg"></div>
+
+</div>
+
+<script>
+  const palette = ['#991b1b','#1f2937','#166534'];
+  const baseFont = { fontFamily: 'Roboto, sans-serif', fontWeight: 300, fontSize: 13 };
+
+  echarts.init(document.getElementById('scenarios')).setOption({
+    color: palette,
+    textStyle: baseFont,
+    legend: { top: 10 },
+    tooltip: { trigger: 'axis' },
+    grid: { left: 60, right: 30, top: 60, bottom: 40 },
+    xAxis: { type: 'category', data: Array.from({length:12}, (_,i)=>`Ay ${i+1}`) },
+    yAxis: { type: 'value', name: 'Ödeyen Üye' },
+    series: [
+      { name: 'Kötümser', type: 'line', smooth: true, data: [3,12,30,57,96,138,186,237,291,348,408,468] },
+      { name: 'Baz',      type: 'line', smooth: true, data: [5,20,50,95,160,230,310,395,485,580,680,780] },
+      { name: 'İyimser',  type: 'line', smooth: true, data: [7,28,70,133,224,322,434,553,679,812,952,1092] }
+    ]
+  });
+
+  echarts.init(document.getElementById('breakEven')).setOption({
+    color: ['#991b1b','#166534','#1f2937'],
+    textStyle: baseFont,
+    legend: { top: 10 },
+    tooltip: { trigger: 'axis' },
+    grid: { left: 70, right: 30, top: 60, bottom: 40 },
+    xAxis: { type: 'value', name: 'Ödeyen Üye', min: 0, max: 1100 },
+    yAxis: { type: 'value', name: 'USD / ay', axisLabel: { formatter: '${value}' } },
+    series: [
+      { name: 'Toplam Gider (sabit + değişken)', type: 'line', smooth: true,
+        data: [[0,70000],[100,87200],[200,104400],[300,121600],[400,138800],[500,156000],[600,173200],[700,190400],[800,207600],[900,224800],[1000,242000],[1100,259200]] },
+      { name: 'Gelir', type: 'line', smooth: true,
+        data: [[0,0],[100,20000],[200,40000],[300,60000],[400,80000],[500,100000],[600,120000],[700,140000],[800,160000],[900,180000],[1000,200000],[1100,220000]] },
+      { name: 'Başabaş noktası', type: 'scatter', symbolSize: 16,
+        data: [[407, 81400]] }
+    ]
+  });
+
+  // Sensitivity heatmap (üye × ARPU)
+  const arpus = [140,160,180,200,220,240];
+  const members = [200,300,400,500,600,700,800,900];
+  const sensData = [];
+  arpus.forEach((arpu, yi) => {
+    members.forEach((m, xi) => {
+      const revenue = arpu * m * 0.86; // brüt marj
+      const profit = revenue - 70000;  // sabit gider
+      sensData.push([xi, yi, Math.round(profit)]);
+    });
+  });
+  echarts.init(document.getElementById('sensitivity')).setOption({
+    textStyle: baseFont,
+    tooltip: {
+      formatter: function(p) {
+        return `Üye: ${members[p.value[0]]} · ARPU: $${arpus[p.value[1]]}<br>Kar/ay: $${p.value[2].toLocaleString()}`;
+      }
+    },
+    grid: { left: 90, right: 60, top: 50, bottom: 70 },
+    xAxis: { type: 'category', data: members, name: 'Ödeyen Üye', nameLocation: 'middle', nameGap: 30 },
+    yAxis: { type: 'category', data: arpus.map(a => `$${a}`), name: 'ARPU', nameLocation: 'middle', nameGap: 60 },
+    visualMap: {
+      min: -50000, max: 80000, calculable: true, orient: 'horizontal',
+      left: 'center', bottom: 10,
+      inRange: { color: ['#991b1b','#fafaf9','#166534'] }
+    },
+    series: [{
+      name: 'Aylık Kar', type: 'heatmap', data: sensData,
+      label: { show: true, formatter: p => '$' + (p.value[2]/1000).toFixed(0) + 'K' }
+    }]
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,509 @@
+/* istoc.com — Mobile-First Tasarım Sistemi
+   Baz hedef: iPhone SE 375 × 667 (CSS px)
+   Yükseltmeler: 640 / 768 / 1024 / 1280
+   Tipografi tabanı 1rem (16px), font-weight 300 minimum
+*/
+
+:root {
+  /* Renk paleti — section ritmi için 3 ton */
+  --c-bg: #f7f7f5;        /* tek section'lar (biraz koyu) */
+  --c-bg-alt: #fcfcfa;    /* çift section'lar (biraz açık) */
+  --c-surface: #ffffff;
+  --c-surface-2: #f1f1ee;
+  --c-border: #e5e5e2;
+  --c-border-soft: #ececea;
+  --c-text: #1a1a1a;
+  --c-text-2: #4a4a4a;
+  --c-text-3: #8a8a8a;
+  --c-primary: #1f2937;
+  --c-accent: #c2410c;
+  --c-success: #166534;
+  --c-warn: #92400e;
+  --c-danger: #991b1b;
+  --c-info: #1e40af;
+
+  /* Tipografi */
+  --ff-base: "Roboto", system-ui, -apple-system, sans-serif;
+  --fs-base: 1rem;
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-bold: 700;
+  --lh-tight: 1.3;
+  --lh-base: 1.55;
+
+  /* Spacing — 8 px grid */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.25rem;
+  --s-6: 1.75rem;
+  --s-7: 2.5rem;
+  --s-8: 3.5rem;
+  --s-9: 5rem;
+
+  /* Layout */
+  --container: 1240px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* Kategori vurguları */
+  --cat-marketing: #b45309;
+  --cat-finance: #166534;
+  --cat-gtm: #1e40af;
+  --cat-action: #6b21a8;
+  --cat-process: #155e75;
+  --cat-hr: #be123c;
+  --cat-investment: #0f766e;
+  --cat-cost: #7c2d12;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--ff-base);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-light);
+  line-height: var(--lh-base);
+  color: var(--c-text);
+  background: var(--c-bg);
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overflow-x: hidden;          /* yatay scroll yok */
+  overflow-wrap: break-word;   /* uzun kelimeler bölünür */
+  word-wrap: break-word;
+}
+
+img, svg, canvas, iframe { max-width: 100%; display: block; }
+
+/* ---- Mobile-first tipografi (375px baz) ---- */
+h1, h2, h3, h4 {
+  font-weight: var(--fw-light);
+  letter-spacing: -0.01em;
+  margin: 0 0 var(--s-3) 0;
+  line-height: var(--lh-tight);
+  word-wrap: break-word;
+}
+h1 { font-size: 1.75rem; }
+h2 { font-size: 1.375rem; }
+h3 { font-size: 1.125rem; font-weight: var(--fw-regular); }
+h4 { font-size: 1rem; font-weight: var(--fw-medium); }
+
+p { margin: 0 0 var(--s-4) 0; }
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--s-4);
+}
+
+/* Yardımcı */
+.muted { color: var(--c-text-3); }
+.soft  { color: var(--c-text-2); }
+
+.tag {
+  display: inline-flex; align-items: center; gap: var(--s-2);
+  padding: var(--s-1) var(--s-3);
+  font-size: 1rem;
+  font-weight: var(--fw-regular);
+  color: var(--c-text-2);
+  background: var(--c-surface-2);
+  border: 1px solid var(--c-border);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* ---- Kart sistemi ---- */
+.card {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+  padding: var(--s-5);
+  display: flex; flex-direction: column; gap: var(--s-3);
+  transition: border-color 160ms ease;
+}
+.card:hover { border-color: var(--c-text-3); }
+.card .card-head {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: var(--s-3); flex-wrap: wrap;
+}
+.card .card-icon {
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--c-surface-2);
+  border-radius: var(--radius-sm);
+  color: var(--c-primary);
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+.card h3 { margin: 0; }
+.card-meta { display: flex; align-items: center; gap: var(--s-2); font-size: 1rem; color: var(--c-text-3); }
+.card-meta .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--c-accent); flex-shrink: 0; }
+
+/* ---- Buton ---- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: var(--s-2);
+  padding: var(--s-3) var(--s-4);
+  font-family: var(--ff-base);
+  font-size: 1rem;
+  font-weight: var(--fw-regular);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  border: 1px solid transparent;
+  text-decoration: none;
+  transition: all 160ms ease;
+  line-height: 1.2;
+  min-height: 44px; /* dokunma hedefi */
+  width: 100%;
+}
+.btn-primary { background: var(--c-primary); color: #fff; }
+.btn-primary:hover { background: #0b1220; }
+.btn-ghost { background: transparent; color: var(--c-primary); border-color: var(--c-border); }
+.btn-ghost:hover { border-color: var(--c-primary); }
+.btn i { font-size: 1.125rem; }
+
+/* ---- Grid — mobilde tek kolon ---- */
+.grid { display: grid; gap: var(--s-4); grid-template-columns: 1fr; }
+
+/* ---- Tablo: mobil-first kart-stack pattern ----
+   Mobilde her satır kendi kartı olur, sütun başlıkları gizlenir.
+   İlk hücre kart başlığıdır (vurgulu). Geri kalan hücreler altta dikey listelenir.
+   ≥768px'te normal table render'a geçer.
+*/
+table.tbl {
+  display: block;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+  font-weight: var(--fw-light);
+  background: transparent;
+  border: 0;
+}
+
+/* Mobile: tüm yapı block */
+table.tbl thead { display: none; }
+table.tbl tbody, table.tbl tfoot { display: block; }
+table.tbl tr {
+  display: block;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border-soft);
+  border-radius: var(--radius-md);
+  padding: var(--s-3) var(--s-4);
+  margin-bottom: var(--s-3);
+}
+table.tbl td {
+  display: block;
+  padding: var(--s-1) 0;
+  border: 0;
+  text-align: left;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+/* Mobilde num hücreler de sola hizalı (kart içi) */
+table.tbl td.num { text-align: left; }
+/* İlk hücre kart başlığı */
+table.tbl tbody tr td:first-child {
+  font-weight: var(--fw-medium);
+  font-size: 1.0625rem;
+  padding-bottom: var(--s-2);
+  margin-bottom: var(--s-2);
+  border-bottom: 1px solid var(--c-border-soft);
+}
+/* th'leri içerik içinde göstermek isterse data-th kullanır */
+table.tbl td[data-th]::before {
+  content: attr(data-th) " · ";
+  color: var(--c-text-3);
+  font-weight: var(--fw-regular);
+  font-size: 0.9375rem;
+}
+/* tfoot — özet kartı */
+table.tbl tfoot tr {
+  background: var(--c-surface-2);
+  border-color: var(--c-border);
+}
+table.tbl tfoot td { font-weight: var(--fw-medium); }
+
+.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* ---- Bölüm başlığı ---- */
+.section-head {
+  display: flex; flex-direction: column;
+  gap: var(--s-3);
+  margin-bottom: var(--s-5);
+  padding-bottom: var(--s-4);
+  border-bottom: 1px solid var(--c-border);
+}
+.section-head .eyebrow {
+  display: block;
+  font-size: 1rem;
+  font-weight: var(--fw-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--c-text-3);
+  margin-bottom: var(--s-2);
+}
+
+/* ---- Chart kapsayıcı ---- */
+.chart {
+  width: 100%;
+  min-height: 260px;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+  padding: var(--s-3);
+}
+.chart-lg { min-height: 320px; }
+.chart-xl { min-height: 380px; }
+
+/* ---- KPI rozeti ---- */
+.kpi {
+  display: flex; flex-direction: column; gap: var(--s-1);
+  padding: var(--s-4);
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+}
+.kpi .label {
+  font-size: 1rem;
+  color: var(--c-text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.kpi .value {
+  font-size: 1.5rem;
+  font-weight: var(--fw-light);
+  color: var(--c-text);
+  line-height: 1.1;
+}
+.kpi .delta { font-size: 1rem; color: var(--c-text-2); }
+
+/* ---- Pill / ribbon ---- */
+.pill-row { display: flex; gap: var(--s-2); flex-wrap: wrap; margin-bottom: var(--s-4); }
+.ribbon {
+  display: inline-flex; align-items: center; gap: var(--s-2);
+  font-size: 1rem; padding: var(--s-1) var(--s-3);
+  border-radius: 999px;
+  color: #fff;
+  white-space: nowrap;
+}
+.r-marketing { background: var(--cat-marketing); }
+.r-finance   { background: var(--cat-finance); }
+.r-gtm       { background: var(--cat-gtm); }
+.r-action    { background: var(--cat-action); }
+.r-process   { background: var(--cat-process); }
+.r-hr        { background: var(--cat-hr); }
+.r-investment{ background: var(--cat-investment); }
+.r-cost      { background: var(--cat-cost); }
+
+/* ---- Modal — mobilde full screen ---- */
+.istoc-modal {
+  position: fixed; inset: 0;
+  display: none;
+  background: rgba(15, 23, 42, 0.6);
+  z-index: 100;
+  padding: 0;
+}
+.istoc-modal.is-open { display: block; }
+.istoc-modal__panel {
+  background: var(--c-surface);
+  width: 100%;
+  height: 100dvh;
+  height: 100vh; /* fallback */
+  max-width: 100%;
+  border-radius: 0;
+  box-shadow: none;
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+.istoc-modal__head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--s-2);
+  padding: var(--s-3) var(--s-4);
+  padding-top: max(var(--s-3), env(safe-area-inset-top));
+  border-bottom: 1px solid var(--c-border);
+  background: var(--c-surface);
+  flex-shrink: 0;
+}
+.istoc-modal__title {
+  display: flex; align-items: center; gap: var(--s-2);
+  font-weight: var(--fw-medium);
+  font-size: 1rem;
+  min-width: 0;
+  flex: 1;
+}
+.istoc-modal__title i { font-size: 1.125rem; flex-shrink: 0; }
+.istoc-modal__title span {
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.istoc-modal__actions { display: flex; gap: var(--s-2); flex-shrink: 0; }
+.istoc-modal__btn {
+  background: transparent; border: 1px solid var(--c-border);
+  border-radius: var(--radius-sm);
+  padding: var(--s-2);
+  cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--c-text-2); font-size: 1rem;
+  min-width: 44px; min-height: 44px;
+}
+.istoc-modal__btn:hover { color: var(--c-primary); border-color: var(--c-primary); }
+.istoc-modal__btn-label { display: none; } /* mobilde gizli */
+.istoc-modal__body { flex: 1; overflow: hidden; }
+.istoc-modal__iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+/* ---- Detay sayfa stili ---- */
+body.detail { background: var(--c-surface); }
+body.detail .container {
+  padding-top: var(--s-4);
+  padding-bottom: var(--s-7);
+}
+
+/* ---- Footer ---- */
+footer.foot {
+  padding: var(--s-6) 0;
+  border-top: 1px solid var(--c-border);
+  color: var(--c-text-3);
+  font-size: 1rem;
+}
+footer.foot .container {
+  display: flex; flex-direction: column;
+  gap: var(--s-3);
+  text-align: center;
+}
+
+/* ============================================================
+   ≥640px — Küçük tablet
+   ============================================================ */
+@media (min-width: 640px) {
+  .container { padding: 0 var(--s-5); }
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.5rem; }
+  .btn { width: auto; padding: var(--s-3) var(--s-5); }
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .pill-row { gap: var(--s-3); }
+  .section-head {
+    flex-direction: row;
+    align-items: baseline; justify-content: space-between;
+    gap: var(--s-4);
+  }
+  .chart { min-height: 320px; padding: var(--s-4); }
+  .chart-lg { min-height: 400px; }
+  .chart-xl { min-height: 480px; }
+}
+
+/* ============================================================
+   ≥768px — Tablet
+   ============================================================ */
+@media (min-width: 768px) {
+  .container { padding: 0 var(--s-5); }
+  h1 { font-size: 2.25rem; }
+  .card { padding: var(--s-6); gap: var(--s-4); }
+  .card .card-icon { width: 44px; height: 44px; font-size: 1.5rem; }
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid { gap: var(--s-5); }
+
+  /* Tablo: ≥768px normal table render (kart-stack'ten çık) */
+  table.tbl {
+    display: table;
+    background: var(--c-surface);
+    border: 1px solid var(--c-border-soft);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+  table.tbl thead { display: table-header-group; }
+  table.tbl tbody { display: table-row-group; }
+  table.tbl tfoot { display: table-footer-group; }
+  table.tbl tr {
+    display: table-row;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+  }
+  table.tbl td, table.tbl th {
+    display: table-cell;
+    padding: var(--s-3) var(--s-4);
+    border-bottom: 1px solid var(--c-border-soft);
+    vertical-align: top;
+  }
+  table.tbl th {
+    font-weight: var(--fw-medium);
+    color: var(--c-text-2);
+    background: var(--c-surface-2);
+    text-align: left;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+  }
+  table.tbl tbody tr td:first-child {
+    font-weight: var(--fw-light);
+    font-size: 1rem;
+    padding-bottom: var(--s-3);
+    margin-bottom: 0;
+    border-bottom: 1px solid var(--c-border-soft);
+  }
+  table.tbl td[data-th]::before { content: none; }
+  table.tbl tr:last-child td { border-bottom: 0; }
+  table.tbl tfoot td { background: var(--c-surface-2); }
+  table.tbl td.num { text-align: right; }
+
+  /* Modal — kart formu */
+  .istoc-modal {
+    padding: var(--s-4);
+  }
+  .istoc-modal.is-open { display: flex; align-items: center; justify-content: center; }
+  .istoc-modal__panel {
+    width: 100%;
+    max-width: 720px;
+    height: 92vh;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+  }
+  .istoc-modal__head { padding: var(--s-4) var(--s-5); }
+  .istoc-modal__btn { padding: var(--s-2) var(--s-3); }
+  .istoc-modal__btn-label { display: inline; }
+
+  footer.foot .container { flex-direction: row; justify-content: space-between; text-align: left; }
+}
+
+/* ============================================================
+   ≥1024px — Desktop
+   ============================================================ */
+@media (min-width: 1024px) {
+  .container { padding: 0 var(--s-5); }
+  h1 { font-size: 2.75rem; }
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: 1.25rem; }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+  .chart { min-height: 360px; }
+  .chart-lg { min-height: 480px; }
+  .chart-xl { min-height: 600px; }
+
+  .istoc-modal__panel { max-width: 1180px; height: 90vh; }
+  .kpi { padding: var(--s-5); }
+  .kpi .value { font-size: 2rem; }
+}
+
+/* ============================================================
+   ≥1280px — Geniş ekran
+   ============================================================ */
+@media (min-width: 1280px) {
+  h1 { font-size: 3rem; }
+}
+
+/* ============================================================
+   Erişilebilirlik: motion-reduce
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

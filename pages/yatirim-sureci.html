@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yatırım Süreci — istoc.com</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<script src="../assets/charts.js"></script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="detail">
+<div class="container">
+
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">Sermaye · Pre-seed → Series A</span>
+      <h1>Yatırım Süreci</h1>
+      <p class="soft" style="max-width:760px;">
+        Pre-seed sermaye girişi, Series A hazırlığı, milestone-eşli tranche dilimleri ve
+        potansiyel yatırımcı haritası.
+      </p>
+    </div>
+    <span class="tag"><i class="ph ph-handshake"></i> 4 aşama</span>
+  </div>
+
+  <div class="grid grid-4" style="margin-bottom: var(--s-6);">
+    <div class="kpi"><span class="label">Pre-Seed Hedef</span><span class="value">$350K</span><span class="delta">Ay 0 yatırım</span></div>
+    <div class="kpi"><span class="label">Seed Tranche</span><span class="value">$300K</span><span class="delta">Ay 7 milestone-eşli</span></div>
+    <div class="kpi"><span class="label">Series A (12 ay)</span><span class="value">$2.5M–4M</span><span class="delta">10× MRR hedef</span></div>
+    <div class="kpi"><span class="label">Toplam Dilution</span><span class="value">~25–30%</span><span class="delta">Series A sonrası</span></div>
+  </div>
+
+  <h2>Sermaye Aşamaları — Roadmap</h2>
+  <div id="fundingPath" class="chart chart-lg"></div>
+
+  <h2 style="margin-top: var(--s-7);">Tranche Yapısı & Milestone Eşleşme</h2>
+  <table class="tbl">
+    <thead>
+      <tr><th>Aşama</th><th>Zaman</th><th class="num">Tutar</th><th>Milestone Tetik</th><th>Kullanım</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Pre-seed (kurucu + angel)</td><td>Ay 0</td><td class="num">$350K</td><td>Yok (açılış)</td><td>İlk 6 ay runway</td></tr>
+      <tr><td>Bridge — KOSGEB / TÜBİTAK</td><td>Ay 2–4</td><td class="num">$60K–120K</td><td>Proje onayı</td><td>AI altyapı / Ar-Ge</td></tr>
+      <tr><td>Seed Tranche A</td><td>Ay 7</td><td class="num">$300K</td><td>300+ ödeyen üye, 2 anchor alıcı (TAM/SAM/SOM medyan)</td><td>Ekip büyütme + GEO ölçek</td></tr>
+      <tr><td>Seed Tranche B</td><td>Ay 9</td><td class="num">$300K</td><td>$95K+ MRR, %20+ aylık büyüme (485+ üye)</td><td>Sektörel sub-agent</td></tr>
+      <tr><td>Series A</td><td>Ay 12–15</td><td class="num">$2.5M–4M</td><td>$245K+ MRR, 780+ üye, hendek kanıtı</td><td>Türkiye dışı genişleme</td></tr>
+    </tbody>
+  </table>
+
+  <h2 style="margin-top: var(--s-7);">Yatırımcı Haritası — Hedef Profil</h2>
+  <div id="investorMap" class="chart chart-lg"></div>
+
+  <table class="tbl" style="margin-top: var(--s-5);">
+    <thead><tr><th>Yatırımcı Tipi</th><th>Aşama</th><th>Tipoloji</th><th>Yaklaşım</th></tr></thead>
+    <tbody>
+      <tr><td>Türk angel & kurucu sermayedarlar</td><td>Pre-seed</td><td>Ticari + dijital networkü olan</td><td>İSTOÇDER referansı, hemşehri ağı</td></tr>
+      <tr><td>KOSGEB / TÜBİTAK / Sanayi Bakanlığı</td><td>Bridge</td><td>Hibe + faizsiz kredi</td><td>Ar-Ge proje formu</td></tr>
+      <tr><td>Türk seed VC'ler (212, StartersHub, Karma, ScaleX)</td><td>Seed</td><td>B2B SaaS odaklı</td><td>Şirket büyüme metrikleri</td></tr>
+      <tr><td>Bölgesel ABM (CEE/MENA)</td><td>Seed/A</td><td>Marketplace odaklı</td><td>Coğrafi expansion tezi</td></tr>
+      <tr><td>Avrupa Tier-1 (Speedinvest, Lakestar)</td><td>Series A</td><td>Trade tech / B2B marketplace</td><td>Konferans + giriş referansı</td></tr>
+      <tr><td>Strategic (Trendyol Holding, IETT lojistik)</td><td>Series A+</td><td>Partnership-fırsatlı</td><td>Stratejik partner pitch</td></tr>
+    </tbody>
+  </table>
+
+  <h2 style="margin-top: var(--s-7);">Pre-money Değerleme Yörüngesi</h2>
+  <div id="valuation" class="chart chart-lg"></div>
+
+</div>
+
+<script>
+  const palette = ['#0f766e','#1e40af','#166534','#c2410c','#6b21a8','#1f2937'];
+  const baseFont = { fontFamily: 'Roboto, sans-serif', fontWeight: 300, fontSize: 13 };
+
+  // Funding path - sankey-like timeline (using line + scatter)
+  echarts.init(document.getElementById('fundingPath')).setOption({
+    color: palette,
+    textStyle: baseFont,
+    tooltip: { trigger: 'axis' },
+    legend: { top: 10 },
+    grid: { left: 70, right: 30, top: 60, bottom: 40 },
+    xAxis: { type: 'category', data: ['Ay 0','Ay 2','Ay 4','Ay 7','Ay 9','Ay 12','Ay 15'] },
+    yAxis: { type: 'value', name: 'USD (kümülatif)', axisLabel: { formatter: '$' + '{value}' } },
+    series: [
+      { name: 'Sermaye Girişi', type: 'bar', data: [350000, 60000, 60000, 300000, 300000, 0, 3000000] },
+      { name: 'Kümülatif', type: 'line', smooth: true, data: [350000, 410000, 470000, 770000, 1070000, 1070000, 4070000] }
+    ]
+  });
+
+  // Investor map - graph
+  echarts.init(document.getElementById('investorMap')).setOption({
+    color: palette,
+    textStyle: baseFont,
+    tooltip: { trigger: 'item' },
+    series: [{
+      type: 'graph',
+      layout: 'force',
+      symbolSize: 40,
+      roam: true,
+      label: { show: true, position: 'right', fontSize: 12 },
+      force: { repulsion: 220, edgeLength: 90 },
+      categories: [
+        { name: 'Stage: Pre-seed', itemStyle: { color: palette[0] } },
+        { name: 'Stage: Bridge',  itemStyle: { color: palette[1] } },
+        { name: 'Stage: Seed',    itemStyle: { color: palette[2] } },
+        { name: 'Stage: Series A',itemStyle: { color: palette[3] } }
+      ],
+      data: [
+        { name: 'istoc.com',         category: 0, symbolSize: 70, itemStyle: { color: '#1f2937' } },
+        { name: 'Angel TR',          category: 0 },
+        { name: 'Hemşehri network',  category: 0 },
+        { name: 'KOSGEB',            category: 1 },
+        { name: 'TÜBİTAK',           category: 1 },
+        { name: '212',               category: 2 },
+        { name: 'StartersHub',       category: 2 },
+        { name: 'Karma',             category: 2 },
+        { name: 'ScaleX',            category: 2 },
+        { name: 'Speedinvest',       category: 3 },
+        { name: 'Lakestar',          category: 3 },
+        { name: 'Trendyol Holding',  category: 3 }
+      ],
+      links: [
+        { source: 'istoc.com', target: 'Angel TR' },
+        { source: 'istoc.com', target: 'Hemşehri network' },
+        { source: 'istoc.com', target: 'KOSGEB' },
+        { source: 'istoc.com', target: 'TÜBİTAK' },
+        { source: 'istoc.com', target: '212' },
+        { source: 'istoc.com', target: 'StartersHub' },
+        { source: 'istoc.com', target: 'Karma' },
+        { source: 'istoc.com', target: 'ScaleX' },
+        { source: 'istoc.com', target: 'Speedinvest' },
+        { source: 'istoc.com', target: 'Lakestar' },
+        { source: 'istoc.com', target: 'Trendyol Holding' }
+      ],
+      lineStyle: { color: '#d4d4d4', curveness: 0.2 }
+    }]
+  });
+
+  echarts.init(document.getElementById('valuation')).setOption({
+    color: palette,
+    textStyle: baseFont,
+    tooltip: { trigger: 'axis' },
+    legend: { top: 10 },
+    grid: { left: 80, right: 30, top: 60, bottom: 40 },
+    xAxis: { type: 'category', data: ['Ay 0','Ay 7','Ay 9','Ay 12','Ay 15','Ay 24'] },
+    yAxis: { type: 'value', name: 'USD', axisLabel: { formatter: '${value}' } },
+    series: [
+      { name: 'Pre-money', type: 'line', smooth: true, data: [1500000, 4500000, 6500000, 12000000, 22000000, 45000000] },
+      { name: 'Post-money', type: 'line', smooth: true, data: [1850000, 5100000, 7100000, 14500000, 25500000, 60000000] }
+    ]
+  });
+</script>
+</body>
+</html>

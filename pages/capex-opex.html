@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CapEx / OpEx Planı — istoc.com</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<script src="../assets/charts.js"></script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="detail">
+<div class="container">
+
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">Finans · 12 ay projeksiyon</span>
+      <h1>CapEx / OpEx Planı</h1>
+      <p class="soft" style="max-width:760px;">
+        Sermaye yatırımları (CapEx) ile süregelen operasyonel giderlerin (OpEx) ayrımı.
+        AI altyapı, ekip, saha ve büyüme harcamalarının aylık dağılımı.
+      </p>
+    </div>
+    <span class="tag"><i class="ph ph-currency-circle-dollar"></i> USD</span>
+  </div>
+
+  <div class="grid grid-4" style="margin-bottom: var(--s-6);">
+    <div class="kpi"><span class="label">12 Ay CapEx</span><span class="value">$48K–72K</span><span class="delta">Sermaye yatırımı</span></div>
+    <div class="kpi"><span class="label">Aylık OpEx (Ay 12)</span><span class="value">$48K–78K</span><span class="delta">780 üye ekip büyüklüğü</span></div>
+    <div class="kpi"><span class="label">AI Altyapı / Ay</span><span class="value">$6K–12K</span><span class="delta">Voice + self-host hacim</span></div>
+    <div class="kpi"><span class="label">12 Ay Toplam Burn</span><span class="value">$560K–940K</span><span class="delta">TAM/SAM/SOM medyan</span></div>
+  </div>
+
+  <h2>CapEx vs OpEx — Aylık Dağılım</h2>
+  <div id="capexOpex" class="chart chart-lg"></div>
+
+  <h2 style="margin-top: var(--s-7);">CapEx Kalemleri (Sermaye)</h2>
+  <table class="tbl">
+    <thead>
+      <tr><th>Kalem</th><th>Açıklama</th><th>Tek Sefer</th><th class="num">USD</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Sunucu / GPU kurulumu</td><td>Hetzner GPU + Qdrant + n8n setup</td><td>Ay 1</td><td class="num">3.500</td></tr>
+      <tr><td>Tablet filo (saha)</td><td>8 tablet × $400</td><td>Ay 1</td><td class="num">3.200</td></tr>
+      <tr><td>Yazılım lisans setupları</td><td>Apollo + ImportGenius + Smartlead onboarding</td><td>Ay 1</td><td class="num">2.000</td></tr>
+      <tr><td>Hukuk + KVKK avukat</td><td>VERBIS kayıt + politika + 2 saat danışmanlık</td><td>Ay 1</td><td class="num">1.500</td></tr>
+      <tr><td>Marka + tasarım</td><td>Brand book + landing + Figma</td><td>Ay 1–2</td><td class="num">4.500</td></tr>
+      <tr><td>Ofis kuruluş</td><td>Mobilya, ağ, ekran</td><td>Ay 1</td><td class="num">6.000</td></tr>
+      <tr><td>İlk fuar / etkinlik</td><td>Stand + materyal</td><td>Ay 3</td><td class="num">8.000</td></tr>
+      <tr><td>Voice altyapı (telefon hattı)</td><td>BTK uyum + numara + tracking</td><td>Ay 2</td><td class="num">1.800</td></tr>
+      <tr><td>İçerik prodüksiyon</td><td>İlk video çekimleri, esnaf vakalar</td><td>Ay 2</td><td class="num">3.500</td></tr>
+      <tr><td>İhtiyat (Contingency %15)</td><td>Beklenmedik kalemler</td><td>—</td><td class="num">5.000</td></tr>
+    </tbody>
+    <tfoot>
+      <tr><td colspan="3">Toplam CapEx (baz senaryo)</td><td class="num">39.000</td></tr>
+      <tr><td colspan="3">Geniş aralık (+%85 ek)</td><td class="num">48.000–72.000</td></tr>
+    </tfoot>
+  </table>
+
+  <h2 style="margin-top: var(--s-7);">OpEx Kalemleri (Aylık)</h2>
+  <div id="opexBreakdown" class="chart chart-lg"></div>
+
+  <table class="tbl" style="margin-top: var(--s-5);">
+    <thead>
+      <tr><th>Kategori</th><th>Açıklama</th><th class="num">Düşük / Ay</th><th class="num">Üst / Ay</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Ekip (7 mevcut + 2 yeni)</td><td>9 kişi × $3K–5K brüt</td><td class="num">27.000</td><td class="num">45.000</td></tr>
+      <tr><td>Üniversiteli ordu (8)</td><td>Hemşehri saha · part-time</td><td class="num">4.000</td><td class="num">6.000</td></tr>
+      <tr><td>AI altyapı</td><td>Claude + GPT + Gemini + voice + image</td><td class="num">4.500</td><td class="num">7.500</td></tr>
+      <tr><td>Yazılım abonelikleri</td><td>Apollo, ImportGenius, Smartlead, PostHog, Langfuse, Flowbite</td><td class="num">1.500</td><td class="num">3.000</td></tr>
+      <tr><td>Sunucu / cloud</td><td>Hetzner + Qdrant + n8n + Postgres</td><td class="num">250</td><td class="num">600</td></tr>
+      <tr><td>Saha + ofis</td><td>Kira, ulaşım, ofis sarfiyat</td><td class="num">3.500</td><td class="num">6.000</td></tr>
+      <tr><td>Pazarlama / GEO</td><td>İçerik + ad + fuar amortismanı</td><td class="num">800</td><td class="num">2.500</td></tr>
+      <tr><td>Hukuk + muhasebe</td><td>Aylık SMMM + KVKK izleme</td><td class="num">450</td><td class="num">900</td></tr>
+    </tbody>
+    <tfoot>
+      <tr><td colspan="2">Toplam OpEx / Ay</td><td class="num">42.000</td><td class="num">71.500</td></tr>
+    </tfoot>
+  </table>
+
+  <h2 style="margin-top: var(--s-7);">Kategori Yüzdesi — OpEx Pasta</h2>
+  <div id="opexPie" class="chart"></div>
+
+</div>
+
+<script>
+  const palette = ['#1f2937', '#c2410c', '#166534', '#1e40af', '#6b21a8', '#155e75', '#be123c', '#0f766e'];
+  const baseFont = { fontFamily: 'Roboto, sans-serif', fontWeight: 300, fontSize: 13 };
+
+  // CapEx vs OpEx stacked + line
+  echarts.init(document.getElementById('capexOpex')).setOption({
+    color: palette,
+    textStyle: baseFont,
+    legend: { top: 10 },
+    tooltip: { trigger: 'axis' },
+    grid: { left: 70, right: 70, top: 60, bottom: 40 },
+    xAxis: { type: 'category', data: Array.from({length:12}, (_,i)=>`Ay ${i+1}`) },
+    yAxis: [
+      { type: 'value', name: 'OpEx (USD)', axisLabel: { formatter: '${value}' } },
+      { type: 'value', name: 'CapEx', position: 'right', axisLabel: { formatter: '${value}' } }
+    ],
+    series: [
+      { name: 'Ekip', type: 'bar', stack: 'op', data: [27000,28000,29000,30000,31000,32000,33000,34000,35000,36000,37000,38000] },
+      { name: 'AI altyapı', type: 'bar', stack: 'op', data: [4500,5000,5500,6000,6500,7000,7500,8000,8500,9000,9500,10000] },
+      { name: 'Saha / Ofis', type: 'bar', stack: 'op', data: [3500,3500,3800,4000,4200,4400,4500,4700,5000,5200,5500,5800] },
+      { name: 'Pazarlama', type: 'bar', stack: 'op', data: [800,1200,1500,2000,2200,2500,2800,3000,3200,3400,3600,3800] },
+      { name: 'CapEx (tek sefer)', type: 'line', yAxisIndex: 1, smooth: true, data: [18000,5000,8000,0,2000,0,0,2500,0,0,3500,0] }
+    ]
+  });
+
+  // OpEx breakdown - horizontal stacked
+  echarts.init(document.getElementById('opexBreakdown')).setOption({
+    color: palette,
+    textStyle: baseFont,
+    legend: { top: 10 },
+    tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+    grid: { left: 140, right: 30, top: 60, bottom: 40 },
+    xAxis: { type: 'value', name: 'USD / ay' },
+    yAxis: { type: 'category', data: ['Düşük', 'Orta', 'Üst'] },
+    series: [
+      { name: 'Ekip', type: 'bar', stack: 'x', data: [27000, 34000, 45000] },
+      { name: 'Üniversiteliler', type: 'bar', stack: 'x', data: [4000, 5000, 6000] },
+      { name: 'AI altyapı', type: 'bar', stack: 'x', data: [4500, 6000, 7500] },
+      { name: 'Yazılım abonelikleri', type: 'bar', stack: 'x', data: [1500, 2200, 3000] },
+      { name: 'Sunucu / cloud', type: 'bar', stack: 'x', data: [250, 400, 600] },
+      { name: 'Saha + ofis', type: 'bar', stack: 'x', data: [3500, 4800, 6000] },
+      { name: 'Pazarlama / GEO', type: 'bar', stack: 'x', data: [800, 1500, 2500] },
+      { name: 'Hukuk + muhasebe', type: 'bar', stack: 'x', data: [450, 700, 900] }
+    ]
+  });
+
+  // OpEx pie — mobil-uyumlu
+  echarts.init(document.getElementById('opexPie')).setOption(ISTOC.responsivePie({
+    color: palette,
+    textStyle: baseFont,
+    tooltip: { trigger: 'item', formatter: '{b}: {d}%' },
+    legend: { bottom: 10, type: 'scroll' },
+    series: [{
+      type: 'pie',
+      radius: '70%',
+      label: { formatter: '{b}\n{d}%', fontSize: 12 },
+      data: [
+        { value: 34000, name: 'Ekip (9 kişi)' },
+        { value: 5000, name: 'Üniversiteli ordu' },
+        { value: 6000, name: 'AI altyapı' },
+        { value: 2200, name: 'Yazılım abonelikleri' },
+        { value: 4800, name: 'Saha + ofis' },
+        { value: 1500, name: 'Pazarlama' },
+        { value: 700,  name: 'Hukuk + muhasebe' }
+      ]
+    }]
+  }));
+</script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6 Aylık Eylem Planı — istoc.com</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<script src="../assets/charts.js"></script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="detail">
+<div class="container">
+
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">Yürütme · 6 ay</span>
+      <h1>6 Aylık Eylem Planı</h1>
+      <p class="soft" style="max-width:760px;">
+        Q1 (3 aylık) sonrası Q2 yürütme: sektörel sub-agent, GEO ölçek, referral motor,
+        Series A pitch, anchor müşteri retention, Türkiye dışı pilot.
+      </p>
+    </div>
+    <span class="tag"><i class="ph ph-calendar-blank"></i> Q1 + Q2</span>
+  </div>
+
+  <h2>Q1 → Q2 Geçiş Gantt — Aylık Akış</h2>
+  <div id="gantt6" class="chart chart-xl"></div>
+
+  <h2 style="margin-top: var(--s-7);">Ay-Ay Yürütme (Ay 4–6)</h2>
+  <table class="tbl">
+    <thead>
+      <tr><th>Ay</th><th>Tema</th><th>Ana Hedefler</th><th>KPI Eşik</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Ay 4</td><td>Stabilizasyon + Optimizasyon</td>
+        <td>
+          Q1 retro aksiyonlarının execution'ı · Eval coverage %90 ·
+          AI maliyet optimizasyonu (Haiku downgrade) · Anchor müşteri sayısı 5 →
+          referral programı resmiliği · İlk Seed Tranche A hazırlığı (data room)
+        </td>
+        <td>95 ödeyen, $24K MRR</td>
+      </tr>
+      <tr>
+        <td>Ay 5</td><td>Sektörel Derinleşme</td>
+        <td>
+          Ev tekstili sektörel sub-agent canlı (özel sözlük + nuans) ·
+          Züccaciye sub-agent başlangıç · GEO 75 sayfa · Reddit/forum
+          aktif moderasyon · İlk Almanya fuarı katılım kararı
+        </td>
+        <td>160 ödeyen, $42K MRR, 5+ anchor</td>
+      </tr>
+      <tr>
+        <td>Ay 6</td><td>Hendek Yoğunluğu</td>
+        <td>
+          AI referral motor full canlı · Mobil app v1 (Esnaf Modu) · CS
+          Manager 50+ ticket/saat · Seed Tranche A kapanış · İlk MENA
+          alıcı pilot (Mısır/UAE) · Türkçe LLM self-host pre-prod
+        </td>
+        <td>230 ödeyen, $58K MRR</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 style="margin-top: var(--s-7);">6 Ay Sonu Şirket Tablosu (TAM/SAM/SOM medyan)</h2>
+  <div class="grid grid-4">
+    <div class="kpi"><span class="label">Ödeyen Üye</span><span class="value">230</span><span class="delta">SOM %7.7</span></div>
+    <div class="kpi"><span class="label">MRR</span><span class="value">$58K</span><span class="delta">+$46K / 3 ay</span></div>
+    <div class="kpi"><span class="label">Anchor Alıcı</span><span class="value">10-12</span><span class="delta">Avrupa + MENA</span></div>
+    <div class="kpi"><span class="label">Ekip</span><span class="value">14</span><span class="delta">+3 yeni (sat, ops, BA)</span></div>
+    <div class="kpi"><span class="label">GEO Sayfa</span><span class="value">75+</span><span class="delta">FAQ + Article schema</span></div>
+    <div class="kpi"><span class="label">AI Agent</span><span class="value">9</span><span class="delta">+2 sektörel</span></div>
+    <div class="kpi"><span class="label">CAC</span><span class="value">$580</span><span class="delta">Q1 $1.000'den düştü</span></div>
+    <div class="kpi"><span class="label">LTV / CAC</span><span class="value">2.6×</span><span class="delta">Q4 hedef 3.0×</span></div>
+  </div>
+
+  <h2 style="margin-top: var(--s-7);">Q2 Bütçe Allokasyonu</h2>
+  <div id="q2budget" class="chart chart-lg"></div>
+
+  <h2 style="margin-top: var(--s-7);">Eylem-Hedef İlişki Diyagramı</h2>
+  <div id="relations" class="chart chart-xl"></div>
+
+</div>
+
+<script>
+  const palette = ['#1f2937','#c2410c','#166534','#1e40af','#6b21a8','#155e75','#be123c','#0f766e'];
+  const baseFont = { fontFamily: 'Roboto, sans-serif', fontWeight: 300, fontSize: 13 };
+
+  const ganttRows = [
+    { row: 'Faz 1 — Altyapı',             start: 0, end: 1 },
+    { row: 'Faz 2 — Ölçeklendirme',        start: 1, end: 2 },
+    { row: 'Faz 3 — Hendekleştirme',       start: 2, end: 3 },
+    { row: 'Q2 Stabilizasyon',             start: 3, end: 4 },
+    { row: 'Sektörel sub-agent rollout',   start: 4, end: 5.2 },
+    { row: 'Referral motor canlı',         start: 4.5, end: 6 },
+    { row: 'GEO 75 sayfa hedef',           start: 3, end: 6 },
+    { row: 'Mobil app v1',                 start: 4.5, end: 6 },
+    { row: 'Seed Tranche A kapama',        start: 4, end: 6 },
+    { row: 'MENA pilot başlatma',          start: 5, end: 6 }
+  ];
+  echarts.init(document.getElementById('gantt6')).setOption({
+    color: palette,
+    textStyle: baseFont,
+    tooltip: { formatter: p => `${p.data.row}<br>Ay ${p.data.start+1} → ${p.data.end}` },
+    grid: { left: 220, right: 30, top: 30, bottom: 40 },
+    xAxis: { type: 'value', min: 0, max: 6, axisLabel: { formatter: 'Ay {value}' } },
+    yAxis: { type: 'category', data: ganttRows.map(r => r.row).slice().reverse() },
+    series: [{
+      type: 'custom',
+      renderItem: function (params, api) {
+        const y = api.coord([0, api.value(0)])[1];
+        const x1 = api.coord([api.value(1), 0])[0];
+        const x2 = api.coord([api.value(2), 0])[0];
+        const h = api.size([0,1])[1] * 0.55;
+        return { type: 'rect', shape: { x: x1, y: y - h/2, width: x2 - x1, height: h },
+          style: api.style({ fill: palette[api.value(0) % palette.length] }) };
+      },
+      encode: { x: [1,2], y: 0 },
+      data: ganttRows.map((d, idx) => ({
+        value: [ganttRows.length - 1 - idx, d.start, d.end],
+        row: d.row, start: d.start, end: d.end
+      }))
+    }]
+  });
+
+  echarts.init(document.getElementById('q2budget')).setOption(ISTOC.responsivePie({
+    color: palette,
+    textStyle: baseFont,
+    tooltip: { trigger: 'item', formatter: '{b}: ${c} ({d}%)' },
+    legend: { bottom: 10 },
+    series: [{
+      type: 'pie', radius: ['40%','70%'],
+      label: { formatter: '{b}\n{d}%' },
+      data: [
+        { value: 195000, name: 'Ekip büyütme' },
+        { value: 60000,  name: 'AI altyapı + self-host' },
+        { value: 35000,  name: 'GEO + içerik' },
+        { value: 28000,  name: 'Mobil app dev' },
+        { value: 18000,  name: 'Fuar + etkinlik' },
+        { value: 14000,  name: 'Pilot MENA' }
+      ]
+    }]
+  }));
+
+  // Action-relation graph
+  echarts.init(document.getElementById('relations')).setOption({
+    color: palette,
+    textStyle: baseFont,
+    tooltip: { trigger: 'item' },
+    series: [{
+      type: 'graph', layout: 'force', roam: true, symbolSize: 32,
+      label: { show: true, fontSize: 12 },
+      force: { repulsion: 220, edgeLength: 90 },
+      data: [
+        { name: '6 Ay Hedef',         symbolSize: 70, itemStyle: { color: '#1f2937' } },
+        { name: 'Sektörel sub-agent', itemStyle: { color: palette[1] } },
+        { name: 'Referral motor',     itemStyle: { color: palette[1] } },
+        { name: 'Mobil app v1',       itemStyle: { color: palette[1] } },
+        { name: 'GEO 75 sayfa',       itemStyle: { color: palette[1] } },
+        { name: '250+ ödeyen',        itemStyle: { color: palette[2] } },
+        { name: '$70K MRR',           itemStyle: { color: palette[2] } },
+        { name: '12 anchor',          itemStyle: { color: palette[2] } },
+        { name: 'Seed Tranche A',     itemStyle: { color: palette[3] } },
+        { name: 'MENA pilot',         itemStyle: { color: palette[4] } }
+      ],
+      links: [
+        { source: '6 Ay Hedef', target: '250+ ödeyen' },
+        { source: '6 Ay Hedef', target: '$70K MRR' },
+        { source: '6 Ay Hedef', target: '12 anchor' },
+        { source: 'Sektörel sub-agent', target: '12 anchor' },
+        { source: 'Sektörel sub-agent', target: '$70K MRR' },
+        { source: 'Referral motor',     target: '250+ ödeyen' },
+        { source: 'Mobil app v1',       target: '250+ ödeyen' },
+        { source: 'GEO 75 sayfa',       target: '12 anchor' },
+        { source: 'Seed Tranche A',     target: '6 Ay Hedef' },
+        { source: 'MENA pilot',         target: '12 anchor' }
+      ],
+      lineStyle: { color: '#d4d4d4', curveness: 0.2 }
+    }]
+  });
+</script>
+</body>
+</html>

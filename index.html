@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1f2937">
+<title>istoc.com — AI-Native B2B Marketplace Stratejik Paneli</title>
+<meta name="description" content="İstoç AI-native B2B marketplace: pazarlama yol haritası, finansal planlama, GTM stratejisi, eylem planı, süreç haritası, finansal analiz.">
+
+<!-- Roboto -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<!-- Phosphor icons -->
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+<!-- Flowbite -->
+<link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+
+<!-- Local style -->
+<link rel="stylesheet" href="assets/style.css">
+
+<style>
+  /* Landing-spesifik mobile-first */
+  .nav {
+    position: sticky; top: 0; z-index: 40;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--c-border);
+  }
+  .nav .container {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: var(--s-3); padding-bottom: var(--s-3);
+    gap: var(--s-3);
+  }
+  .nav .brand {
+    display: flex; align-items: center; gap: var(--s-2);
+    font-weight: var(--fw-medium); font-size: 1rem;
+    min-width: 0;
+  }
+  .nav .brand-mark {
+    width: 28px; height: 28px; background: var(--c-primary); color: #fff;
+    display: grid; place-items: center; border-radius: 4px;
+    font-size: 1rem; font-weight: var(--fw-bold);
+    flex-shrink: 0;
+  }
+  .nav .brand-sub {
+    display: none;
+    font-size: 1rem; color: var(--c-text-3);
+    margin-left: var(--s-2);
+  }
+  .nav .links {
+    display: none;
+    gap: var(--s-4);
+  }
+  .nav .links a {
+    color: var(--c-text-2); text-decoration: none;
+    font-size: 1rem;
+    padding: var(--s-1) var(--s-2);
+    border-radius: var(--radius-sm);
+  }
+  .nav .links a:hover { color: var(--c-primary); background: var(--c-surface-2); }
+  .nav-toggle {
+    background: transparent; border: 1px solid var(--c-border);
+    border-radius: var(--radius-sm);
+    width: 44px; height: 44px;
+    display: inline-flex; align-items: center; justify-content: center;
+    cursor: pointer; color: var(--c-text);
+  }
+
+  @media (min-width: 768px) {
+    .nav .brand-sub { display: inline; }
+    .nav .links { display: flex; }
+    .nav-toggle { display: none; }
+  }
+
+  /* Mobile drawer for nav links */
+  .nav-drawer {
+    display: none;
+    border-top: 1px solid var(--c-border);
+    background: #fff;
+  }
+  .nav-drawer.is-open { display: block; }
+  .nav-drawer a {
+    display: block;
+    padding: var(--s-3) var(--s-4);
+    color: var(--c-text);
+    text-decoration: none;
+    border-bottom: 1px solid var(--c-border-soft);
+    font-size: 1rem;
+  }
+
+  /* Hero — mobile-first */
+  .hero {
+    padding: var(--s-7) 0 var(--s-7);
+    background:
+      radial-gradient(600px 320px at 100% -10%, rgba(31,41,55,0.07), transparent 60%),
+      linear-gradient(180deg, #ffffff 0%, var(--c-bg-alt) 100%);
+    border-bottom: 1px solid var(--c-border);
+  }
+  .hero h1 {
+    max-width: 920px;
+    margin-bottom: var(--s-4);
+  }
+  .hero .subhead {
+    font-size: 1.0625rem;
+    max-width: 720px;
+    color: var(--c-text-2);
+    font-weight: var(--fw-light);
+    margin-bottom: var(--s-5);
+  }
+  .hero .meta-row { display: flex; flex-direction: column; gap: var(--s-2); }
+
+  @media (min-width: 640px) {
+    .hero { padding: var(--s-8) 0; }
+    .hero .subhead { font-size: 1.125rem; }
+    .hero .meta-row { flex-direction: row; gap: var(--s-3); }
+  }
+  @media (min-width: 1024px) {
+    .hero { padding: var(--s-9) 0 var(--s-8); }
+    .hero h1 { font-size: 3.25rem; }
+    .hero .subhead { font-size: 1.25rem; }
+  }
+
+  /* Section ritmi — alternatif bg (mobile-first) */
+  section.zone {
+    padding: var(--s-7) 0;
+    background: var(--c-bg);
+    border-top: 1px solid var(--c-border-soft);
+  }
+  section.zone:nth-of-type(even) {
+    background: var(--c-bg-alt);
+  }
+  /* Section içi kart kontrastı — koyu bg'de daha açık kart kenarı */
+  section.zone:nth-of-type(odd) .card { border-color: var(--c-border-soft); }
+  section.zone:nth-of-type(even) .card { border-color: var(--c-border); }
+
+  @media (min-width: 768px) { section.zone { padding: var(--s-8) 0; } }
+  @media (min-width: 1024px) { section.zone { padding: var(--s-9) 0; } }
+</style>
+</head>
+<body>
+
+<!-- Üst gezinme -->
+<nav class="nav">
+  <div class="container">
+    <div class="brand">
+      <span class="brand-mark">i</span>
+      <span>istoc.com</span>
+      <span class="brand-sub">· AI-Native B2B Marketplace</span>
+    </div>
+    <div class="links">
+      <a href="#pazar">Pazar</a>
+      <a href="#pazarlama">Pazarlama</a>
+      <a href="#finans">Finans</a>
+      <a href="#gtm">GTM</a>
+      <a href="#eylem">Eylem</a>
+      <a href="#operasyon">Operasyon</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menü" aria-expanded="false" aria-controls="navDrawer">
+      <i class="ph ph-list" aria-hidden="true"></i>
+    </button>
+  </div>
+  <div class="nav-drawer" id="navDrawer">
+    <a href="#pazar">Pazar Boyutlandırma</a>
+    <a href="#pazarlama">Pazarlama</a>
+    <a href="#finans">Finans</a>
+    <a href="#gtm">GTM</a>
+    <a href="#eylem">Eylem Planı</a>
+    <a href="#operasyon">Operasyon</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="hero">
+  <div class="container">
+    <div class="pill-row">
+      <span class="tag"><i class="ph ph-airplane-tilt" aria-hidden="true"></i> F1'den Uçağa</span>
+      <span class="tag"><i class="ph ph-target" aria-hidden="true"></i> 90 Gün · 35–50 Üye</span>
+      <span class="tag"><i class="ph ph-cpu" aria-hidden="true"></i> 7 AI Ajan</span>
+    </div>
+    <h1>İstoç'un AI-native B2B marketplace dönüşümü için stratejik kontrol paneli.</h1>
+    <p class="subhead">
+      Pazarlama yol haritası, finansal plan, GTM stratejisi ve eylem planı tek bir yerde.
+      Her bölüm özet kartla başlar, detaylar modal olarak açılır.
+    </p>
+    <div class="meta-row">
+      <a class="btn btn-primary" href="#pazarlama"><i class="ph ph-arrow-down" aria-hidden="true"></i> Bölümlere geç</a>
+      <a class="btn btn-ghost" href="#operasyon"><i class="ph ph-list-checks" aria-hidden="true"></i> Operasyon</a>
+    </div>
+  </div>
+</header>
+
+<!-- 1 — Pazar Boyutlandırma (Foundation) -->
+<section class="zone" id="pazar">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">01 / Foundation · Pazar Verisi</span>
+        <h2>Pazar Boyutlandırma — TAM / SAM / SOM</h2>
+      </div>
+      <span class="ribbon r-investment"><i class="ph ph-globe-hemisphere-west" aria-hidden="true"></i> Market</span>
+    </div>
+
+    <div class="grid grid-2">
+      <article class="card">
+        <div class="card-head">
+          <div class="card-icon"><i class="ph ph-stack-simple" aria-hidden="true"></i></div>
+          <span class="card-meta"><span class="dot"></span> 3 katman · $200M → $7M tavan</span>
+        </div>
+        <h3>TAM / SAM / SOM Hiyerarşisi</h3>
+        <p class="soft">
+          Türkiye B2B trade tech pazarı ($200M/yıl TAM), ihracatçı KOBİ hedef sektörü ($15M/yıl SAM),
+          İstanbul toptancı bölgeleri doygunluk noktası ($7.2M/yıl SOM tavan). TÜİK + TİM + Trade Map
+          verisiyle kantitatif çerçeve.
+        </p>
+        <div>
+          <button class="btn btn-primary" data-detail="pages/tam-sam-som.html" data-title="Pazar Boyutlandırma — TAM/SAM/SOM">
+            <i class="ph ph-arrow-square-out" aria-hidden="true"></i> Detayları aç
+          </button>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="card-icon"><i class="ph ph-chart-line-up" aria-hidden="true"></i></div>
+          <span class="card-meta"><span class="dot"></span> May 2026 → Ara 2027 · 20 ay</span>
+        </div>
+        <h3>Aylık SOM Pay Hedefi — 3 Senaryo</h3>
+        <p class="soft">
+          Mayıs 2026'dan Aralık 2027 sonuna kadar her ay için kümülatif ödeyen üye hedefi.
+          Kötümser %30 SOM (900 üye), Medyan %50 SOM (1.500 üye), İyimser %70 SOM (2.100 üye).
+          S-eğrisi adopsiyon modeli ile kalibre.
+        </p>
+        <div>
+          <button class="btn btn-primary" data-detail="pages/tam-sam-som.html#som-aylik" data-title="Aylık SOM Hedefi">
+            <i class="ph ph-arrow-square-out" aria-hidden="true"></i> Detayları aç
+          </button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 2 — Pazarlama Yol Haritası -->
+<section class="zone" id="pazarlama">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">02 / Stratejik Çerçeve</span>
+        <h2>Pazarlama Yol Haritası</h2>
+      </div>
+      <span class="ribbon r-marketing"><i class="ph ph-megaphone" aria-hidden="true"></i> Marketing</span>
+    </div>
+
+    <div class="grid grid-3">
+      <article class="card">
+        <div class="card-head">
+          <div class="card-icon"><i class="ph ph-compass" aria-hidden="true"></i></div>
+          <span class="card-meta"><span class="dot"></span> 12 ay · 4 aşama</span>
+        </div>
+        <h3>Pazarlama Yol Haritası — 12 Aylık</h3>
+        <p class="soft">
+          Farkındalık → Aktivasyon → Sadakat → Hendek inşa. AI içerik makinesi, GEO görünürlük,
+          hemşehri ağı aktivasyonu, ICP segmentasyon ve A/B test disiplini.
+        </p>
+        <div>
+          <button class="btn btn-primary" data-detail="pages/pazarlama-yol-haritasi.html" data-title="Pazarlama Yol Haritası">
+            <i class="ph ph-arrow-square-out" aria-hidden="true"></i> Detayları aç
+          </button>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="card-icon"><i class="ph ph-broadcast" aria-hidden="true"></i></div>
+          <span class="card-meta"><span class="dot"></span> 5 kanal · GEO öncelik</span>
+        </div>
+        <h3>Kanal Mix & GEO Stratejisi</h3>
+        <p class="soft">
+          ChatGPT/Claude/Perplexity/Gemini görünürlüğü, schema markup, hemşehri WoM,
+          LinkedIn ABM, dış-ticaret yayını ve içerik takvimi.
+        </p>
+        <div>
+          <button class="btn btn-primary" data-detail="pages/pazarlama-yol-haritasi.html#kanal-mix" data-title="Kanal Mix & GEO">
+            <i class="ph ph-arrow-square-out" aria-hidden="true"></i> Detayları aç
+          </button>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="card-icon"><i class="ph ph-chart-pie-slice" aria-hidden="true"></i></div>
+          <span class="card-meta"><span class="dot"></span> Dijital + Diğer</span>
+        </div>
+        <h3>Pazarlama KPI & Satıcı Adedi</h3>
+        <p class="soft">
+          Dijital pazarlama (GEO, LI, outbound, içerik) ve diğer kanalların (saha, hemşehri,
+          referral) satıcı katkısı, dönüşüm ve CAC karşılaştırması.
+        </p>
+        <div>
+          <button class="btn btn-primary" data-detail="pages/pazarlama-kpi.html" data-title="Pazarlama KPI & Satıcı Adedi">
+            <i class="ph ph-arrow-square-out" aria-hidden="true"></i> Detayları aç
+          </button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 2 — Finansal Planlama -->
+<section class="zone" id="finans">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">03 / Sermaye & Operasyon</span>
+        <h2>Finansal Planlama</h2>
+      </div>
+      <span class="ribbon r-finance"><i class="ph ph-chart-line-up" aria-hidden="true"></i> Finance</span>
+    </div>
+
+    <div class="grid grid-3">
+      <article class="card">
+        <div class="card-head">
+          <div class="card-icon"><i class="ph ph-currency-circle-dollar" aria-hidden="true"></i></div>
+          <span class="card-meta"><span class="dot"></span> 12 ay projeksiyon</span>
+        </div>
+        <h3>CapEx / OpEx Planı</h3>
+        <p class="soft">
+          AI altyapı, yazılım, sunucular, ekip, saha, pazarlama. Aylık burn ve sermaye yatırımı ayrımı.
+        </p>
+        <div>
+          <button class="btn btn-primary" data-detail="pages/capex-opex.html" data-title="CapEx / OpEx Planı">
+            <i class="ph ph-arrow-square-out" aria-hidden="true"></i> Detayları aç
+          </button>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="card-icon"><i class="ph ph-scales" aria-hidden="true"></i></div>
+          <span class="card-meta"><span class="dot"></span> P&L · 12 ay</span>
+        </div>
+        <h3>Gelir-Gider Dengesi</h3>
+        <p class="soft">
+          Üyelik geliri, komisyon, premium servisler ile aylık burn arasındaki denge.
+          Negatif → pozitif marj eşikleri.
+        </p>
+        <div>
+          <button class="btn btn-primary" data-detail="pages/gelir-gider.html" data-title="Gelir-Gider Dengesi">
+            <i class="ph ph-arrow-square-out" aria-hidden="true"></i> Detayları aç
+          </button>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="card-icon"><i class="ph ph-target" aria-hidden="true"></i></div>
+          <span class="card-meta"><span class="dot"></span> 3 senaryo</span>
+        </div>
+        <h3>Başabaş Analizi</h3>
+        <p class="soft">
+          Ödeyen üye sayısı × ARPU × marj birleşimi başabaşı verir. İyimser/nötr/kötümser
+          senaryolarda runway etkisi.
+        </p>
+        <div>
+          <button class="btn btn-primary" data-detail="pages/basabas-analizi.html" data-title="Başabaş Analizi">
+            <i class="ph ph-arrow-square-out" aria-hidden="true"></i> Detayları aç
+          </button>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="card-icon"><i class="ph ph-table" aria-hidden="true"></i></div>
+          <span class="card-meta"><span class="dot"></span> 3 ana tablo</span>
+        </div>
+        <h3>Finansal Tablolar</h3>
+        <p class="soft">
+          Bilanço, gelir tablosu ve nakit akış tablosu — başlangıç ve 12. ay projeksiyonu.
+        </p>
+        <div>
+          <button class="btn btn-primary" data-detail="pages/finansal-tablolar.html" data-title="Finansal Tablolar">
+            <i class="ph ph-arrow-square-out" aria-hidden="true"></i> Detayları aç
+          </button>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="card-icon"><i class="ph ph-stack" aria-hidden="true"></i></div>
+          <span class="card-meta"><span class="dot"></span> Tüm kalemler</span>
+        </div>
+        <h3>Toplam Maliyetler</h3>
+        <p class="soft">
+          90 günlük ve 12 aylık kümülatif maliyet breakdown'ı. AI, insan, saha, hukuki, ofis.
+        </p>
+        <div>
+          <button class="btn btn-primary" data-detail="pages/toplam-maliyetler.html" data-title="Toplam Maliyetler">
+            <i class="ph ph-arrow-square-out" aria-hidden="true"></i> Detayları aç
+          </button>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="card-icon"><i class="ph ph-handshake" aria-hidden="true"></i></div>
+          <span class="card-meta"><span class="dot"></span> Pre-seed → Series A</span>
+        </div>
+        <h3>Yatırım Süreci</h3>
+        <p class="soft">
+          Mevcut sermaye, ihtiyaç, dilimler, milestone-eşli tranche'ler ve yatırımcı haritası.
+        </p>
+        <div>
+          <button class="btn btn-primary" data-detail="pages/yatirim-sureci.html" data-title="Yatırım Süreci">
+            <i class="ph ph-arrow-square-out" aria-hidden="true"></i> Detayları aç
+          </button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 3 — GTM Stratejisi -->
+<section class="zone" id="gtm">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">04 / Pazara Çıkış</span>
+        <h2>Go-to-Market Stratejisi</h2>
+      </div>
+      <span class="ribbon r-gtm"><i class="ph ph-rocket-launch" aria-hidden="true"></i> GTM</span>
+    </div>
+
+    <div class="grid grid-2">
+      <article class="card">
+        <div class="card-head">
+          <div class="card-icon"><i class="ph ph-strategy" aria-hidden="true"></i></div>
+          <span class="card-meta"><span class="dot"></span> ICP × Persona × Kanal</span>
+        </div>
+        <h3>GTM Master Plan</h3>
+        <p class="soft">
+          Managed marketplace + AI alıcı tarafı genişleme. Hacı/Mehmet/Ahmet personalarına özgü
+          mesaj kabuğu, TL fiyatlama, İSTOÇDER meşruiyet kanalı.
+        </p>
+        <div>
+          <button class="btn btn-primary" data-detail="pages/gtm-stratejisi.html" data-title="GTM Stratejisi">
+            <i class="ph ph-arrow-square-out" aria-hidden="true"></i> Detayları aç
+          </button>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="card-icon"><i class="ph ph-funnel" aria-hidden="true"></i></div>
+          <span class="card-meta"><span class="dot"></span> 10K → 50 üye</span>
+        </div>
+        <h3>Outbound Funnel & Conversion</h3>
+        <p class="soft">
+          ImportGenius + Apollo + AI personalization pipeline'ından 5 aşamalı funnel, hedef oran
+          ve müdahale noktaları.
+        </p>
+        <div>
+          <button class="btn btn-primary" data-detail="pages/gtm-stratejisi.html#funnel" data-title="Outbound Funnel">
+            <i class="ph ph-arrow-square-out" aria-hidden="true"></i> Detayları aç
+          </button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 4 — Eylem Planı -->
+<section class="zone" id="eylem">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">05 / Yürütme</span>
+        <h2>Eylem Planı — 3 Ay & 6 Ay</h2>
+      </div>
+      <span class="ribbon r-action"><i class="ph ph-list-checks" aria-hidden="true"></i> Execution</span>
+    </div>
+
+    <div class="grid grid-2">
+      <article class="card">
+        <div class="card-head">
+          <div class="card-icon"><i class="ph ph-calendar-check" aria-hidden="true"></i></div>
+          <span class="card-meta"><span class="dot"></span> Hafta hafta</span>
+        </div>
+        <h3>3 Aylık Eylem Planı</h3>
+        <p class="soft">
+          Faz 1 (Gün 1–30) Temel · Faz 2 (Gün 31–60) Ölçek · Faz 3 (Gün 61–90) Hendek.
+          Hafta-hafta sorumluluk ve KPI.
+        </p>
+        <div>
+          <button class="btn btn-primary" data-detail="pages/eylem-plani-3ay.html" data-title="3 Aylık Eylem Planı">
+            <i class="ph ph-arrow-square-out" aria-hidden="true"></i> Detayları aç
+          </button>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="card-icon"><i class="ph ph-calendar-blank" aria-hidden="true"></i></div>
+          <span class="card-meta"><span class="dot"></span> Ay 4–6</span>
+        </div>
+        <h3>6 Aylık Eylem Planı</h3>
+        <p class="soft">
+          Q1 sonrası: sektörel sub-agent, GEO ölçeklendirme, referral motor, Q2 hazırlık,
+          Series A pitch.
+        </p>
+        <div>
+          <button class="btn btn-primary" data-detail="pages/eylem-plani-6ay.html" data-title="6 Aylık Eylem Planı">
+            <i class="ph ph-arrow-square-out" aria-hidden="true"></i> Detayları aç
+          </button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 5 — Operasyon -->
+<section class="zone" id="operasyon">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">06 / Operasyon</span>
+        <h2>Süreç, İK & Mesai</h2>
+      </div>
+      <span class="ribbon r-process"><i class="ph ph-flow-arrow" aria-hidden="true"></i> Operations</span>
+    </div>
+
+    <div class="grid grid-4">
+      <article class="card">
+        <div class="card-head">
+          <div class="card-icon"><i class="ph ph-tree-structure" aria-hidden="true"></i></div>
+          <span class="card-meta"><span class="dot"></span> Mindmap + flow</span>
+        </div>
+        <h3>Süreç Haritası</h3>
+        <p class="soft">
+          Veri katmanı → Ajan katmanı → İnsan onay noktaları → Esnaf yüzeyi.
+          ECharts ile mindmap ve süreç akışı.
+        </p>
+        <div>
+          <button class="btn btn-primary" data-detail="pages/surec-haritasi.html" data-title="Süreç Haritası">
+            <i class="ph ph-arrow-square-out" aria-hidden="true"></i> Detayları aç
+          </button>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="card-icon"><i class="ph ph-users-three" aria-hidden="true"></i></div>
+          <span class="card-meta"><span class="dot"></span> 9 + 8 saha rol</span>
+        </div>
+        <h3>İK Kalifikasyonları</h3>
+        <p class="soft">
+          Yazılımcı, AI Engineer, Growth Engineer, Pazarlama Lideri, üniversiteli ordu, helpdesk-CS
+          rollerinin profil ve nitelikleri.
+        </p>
+        <div>
+          <button class="btn btn-primary" data-detail="pages/ik-kalifikasyonlari.html" data-title="İK Kalifikasyonları">
+            <i class="ph ph-arrow-square-out" aria-hidden="true"></i> Detayları aç
+          </button>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="card-icon"><i class="ph ph-clock-counter-clockwise" aria-hidden="true"></i></div>
+          <span class="card-meta"><span class="dot"></span> Haftalık / aylık</span>
+        </div>
+        <h3>Timesheets</h3>
+        <p class="soft">
+          Rol bazlı haftalık saat, ajan/proje eşleştirme, allocation tablosu ve aylık mesai
+          özet matrisi.
+        </p>
+        <div>
+          <button class="btn btn-primary" data-detail="pages/timesheets.html" data-title="Timesheets">
+            <i class="ph ph-arrow-square-out" aria-hidden="true"></i> Detayları aç
+          </button>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="card-icon"><i class="ph ph-graduation-cap" aria-hidden="true"></i></div>
+          <span class="card-meta"><span class="dot"></span> 6 → 100 öğrenci · 47/A</span>
+        </div>
+        <h3>Üniversiteli Saha Satış Ordusu</h3>
+        <p class="soft">
+          Komisyon-bazlı freelance saha satış modeli. TKHK Madde 47/A yasal çerçevesi, %40 komisyon
+          + %10 override, 12 ay yörünge, RACI, risk matrisi.
+        </p>
+        <div>
+          <button class="btn btn-primary" data-detail="pages/universite-saha-ordusu.html" data-title="Üniversiteli Saha Satış Ordusu">
+            <i class="ph ph-arrow-square-out" aria-hidden="true"></i> Detayları aç
+          </button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Modal -->
+<div class="istoc-modal" id="istocModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="istoc-modal__panel" role="document">
+    <div class="istoc-modal__head">
+      <div class="istoc-modal__title">
+        <i class="ph ph-stack" id="modalIcon" aria-hidden="true"></i>
+        <span id="modalTitle">Detay</span>
+      </div>
+      <div class="istoc-modal__actions">
+        <button class="istoc-modal__btn" id="modalOpenNewTab" title="Yeni sekmede aç" aria-label="Yeni sekmede aç">
+          <i class="ph ph-arrow-square-out" aria-hidden="true"></i>
+          <span class="istoc-modal__btn-label">Yeni sekme</span>
+        </button>
+        <button class="istoc-modal__btn" id="modalClose" title="Kapat" aria-label="Kapat">
+          <i class="ph ph-x" aria-hidden="true"></i>
+          <span class="istoc-modal__btn-label">Kapat</span>
+        </button>
+      </div>
+    </div>
+    <div class="istoc-modal__body">
+      <iframe class="istoc-modal__iframe" id="modalFrame" title="Detay sayfası" loading="lazy"></iframe>
+    </div>
+  </div>
+</div>
+
+<footer class="foot">
+  <div class="container">
+    <span>istoc.com · AI-Native B2B Marketplace Stratejik Paneli</span>
+    <span>Roboto · Flowbite · ECharts · Phosphor</span>
+  </div>
+</footer>
+
+<!-- Modal + nav toggle -->
+<script>
+  (function () {
+    /* ---- Modal ---- */
+    const modal     = document.getElementById('istocModal');
+    const frame     = document.getElementById('modalFrame');
+    const titleEl   = document.getElementById('modalTitle');
+    const closeBtn  = document.getElementById('modalClose');
+    const openTab   = document.getElementById('modalOpenNewTab');
+
+    /** @param {string} url @param {string} title */
+    function openModal(url, title) {
+      frame.src = url;
+      titleEl.textContent = title || 'Detay';
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      openTab.onclick = function () { window.open(url, '_blank', 'noopener'); };
+    }
+
+    function closeModal() {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      setTimeout(function () { frame.src = 'about:blank'; }, 200);
+    }
+
+    document.querySelectorAll('[data-detail]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        openModal(btn.getAttribute('data-detail'), btn.getAttribute('data-title'));
+      });
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', function (e) {
+      // Mobilde panel full-screen, dış arka plan tıklanamaz. Tablet+ için arka plan kapatma.
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+    });
+
+    /* ---- Mobil nav drawer ---- */
+    const navToggle = document.getElementById('navToggle');
+    const navDrawer = document.getElementById('navDrawer');
+    navToggle.addEventListener('click', function () {
+      const open = navDrawer.classList.toggle('is-open');
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    navDrawer.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        navDrawer.classList.remove('is-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  })();
+</script>
+
+<!-- Flowbite JS -->
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js" defer></script>
+</body>
+</html>

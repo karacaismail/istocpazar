@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>İK Kalifikasyonları — istoc.com</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<script src="../assets/charts.js"></script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="detail">
+<div class="container">
+
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">İnsan Kaynakları · İstihdam profilleri</span>
+      <h1>İK Kalifikasyonları</h1>
+      <p class="soft" style="max-width:760px;">
+        9 çekirdek + 8 saha üniversiteli ordu. Her rol için profil, aranan nitelikler,
+        sorumluluklar ve performans göstergeleri.
+      </p>
+    </div>
+    <span class="tag"><i class="ph ph-users-three"></i> 17 rol</span>
+  </div>
+
+  <h2>Organizasyon Şeması</h2>
+  <div id="orgChart" class="chart chart-xl"></div>
+
+  <h2 style="margin-top: var(--s-7);">Rol Tanımları — Çekirdek Ekip</h2>
+  <table class="tbl">
+    <thead>
+      <tr><th>Rol</th><th>Adet</th><th>Aranan Nitelikler</th><th>Birincil Sorumluluk</th><th>Performans Göstergesi</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Frontend Developer</td><td>1</td>
+        <td>React, Vite, TypeScript, Tailwind, PWA, mobil-öncelikli; Cursor + Claude Code deneyimi</td>
+        <td>Esnaf WhatsApp UI, saha tablet PWA, web dashboard</td>
+        <td>Sprint velocity, Lighthouse skor, bug count</td>
+      </tr>
+      <tr>
+        <td>Backend Developer</td><td>1</td>
+        <td>Python (FastAPI/Hono), Postgres, n8n, Claude Agent SDK, async</td>
+        <td>API + AI orkestrasyon, RFQ Matchmaker, Outbound, CS</td>
+        <td>API uptime, p95 latency, eval pass rate</td>
+      </tr>
+      <tr>
+        <td>Data Engineer</td><td>1</td>
+        <td>dbt, Airflow, Apollo SDK, Cohere embeddings, KVKK farkındalığı</td>
+        <td>Veri katmanı, RAG, dış-ticaret entegrasyonu</td>
+        <td>Veri tazelik, embedding kalite, duplicate oranı</td>
+      </tr>
+      <tr>
+        <td>DevOps / AI Infra</td><td>1</td>
+        <td>Docker, Hetzner self-host, Litellm, Langfuse, Promptfoo, circuit breaker</td>
+        <td>LLM ops, monitoring, Sales Coach Agent</td>
+        <td>AI maliyet/işlem, alarm oranı, deploy hızı</td>
+      </tr>
+      <tr>
+        <td>AI Engineer (Yeni)</td><td>1</td>
+        <td>Anthropic API, LangGraph, eval design, agent architecture, prod deneyimi</td>
+        <td>7 ajan tech lead, eval coverage, prompt engineering</td>
+        <td>Eval coverage %, hallucination rate, cost/işlem</td>
+      </tr>
+      <tr>
+        <td>Growth Engineer (Yeni)</td><td>1</td>
+        <td>Outbound automation, Apollo, Smartlead, PostHog, GEO SEO, analytics</td>
+        <td>Outbound, GEO, analitik dashboards, A/B test</td>
+        <td>Reply rate, lead → trial dönüşüm, GEO citation</td>
+      </tr>
+      <tr>
+        <td>Pazarlama Ekip Lideri (Nazlı / Alternatifi)</td><td>1</td>
+        <td>İçerik stratejisi, marka, HeyGen, Perplexity, Türkçe-İngilizce-Almanca; saha satış ekibi liderliği ve <b>üniversite öğrencisi recruitment</b> (devlet üniversiteleri + hemşehri dernek şubeleri)</td>
+        <td>İçerik makinesi (LI + blog + video + esnaf vaka) + üniversiteli freelance saha satış ordusu kurma, mentörlük, %10 override yönetimi (TKHK 47/A kapsamı)</td>
+        <td>Haftalık içerik çıktısı, AI citation, aktif öğrenci sayısı, aylık satış adedi, dropout %</td>
+      </tr>
+      <tr>
+        <td>Helpdesk → CS Manager</td><td>1</td>
+        <td>Müşteri iletişimi, CRM, analitik, AI bot yönetimi, sektörel anlayış</td>
+        <td>Trial aktivasyon, churn risk, anchor hesap</td>
+        <td>Deflection %, NPS, churn azalış %</td>
+      </tr>
+      <tr>
+        <td>Stratejik Yönetici</td><td>1</td>
+        <td>B2B ticaret deneyimi, Claude Projects, finans okuryazarı, sektörel ağ</td>
+        <td>Karar destek, patron raporu, scenario test</td>
+        <td>Weekly karar kalitesi, runway sağlığı</td>
+      </tr>
+      <tr>
+        <td>Patron / Kurucu</td><td>1</td>
+        <td>Vizyon, kapital yönetimi, hemşehri ağı, AI scenario testing</td>
+        <td>Stratejik vizyon, kritik kararlar</td>
+        <td>Onay hızı, vision-execution uyum</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 style="margin-top: var(--s-7);">Saha Ekibi — Üniversiteli Ordu</h2>
+  <table class="tbl">
+    <thead>
+      <tr><th>Rol</th><th>Adet</th><th>Aranan Nitelikler</th><th>Sorumluluk</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Hemşehri Saha Lideri (Kıdemli)</td><td>1–2</td>
+        <td>İstoç hemşehri ağı, ticari iletişim, lider profili, 25–40 yaş</td>
+        <td>Ekibi yönlendir, esnafla ilk temas, RFQ onay</td>
+      </tr>
+      <tr>
+        <td>Üniversiteli Saha Üyesi</td><td>6–8</td>
+        <td>İletişim Fakültesi / İktisat / Uluslararası Ticaret 3-4. sınıf, tablet kullanımı, Türkçe-İngilizce</td>
+        <td>15 dk dükkan demo, ziyaret raporu, AI co-pilot kullanım</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 style="margin-top: var(--s-7);">Yetkinlik Radar — Ekip Karşılaştırması</h2>
+  <div id="skillRadar" class="chart chart-lg"></div>
+
+  <h2 style="margin-top: var(--s-7);">Maaş Aralığı (USD brüt / ay)</h2>
+  <div id="salaryRange" class="chart chart-lg"></div>
+
+  <h2 style="margin-top: var(--s-7);">İşe Alım Zaman Çizelgesi</h2>
+  <table class="tbl">
+    <thead><tr><th>Pozisyon</th><th>Hedef Ay</th><th>Kaynak</th><th>Süreç</th></tr></thead>
+    <tbody>
+      <tr><td>AI Engineer (freelance)</td><td>Ay 0–1</td><td>Anthropic Discord, Twitter, LinkedIn</td><td>3 görüşme + portfolio</td></tr>
+      <tr><td>Growth Engineer</td><td>Ay 1</td><td>YC alumni, GrowthHackers</td><td>Case study + 2 görüşme</td></tr>
+      <tr><td>Üniversiteli Ordu (4)</td><td>Ay 1</td><td>İTÜ, Boğaziçi, İstanbul Üniv.</td><td>Hemşehri filtre + bootcamp</td></tr>
+      <tr><td>Üniversiteli Ek (4)</td><td>Ay 3</td><td>Aynı kaynaklar</td><td>Aynı süreç</td></tr>
+      <tr><td>Satış Geliştirme (BDR)</td><td>Ay 5</td><td>LinkedIn, B2B Sales ağları</td><td>3 mülakat + role-play</td></tr>
+      <tr><td>Ops Manager</td><td>Ay 6</td><td>İK ajansları</td><td>Süreç tasarım vakası</td></tr>
+    </tbody>
+  </table>
+
+</div>
+
+<script>
+  const palette = ['#be123c','#c2410c','#166534','#1e40af','#6b21a8','#155e75','#0f766e','#1f2937'];
+  const baseFont = { fontFamily: 'Roboto, sans-serif', fontWeight: 300, fontSize: 13 };
+
+  echarts.init(document.getElementById('orgChart')).setOption({
+    color: palette,
+    textStyle: baseFont,
+    tooltip: { trigger: 'item' },
+    series: [{
+      type: 'tree',
+      orient: 'TB',
+      symbolSize: 14,
+      label: { position: 'top', fontSize: 12 },
+      leaves: { label: { position: 'bottom' } },
+      data: [{
+        name: 'Patron / Kurucu',
+        children: [{
+          name: 'Stratejik Yönetici',
+          children: [
+            { name: 'Frontend Dev' },
+            { name: 'Backend Dev' },
+            { name: 'Data Eng' },
+            { name: 'DevOps / AI Infra' },
+            { name: 'AI Engineer' },
+            { name: 'Growth Engineer' },
+            { name: 'Pazarlama Ekip Lideri',
+              children: [{ name: 'İçerik Asistanı (AI)' }]
+            },
+            { name: 'CS Manager',
+              children: [{ name: 'CS Bot' }]
+            },
+            { name: 'Hemşehri Saha Lideri',
+              children: [
+                { name: 'Üniversiteli 1' }, { name: 'Üniversiteli 2' },
+                { name: 'Üniversiteli 3' }, { name: 'Üniversiteli 4' },
+                { name: 'Üniversiteli 5' }, { name: 'Üniversiteli 6' },
+                { name: 'Üniversiteli 7' }, { name: 'Üniversiteli 8' }
+              ]
+            }
+          ]
+        }]
+      }],
+      top: '5%', bottom: '5%', left: '5%', right: '5%',
+      expandAndCollapse: true,
+      initialTreeDepth: 3
+    }]
+  });
+
+  echarts.init(document.getElementById('skillRadar')).setOption({
+    color: palette,
+    textStyle: baseFont,
+    legend: { top: 10 },
+    tooltip: {},
+    radar: {
+      indicator: [
+        { name: 'AI / LLM', max: 10 },
+        { name: 'Web Dev',   max: 10 },
+        { name: 'Saha Operasyon', max: 10 },
+        { name: 'Pazarlama / İçerik', max: 10 },
+        { name: 'Veri / Analiz', max: 10 },
+        { name: 'İletişim / Ticaret', max: 10 }
+      ]
+    },
+    series: [{
+      type: 'radar',
+      data: [
+        { value: [9,8,2,3,6,4], name: 'Mühendislik' },
+        { value: [4,2,9,5,3,9], name: 'Saha' },
+        { value: [6,3,3,9,4,7], name: 'Pazarlama' },
+        { value: [3,2,7,4,3,8], name: 'CS' }
+      ]
+    }]
+  });
+
+  echarts.init(document.getElementById('salaryRange')).setOption({
+    color: ['#1f2937', '#c2410c'],
+    textStyle: baseFont,
+    legend: { top: 10 },
+    tooltip: { trigger: 'axis' },
+    grid: { left: 160, right: 30, top: 60, bottom: 40 },
+    xAxis: { type: 'value', name: 'USD brüt / ay' },
+    yAxis: { type: 'category', data: [
+      'Üniversiteli', 'Helpdesk → CS Mgr', 'Pazarlama Ekip Lideri',
+      'Frontend Dev', 'Backend Dev', 'Data Eng', 'DevOps / AI Infra',
+      'Growth Engineer', 'AI Engineer', 'Stratejik Yönetici'
+    ]},
+    series: [
+      { name: 'Min', type: 'bar', stack: 'r', data: [400, 1500, 2500, 3000, 3500, 3500, 3500, 3800, 4500, 5000] },
+      { name: 'Max - Min', type: 'bar', stack: 'r', data: [400, 1000, 1500, 2000, 2000, 2000, 2000, 2200, 2500, 3000] }
+    ]
+  });
+</script>
+</body>
+</html>

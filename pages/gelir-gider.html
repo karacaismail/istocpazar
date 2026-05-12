@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gelir-Gider Dengesi — istoc.com</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<script src="../assets/charts.js"></script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="detail">
+<div class="container">
+
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">Finans · P&L 12 ay</span>
+      <h1>Gelir-Gider Dengesi</h1>
+      <p class="soft" style="max-width:760px;">
+        Üyelik geliri, komisyon, premium servisler ve aylık burn arasındaki denge.
+        Negatif → pozitif marja geçiş yörüngesi.
+      </p>
+    </div>
+    <span class="tag"><i class="ph ph-scales"></i> Senaryo: Baz</span>
+  </div>
+
+  <div class="grid grid-4" style="margin-bottom: var(--s-6);">
+    <div class="kpi"><span class="label">Ay 3 MRR</span><span class="value">$12K</span><span class="delta">50 üye medyan (TAM/SAM/SOM)</span></div>
+    <div class="kpi"><span class="label">Ay 6 MRR</span><span class="value">$58K</span><span class="delta">230 üye medyan</span></div>
+    <div class="kpi"><span class="label">Ay 12 MRR</span><span class="value">$245K</span><span class="delta">780 ödeyen üye</span></div>
+    <div class="kpi"><span class="label">EBITDA Pozitif</span><span class="value">Ay 9</span><span class="delta">Baz senaryo</span></div>
+  </div>
+
+  <h2>Gelir vs Gider — 12 Ay</h2>
+  <div id="rev" class="chart chart-lg"></div>
+
+  <h2 style="margin-top: var(--s-7);">Kümülatif Burn & Cash Position</h2>
+  <div id="cumBurn" class="chart chart-lg"></div>
+
+  <h2 style="margin-top: var(--s-7);">Gelir Bileşenleri (Ay 12 — Nisan 2027)</h2>
+  <div class="grid grid-2">
+    <div id="revMix" class="chart"></div>
+    <table class="tbl">
+      <thead><tr><th>Gelir Kalemi</th><th>Birim</th><th class="num">Ay 12 / USD</th></tr></thead>
+      <tbody>
+        <tr><td>Esnaf Modu üyelik (TL)</td><td>~680 üye × $185/ay eşdeğer</td><td class="num">125.800</td></tr>
+        <tr><td>Premium üyelik</td><td>~100 × $450/ay</td><td class="num">45.000</td></tr>
+        <tr><td>Komisyon (GMV %3)</td><td>$1.9M GMV</td><td class="num">57.000</td></tr>
+        <tr><td>RFQ başına ücret</td><td>~500 RFQ × $30</td><td class="num">15.000</td></tr>
+        <tr><td>Voice AI çağrı (premium add-on)</td><td>~$0.30/dk × 35K dk</td><td class="num">10.500</td></tr>
+        <tr><td>İçerik / hizmet (Pazarlama Lideri satış)</td><td>—</td><td class="num">6.000</td></tr>
+      </tbody>
+      <tfoot><tr><td colspan="2">Toplam MRR (Ay 12 medyan)</td><td class="num">245.300</td></tr></tfoot>
+    </table>
+  </div>
+
+  <h2 style="margin-top: var(--s-7);">Gider Bileşenleri (Ay 12)</h2>
+  <table class="tbl">
+    <thead><tr><th>Gider Kalemi</th><th class="num">Ay 12 / USD</th><th>Notlar</th></tr></thead>
+    <tbody>
+      <tr><td>Ekip (büyütülmüş 15 kişi)</td><td class="num">68.000</td><td>+1 satış, +1 ops, +1 BA</td></tr>
+      <tr><td>Üniversiteli ordu (14 kişi)</td><td class="num">10.000</td><td>Saha hacmi artar (780 üye)</td></tr>
+      <tr><td>AI altyapı</td><td class="num">12.500</td><td>Self-host + Voice add-on hacim</td></tr>
+      <tr><td>Yazılım abonelikleri</td><td class="num">3.400</td><td>Anchor + enterprise tier</td></tr>
+      <tr><td>Saha + ofis</td><td class="num">7.000</td><td>2. lokasyon değerlendirme</td></tr>
+      <tr><td>Pazarlama</td><td class="num">6.200</td><td>GEO + LI ABM + retargeting</td></tr>
+      <tr><td>Hukuk + muhasebe</td><td class="num">1.400</td><td>—</td></tr>
+    </tbody>
+    <tfoot><tr><td>Toplam OpEx (Ay 12)</td><td class="num">108.500</td><td>EBITDA: +$136K/ay</td></tr></tfoot>
+  </table>
+
+</div>
+
+<script>
+  const palette = ['#166534','#991b1b','#1e40af','#c2410c','#6b21a8'];
+  const baseFont = { fontFamily: 'Roboto, sans-serif', fontWeight: 300, fontSize: 13 };
+
+  echarts.init(document.getElementById('rev')).setOption({
+    color: palette,
+    textStyle: baseFont,
+    legend: { top: 10 },
+    tooltip: { trigger: 'axis' },
+    grid: { left: 70, right: 60, top: 60, bottom: 40 },
+    xAxis: { type: 'category', data: Array.from({length:12}, (_,i)=>`Ay ${i+1}`) },
+    yAxis: { type: 'value', axisLabel: { formatter: '${value}' } },
+    series: [
+      { name: 'Gelir', type: 'bar', data: [1000,4000,12000,24000,42000,58000,82000,108000,138000,168000,205000,245000] },
+      { name: 'Gider (OpEx)', type: 'bar', data: [55000,58000,62000,68000,75000,82000,90000,96000,100000,103000,106000,108500] },
+      { name: 'Net', type: 'line', smooth: true, data: [-54000,-54000,-50000,-44000,-33000,-24000,-8000,12000,38000,65000,99000,136500] }
+    ]
+  });
+
+  echarts.init(document.getElementById('cumBurn')).setOption({
+    color: ['#991b1b','#166534'],
+    textStyle: baseFont,
+    legend: { top: 10 },
+    tooltip: { trigger: 'axis' },
+    grid: { left: 80, right: 60, top: 60, bottom: 40 },
+    xAxis: { type: 'category', data: Array.from({length:12}, (_,i)=>`Ay ${i+1}`) },
+    yAxis: { type: 'value', axisLabel: { formatter: '${value}' } },
+    series: [
+      { name: 'Kümülatif Burn', type: 'line', smooth: true, areaStyle: { opacity: 0.15 },
+        data: [-54000,-108000,-158000,-202000,-235000,-259000,-267000,-255000,-217000,-152000,-53000,83500] },
+      { name: 'Yatırım Sermayesi', type: 'line', step: 'end',
+        data: [350000,350000,350000,350000,350000,350000,650000,650000,950000,950000,950000,950000] }
+    ]
+  });
+
+  echarts.init(document.getElementById('revMix')).setOption(ISTOC.responsivePie({
+    color: ['#166534','#0f766e','#1e40af','#c2410c','#6b21a8','#155e75'],
+    textStyle: baseFont,
+    tooltip: { trigger: 'item', formatter: '{b}: {d}%' },
+    legend: { bottom: 10, type: 'scroll' },
+    series: [{
+      type: 'pie', radius: ['40%','70%'],
+      label: { formatter: '{b}\n{d}%', fontSize: 12 },
+      data: [
+        { value: 125800, name: 'Esnaf Modu üyelik' },
+        { value: 45000,  name: 'Premium üyelik' },
+        { value: 57000,  name: 'Komisyon GMV' },
+        { value: 15000,  name: 'RFQ ücret' },
+        { value: 10500,  name: 'Voice add-on' },
+        { value: 6000,   name: 'İçerik / hizmet' }
+      ]
+    }]
+  }));
+</script>
+</body>
+</html>

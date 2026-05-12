@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GTM Stratejisi — istoc.com</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<script src="../assets/charts.js"></script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="detail">
+<div class="container">
+
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">Go-to-Market · Master Plan</span>
+      <h1>GTM Stratejisi</h1>
+      <p class="soft" style="max-width:760px;">
+        ICP × Persona × Kanal matrisi. Managed marketplace + AI alıcı tarafı genişleme.
+        TL fiyatlama, Esnaf Modu, hemşehri ağı, İSTOÇDER meşruiyeti aynen korunur.
+      </p>
+    </div>
+    <span class="tag"><i class="ph ph-rocket-launch"></i> Managed marketplace</span>
+  </div>
+
+  <h2>GTM Mindmap — Yapısal Bileşenler</h2>
+  <div id="gtmMind" class="chart chart-xl"></div>
+
+  <h2 id="funnel" style="margin-top: var(--s-7);">Outbound Funnel — 10K → 50 Ödeyen</h2>
+  <div id="funnelChart" class="chart chart-lg"></div>
+
+  <table class="tbl" style="margin-top: var(--s-5);">
+    <thead>
+      <tr><th>Aşama</th><th>Açıklama</th><th class="num">Adet</th><th class="num">Dönüşüm</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Toplam pool</td><td>10K Maps + 5–15K dış-ticaret intel</td><td class="num">20.000</td><td class="num">—</td></tr>
+      <tr><td>Erişilebilir</td><td>Email/telefon valide</td><td class="num">14.000</td><td class="num">%70</td></tr>
+      <tr><td>Prioritized</td><td>AI fit-score ≥7/10</td><td class="num">3.000</td><td class="num">%21</td></tr>
+      <tr><td>Yanıt</td><td>3-kanal sequence</td><td class="num">150–240</td><td class="num">%5–8</td></tr>
+      <tr><td>Ciddi RFQ</td><td>İnsan handoff sonrası</td><td class="num">40–60</td><td class="num">%25</td></tr>
+      <tr><td>Eşleşmiş satıcı</td><td>RFQ Matchmaker</td><td class="num">24–36</td><td class="num">%60</td></tr>
+      <tr><td>Ödeyen üye</td><td>Geri-besleme + WoM ile</td><td class="num">35–50</td><td class="num">+5–14 referral</td></tr>
+    </tbody>
+  </table>
+
+  <h2 style="margin-top: var(--s-7);">Persona × Kanal Matrisi</h2>
+  <div id="personaMatrix" class="chart chart-lg"></div>
+
+  <h2 style="margin-top: var(--s-7);">Fiyatlama Modeli</h2>
+  <table class="tbl">
+    <thead>
+      <tr><th>Tier</th><th>Hedef</th><th>Ay Ücreti (TL eşdeğer)</th><th>Komisyon</th><th>İçerik</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Esnaf Modu (Free trial 30 gün)</td><td>Hacı Abdullah / Mehmet</td>
+        <td>0 TL trial → 1.500 TL / ay</td><td>%3 GMV</td>
+        <td>Temel marketplace, AI çeviri, foto enhance, RFQ</td>
+      </tr>
+      <tr>
+        <td>Pro</td><td>Mehmet / Ahmet</td>
+        <td>3.500 TL / ay</td><td>%2 GMV</td>
+        <td>Voice AI çağrı, premium support, çoklu kullanıcı</td>
+      </tr>
+      <tr>
+        <td>Enterprise / Anchor</td><td>Büyük üreticiler</td>
+        <td>özel</td><td>Negotiated</td>
+        <td>Özel sektörel agent, hesap yöneticisi, API erişim</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 style="margin-top: var(--s-7);">Saha Aktivasyon Akışı</h2>
+  <div id="saheFlow" class="chart chart-xl"></div>
+
+  <h2 style="margin-top: var(--s-7);">Rekabet Konumlandırma</h2>
+  <div id="positioning" class="chart chart-lg"></div>
+
+</div>
+
+<script>
+  const palette = ['#1e40af','#c2410c','#166534','#6b21a8','#1f2937','#155e75','#be123c'];
+  const baseFont = { fontFamily: 'Roboto, sans-serif', fontWeight: 300, fontSize: 13 };
+
+  // GTM mindmap
+  echarts.init(document.getElementById('gtmMind')).setOption({
+    color: palette,
+    textStyle: baseFont,
+    tooltip: { trigger: 'item' },
+    series: [{
+      type: 'tree',
+      data: [{
+        name: 'GTM',
+        children: [
+          { name: 'ICP — Satıcı Tarafı', children: [
+            { name: 'İstoç dükkanı' }, { name: 'Hemşehri kümeleri' }, { name: 'Dijital olgunluk 2-4' }
+          ]},
+          { name: 'ICP — Alıcı Tarafı', children: [
+            { name: 'Avrupa ithalatçısı' }, { name: 'MENA distribütör' }, { name: 'CEE perakende' }
+          ]},
+          { name: 'Persona Mesaj', children: [
+            { name: 'Hacı Abdullah · WhatsApp' }, { name: 'Mehmet · Web/PWA' }, { name: 'Ahmet · GEO + LI' }
+          ]},
+          { name: 'Kanal', children: [
+            { name: 'AI Outbound' }, { name: 'GEO' }, { name: 'Saha 15dk demo' },
+            { name: 'İSTOÇDER meşruiyet' }, { name: 'Referral' }
+          ]},
+          { name: 'Fiyatlama', children: [
+            { name: 'Esnaf Modu (TL)' }, { name: 'Pro' }, { name: 'Enterprise' }
+          ]},
+          { name: 'Hendek', children: [
+            { name: 'Saha verisi' }, { name: 'Türkçe/Arapça nuans' }, { name: 'KOSGEB/KDV iade' }
+          ]}
+        ]
+      }],
+      top: '1%', left: '7%', bottom: '1%', right: '22%',
+      symbolSize: 10,
+      label: { position: 'left', verticalAlign: 'middle', align: 'right' },
+      leaves: { label: { position: 'right', verticalAlign: 'middle', align: 'left' } },
+      expandAndCollapse: true
+    }]
+  });
+
+  // Funnel
+  echarts.init(document.getElementById('funnelChart')).setOption({
+    color: palette,
+    textStyle: baseFont,
+    tooltip: { trigger: 'item' },
+    legend: { top: 10 },
+    series: [{
+      type: 'funnel', left: '10%', right: '10%', top: 50, bottom: 30,
+      label: { formatter: '{b}\n{c}' },
+      data: [
+        { value: 20000, name: 'Pool' },
+        { value: 14000, name: 'Erişilebilir' },
+        { value: 3000,  name: 'Prioritized' },
+        { value: 200,   name: 'Yanıt' },
+        { value: 50,    name: 'RFQ' },
+        { value: 36,    name: 'Eşleşmiş' },
+        { value: 42,    name: 'Ödeyen (+referral)' }
+      ]
+    }]
+  });
+
+  // Persona matrix heatmap
+  const personas = ['Hacı Abdullah (62)', 'Mehmet (45)', 'Ahmet (32)'];
+  const channels = ['WhatsApp', 'Saha demo', 'Web/PWA', 'LinkedIn', 'GEO/AI', 'Voice AI'];
+  const effectMap = [
+    [10,10,3,1,1,8],   // Hacı
+    [7,7,9,5,4,6],     // Mehmet
+    [4,2,8,9,10,5]     // Ahmet
+  ];
+  const heatData = [];
+  personas.forEach((_, yi) => channels.forEach((_, xi) => heatData.push([xi, yi, effectMap[yi][xi]])));
+  echarts.init(document.getElementById('personaMatrix')).setOption({
+    textStyle: baseFont,
+    tooltip: { position: 'top' },
+    grid: { left: 160, right: 30, top: 50, bottom: 60 },
+    xAxis: { type: 'category', data: channels, splitArea: { show: true } },
+    yAxis: { type: 'category', data: personas, splitArea: { show: true } },
+    visualMap: { min: 0, max: 10, calculable: true, orient: 'horizontal', left: 'center', bottom: 10, inRange: { color: ['#fafaf9','#1e40af'] } },
+    series: [{ name: 'Etki Skoru', type: 'heatmap', data: heatData, label: { show: true } }]
+  });
+
+  // Saha flow sankey
+  echarts.init(document.getElementById('saheFlow')).setOption({
+    textStyle: baseFont,
+    tooltip: { trigger: 'item' },
+    series: [{
+      type: 'sankey',
+      left: 30, right: 200, top: 20, bottom: 20,
+      data: [
+        { name: 'Üniversiteli scout' }, { name: 'Hemşehri saha lideri' },
+        { name: 'Brief (AI tablet)' }, { name: '15 dk dükkan demo' },
+        { name: '30-gün trial' }, { name: 'Aktif kullanım' },
+        { name: 'Ödeyen üye' }, { name: 'Churn' }
+      ],
+      links: [
+        { source: 'Üniversiteli scout', target: 'Hemşehri saha lideri', value: 100 },
+        { source: 'Hemşehri saha lideri', target: 'Brief (AI tablet)', value: 100 },
+        { source: 'Brief (AI tablet)', target: '15 dk dükkan demo', value: 100 },
+        { source: '15 dk dükkan demo', target: '30-gün trial', value: 35 },
+        { source: '30-gün trial', target: 'Aktif kullanım', value: 22 },
+        { source: 'Aktif kullanım', target: 'Ödeyen üye', value: 14 },
+        { source: 'Aktif kullanım', target: 'Churn', value: 8 }
+      ],
+      lineStyle: { color: 'gradient', curveness: 0.5 },
+      label: { fontSize: 12 }
+    }]
+  });
+
+  // Positioning quadrant (scatter)
+  echarts.init(document.getElementById('positioning')).setOption({
+    color: palette,
+    textStyle: baseFont,
+    tooltip: { trigger: 'item' },
+    legend: { top: 10 },
+    grid: { left: 80, right: 30, top: 60, bottom: 50 },
+    xAxis: { type: 'value', name: 'AI Yerel Adaptasyonu (TR)', min: 0, max: 10 },
+    yAxis: { type: 'value', name: 'Saha + Hemşehri Ağı', min: 0, max: 10 },
+    series: [
+      { name: 'istoc.com', type: 'scatter', symbolSize: 35, data: [[9.5, 9.2]], label: { show: true, formatter: 'istoc.com', position: 'right' } },
+      { name: 'Alibaba (Accio)', type: 'scatter', symbolSize: 28, data: [[3, 1]], label: { show: true, formatter: 'Alibaba', position: 'right' } },
+      { name: 'IndiaMart', type: 'scatter', symbolSize: 25, data: [[2, 2]], label: { show: true, formatter: 'IndiaMart', position: 'right' } },
+      { name: 'Trendyol B2B', type: 'scatter', symbolSize: 25, data: [[4, 6]], label: { show: true, formatter: 'Trendyol B2B', position: 'right' } },
+      { name: 'Yerel platformlar', type: 'scatter', symbolSize: 22, data: [[6, 4]], label: { show: true, formatter: 'Yerel platformlar', position: 'right' } }
+    ]
+  });
+</script>
+</body>
+</html>

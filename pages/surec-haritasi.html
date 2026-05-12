@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Süreç Haritası — istoc.com</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<script src="../assets/charts.js"></script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="detail">
+<div class="container">
+
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">Operasyon · Mindmap + Flow</span>
+      <h1>Süreç Haritası</h1>
+      <p class="soft" style="max-width:760px;">
+        3 katmanlı mimari: Veri Katmanı (Motor) → Ajan Katmanı (Kanatlar) → İnsan Katmanı (Gövde + Pilot)
+        → Esnaf Yüzeyi. ECharts mindmap + sankey + flowchart kombinasyonu.
+      </p>
+    </div>
+    <span class="tag"><i class="ph ph-tree-structure"></i> 3 katman</span>
+  </div>
+
+  <h2>Sistem Mindmap (Radial)</h2>
+  <div id="mindRadial" class="chart chart-xl"></div>
+
+  <h2 style="margin-top: var(--s-7);">3 Katman Veri Akışı</h2>
+  <div id="sankeyFlow" class="chart chart-xl"></div>
+
+  <h2 style="margin-top: var(--s-7);">RFQ Yaşam Döngüsü — Süreç Akışı</h2>
+  <div id="rfqProcess" class="chart chart-xl"></div>
+
+  <h2 style="margin-top: var(--s-7);">İnsan-Onay Matrisi</h2>
+  <table class="tbl">
+    <thead>
+      <tr><th>Karar Tipi</th><th>Otomasyon Seviyesi</th><th>Onay Sahibi</th><th>Eşik</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Çeviri — rutin mesaj</td><td>Full auto (Gün 30+)</td><td>—</td><td>Confidence ≥%85</td></tr>
+      <tr><td>İlk fiyat teklifi</td><td>Yarı-otomatik</td><td>Saha lideri</td><td>Her zaman</td></tr>
+      <tr><td>RFQ satıcıya iletme</td><td>Yarı-otomatik</td><td>Hemşehri saha lideri</td><td>Her zaman</td></tr>
+      <tr><td>Outbound ilk dokunuş</td><td>Yarı-otomatik</td><td>Pazarlama Lideri + saha lideri</td><td>İlk 1.000 manuel</td></tr>
+      <tr><td>Alıcı yanıtladıktan sonra</td><td>Tam manuel</td><td>İnsan devralır</td><td>—</td></tr>
+      <tr><td>Ürün fotoğrafı — jenerik</td><td>Full auto</td><td>—</td><td>Otomatik</td></tr>
+      <tr><td>Ürün fotoğrafı — özel marka</td><td>Manuel</td><td>Esnaf veya saha</td><td>Her zaman</td></tr>
+      <tr><td>Sözleşme / Escrow</td><td>Manuel onay</td><td>Stratejik yönetici</td><td>Her zaman</td></tr>
+      <tr><td>GEO içerik yayın</td><td>Yarı-otomatik</td><td>Pazarlama Lideri</td><td>Spot-check</td></tr>
+      <tr><td>Sektörel agent öneri</td><td>Yarı-otomatik</td><td>Hesap yöneticisi</td><td>Anchor müşteride</td></tr>
+    </tbody>
+  </table>
+
+  <h2 style="margin-top: var(--s-7);">Ajan Topolojisi</h2>
+  <div id="agentGraph" class="chart chart-xl"></div>
+
+</div>
+
+<script>
+  const palette = ['#155e75','#c2410c','#166534','#1e40af','#6b21a8','#1f2937','#be123c','#0f766e'];
+  const baseFont = { fontFamily: 'Roboto, sans-serif', fontWeight: 300, fontSize: 13 };
+
+  // Radial mindmap
+  echarts.init(document.getElementById('mindRadial')).setOption({
+    color: palette,
+    textStyle: baseFont,
+    tooltip: { trigger: 'item' },
+    series: [{
+      type: 'tree',
+      layout: 'radial',
+      data: [{
+        name: 'istoc.com',
+        children: [
+          { name: 'Veri Katmanı', children: [
+            { name: 'Google Maps 10K' }, { name: 'ImportGenius' }, { name: 'Apollo' },
+            { name: 'İstoç saha verisi' }, { name: 'TİM açık veri' }, { name: 'Qdrant Vector' }
+          ]},
+          { name: 'Ajan Katmanı', children: [
+            { name: 'RFQ Matchmaker' }, { name: 'Translation' }, { name: 'Photo Enhance' },
+            { name: 'Outbound' }, { name: 'Sales Coach' }, { name: 'CS Agent' }, { name: 'Content/GEO' }
+          ]},
+          { name: 'İnsan Katmanı', children: [
+            { name: 'Saha üniversiteliler' }, { name: 'Hemşehri lideri' },
+            { name: 'CS Manager' }, { name: 'Pazarlama Lideri' }, { name: 'Stratejik yönetici' }
+          ]},
+          { name: 'Yüzey', children: [
+            { name: 'WhatsApp Business' }, { name: 'Web/PWA dashboard' }, { name: 'Tablet PWA' }
+          ]}
+        ]
+      }],
+      symbol: 'emptyCircle', symbolSize: 8,
+      label: { fontSize: 12, color: '#1a1a1a' },
+      lineStyle: { color: '#d4d4d4' },
+      animationDuration: 600,
+      initialTreeDepth: 2
+    }]
+  });
+
+  echarts.init(document.getElementById('sankeyFlow')).setOption({
+    textStyle: baseFont,
+    tooltip: { trigger: 'item' },
+    series: [{
+      type: 'sankey',
+      left: 20, right: 220, top: 20, bottom: 20,
+      data: [
+        { name: 'Google Maps 10K' }, { name: 'ImportGenius' }, { name: 'Apollo' },
+        { name: 'Qdrant + Postgres' },
+        { name: 'Outbound Agent' }, { name: 'RFQ Matchmaker' }, { name: 'Translation' }, { name: 'Photo' },
+        { name: 'Saha Lideri' }, { name: 'Esnaf (WhatsApp)' }, { name: 'Alıcı (Avrupa)' },
+        { name: 'Eşleşme + GMV' }
+      ],
+      links: [
+        { source: 'Google Maps 10K', target: 'Qdrant + Postgres', value: 10 },
+        { source: 'ImportGenius',   target: 'Qdrant + Postgres', value: 8 },
+        { source: 'Apollo',         target: 'Qdrant + Postgres', value: 6 },
+        { source: 'Qdrant + Postgres', target: 'Outbound Agent', value: 9 },
+        { source: 'Qdrant + Postgres', target: 'RFQ Matchmaker', value: 7 },
+        { source: 'Outbound Agent', target: 'Alıcı (Avrupa)', value: 9 },
+        { source: 'Alıcı (Avrupa)', target: 'RFQ Matchmaker', value: 6 },
+        { source: 'RFQ Matchmaker', target: 'Saha Lideri', value: 6 },
+        { source: 'Translation',    target: 'Esnaf (WhatsApp)', value: 5 },
+        { source: 'Photo',          target: 'Esnaf (WhatsApp)', value: 5 },
+        { source: 'Saha Lideri',    target: 'Esnaf (WhatsApp)', value: 6 },
+        { source: 'Esnaf (WhatsApp)', target: 'Eşleşme + GMV', value: 5 }
+      ],
+      label: { fontSize: 12 }
+    }]
+  });
+
+  // RFQ process flow (custom)
+  echarts.init(document.getElementById('rfqProcess')).setOption({
+    textStyle: baseFont,
+    tooltip: { trigger: 'item' },
+    series: [{
+      type: 'graph',
+      layout: 'none',
+      symbolSize: 60,
+      symbol: 'roundRect',
+      label: { show: true, fontSize: 11, color: '#fff' },
+      edgeSymbol: ['none', 'arrow'],
+      edgeSymbolSize: 10,
+      data: [
+        { name: 'Alıcı sorgusu', x: 0,   y: 100, itemStyle: { color: palette[3] } },
+        { name: 'AI parse',      x: 130, y: 100, itemStyle: { color: palette[3] } },
+        { name: 'Qdrant arama',  x: 260, y: 100, itemStyle: { color: palette[0] } },
+        { name: 'Top-3 satıcı',  x: 400, y: 100, itemStyle: { color: palette[0] } },
+        { name: 'Hemşehri lider onay', x: 550, y: 100, itemStyle: { color: palette[5] } },
+        { name: 'Translation',   x: 700, y: 50,  itemStyle: { color: palette[1] } },
+        { name: 'Photo enhance', x: 700, y: 150, itemStyle: { color: palette[1] } },
+        { name: 'WhatsApp esnaf',x: 850, y: 100, itemStyle: { color: palette[2] } },
+        { name: 'Esnaf yanıt',   x: 1000,y: 100, itemStyle: { color: palette[2] } },
+        { name: 'AI handoff',    x: 1150,y: 100, itemStyle: { color: palette[3] } },
+        { name: 'Alıcı insan görüşme', x: 1300, y: 100, itemStyle: { color: palette[3] } },
+        { name: 'Eşleşme',       x: 1450,y: 100, itemStyle: { color: palette[6] } }
+      ],
+      links: [
+        { source: 'Alıcı sorgusu', target: 'AI parse' },
+        { source: 'AI parse', target: 'Qdrant arama' },
+        { source: 'Qdrant arama', target: 'Top-3 satıcı' },
+        { source: 'Top-3 satıcı', target: 'Hemşehri lider onay' },
+        { source: 'Hemşehri lider onay', target: 'Translation' },
+        { source: 'Hemşehri lider onay', target: 'Photo enhance' },
+        { source: 'Translation', target: 'WhatsApp esnaf' },
+        { source: 'Photo enhance', target: 'WhatsApp esnaf' },
+        { source: 'WhatsApp esnaf', target: 'Esnaf yanıt' },
+        { source: 'Esnaf yanıt', target: 'AI handoff' },
+        { source: 'AI handoff', target: 'Alıcı insan görüşme' },
+        { source: 'Alıcı insan görüşme', target: 'Eşleşme' }
+      ],
+      lineStyle: { color: '#9ca3af', width: 1.4 }
+    }],
+    grid: { left: 20, right: 20 }
+  });
+
+  // Agent graph
+  echarts.init(document.getElementById('agentGraph')).setOption({
+    color: palette,
+    textStyle: baseFont,
+    tooltip: { trigger: 'item' },
+    series: [{
+      type: 'graph', layout: 'force', roam: true, symbolSize: 36,
+      label: { show: true, fontSize: 12 },
+      force: { repulsion: 280, edgeLength: 100 },
+      categories: [
+        { name: 'Veri' }, { name: 'Ajan' }, { name: 'İnsan' }, { name: 'Yüzey' }
+      ],
+      data: [
+        { name: 'Qdrant DB',         category: 0, symbolSize: 50 },
+        { name: 'Postgres',          category: 0 },
+        { name: 'ImportGenius',      category: 0 },
+        { name: 'RFQ Matchmaker',    category: 1, symbolSize: 50 },
+        { name: 'Translation',       category: 1 },
+        { name: 'Photo',             category: 1 },
+        { name: 'Outbound',          category: 1, symbolSize: 50 },
+        { name: 'Sales Coach',       category: 1 },
+        { name: 'CS Agent',          category: 1 },
+        { name: 'Content/GEO',       category: 1 },
+        { name: 'Hemşehri lider',    category: 2, symbolSize: 50 },
+        { name: 'Üniversiteli',      category: 2 },
+        { name: 'Pazarlama Lideri',             category: 2 },
+        { name: 'CS Manager',        category: 2 },
+        { name: 'WhatsApp',          category: 3, symbolSize: 50 },
+        { name: 'Tablet PWA',        category: 3 },
+        { name: 'Web Dashboard',     category: 3 }
+      ],
+      links: [
+        { source: 'Qdrant DB', target: 'RFQ Matchmaker' },
+        { source: 'Qdrant DB', target: 'Outbound' },
+        { source: 'Postgres', target: 'CS Agent' },
+        { source: 'ImportGenius', target: 'Outbound' },
+        { source: 'RFQ Matchmaker', target: 'Hemşehri lider' },
+        { source: 'Translation', target: 'WhatsApp' },
+        { source: 'Photo', target: 'WhatsApp' },
+        { source: 'Outbound', target: 'Pazarlama Lideri' },
+        { source: 'Sales Coach', target: 'Üniversiteli' },
+        { source: 'CS Agent', target: 'CS Manager' },
+        { source: 'Content/GEO', target: 'Pazarlama Lideri' },
+        { source: 'Hemşehri lider', target: 'WhatsApp' },
+        { source: 'Üniversiteli', target: 'Tablet PWA' }
+      ],
+      lineStyle: { color: '#d4d4d4', curveness: 0.2 }
+    }]
+  });
+</script>
+</body>
+</html>

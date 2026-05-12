@@ -1,0 +1,21 @@
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Editor
+.vscode/
+.idea/
+*.sublime-*
+
+# Logs / temp
+*.log
+.cache/
+.tmp/
+
+# Node (gelecekte build eklenirse)
+node_modules/
+dist/
+.env
+.env.local

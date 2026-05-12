@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Üniversiteli Saha Satış Ordusu — istoc.com</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<script src="../assets/charts.js"></script>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .callout {
+    background: var(--c-surface-2);
+    border-left: 4px solid var(--c-accent);
+    padding: var(--s-4) var(--s-5);
+    border-radius: var(--radius-sm);
+    margin: var(--s-4) 0;
+  }
+  .callout.warn { border-left-color: var(--c-warn); }
+  .callout.danger { border-left-color: var(--c-danger); }
+  .callout.ok { border-left-color: var(--c-success); }
+  .persona {
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius-md);
+    padding: var(--s-5);
+  }
+  .persona h3 { margin-bottom: var(--s-2); }
+  .persona .pct { font-size: 0.875rem; color: var(--c-text-3); }
+</style>
+</head>
+<body class="detail">
+<div class="container">
+
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">Saha Operasyon · Komisyon-Bazlı Freelance</span>
+      <h1>Üniversiteli Saha Satış Ordusu</h1>
+      <p class="soft" style="max-width:760px;">
+        TKHK Madde 47/A "Doğrudan Satış" çerçevesinde, Avon modelinin AI + B2B SaaS adaptasyonu.
+        İş sözleşmesiz, komisyon-bazlı bağımsız temsilci modeli.
+      </p>
+    </div>
+    <span class="tag"><i class="ph ph-graduation-cap"></i> 6 → 100 öğrenci</span>
+  </div>
+
+  <!-- BLUF -->
+  <div class="callout">
+    <h3 style="margin:0 0 var(--s-2);">Patron'a 30 saniyelik özet</h3>
+    <p style="margin:0;" class="soft">
+      Avon/Oriflame'ın Türkiye'de 30 yıldır yasal olarak kullandığı modelle aynı çerçevede.
+      Ekim 2024'te kabul edilen <b>7529 sayılı Kanun'la 6502'ye eklenen Madde 47/A "Doğrudan Satış Sistemi"</b>
+      iş sözleşmesiz, komisyon-bazlı, bağımsız temsilci modelini açıkça yasallaştırdı.
+      Devlet üniversitelerinden 6 öğrenciyle başlayıp 6 ayda 100'e çıkacağız;
+      %40 satış komisyonu + Pazarlama Lideri'ne %10 override (aylık 300K TL tavanlı).
+      "Ayda 100K TL" iddiası gerçek vakalar olmadan tekrarlanmayacak (Reklam Kurulu cezası 60K–6M TL);
+      "İlk 5 satışta 30K TL garanti, sınırsız tavan" diye konumlanacağız.
+      12. ay sonunda 100 öğrenci × ortalama 4 net satış = ~2.300 paket/ay, şirket net marjı ~%30.
+    </p>
+  </div>
+
+  <!-- KPI Strip -->
+  <div class="grid grid-4" style="margin: var(--s-6) 0;">
+    <div class="kpi"><span class="label">Faz 1 (Ay 1–2)</span><span class="value">6–10</span><span class="delta">Öğrenci · İstanbul-only</span></div>
+    <div class="kpi"><span class="label">Faz 2 (Ay 3–4)</span><span class="value">20–30</span><span class="delta">Öğrenci</span></div>
+    <div class="kpi"><span class="label">Faz 3 (Ay 6–9)</span><span class="value">100</span><span class="delta">Aktif öğrenci</span></div>
+    <div class="kpi"><span class="label">Yıl 1 Hedef</span><span class="value">~4.200</span><span class="delta">Kümülatif paket · ~75M TL ARR</span></div>
+  </div>
+
+  <!-- YASAL ZEMİN -->
+  <h2 style="margin-top: var(--s-7);">Yasal Zemin — Madde 47/A</h2>
+  <p class="soft">
+    6502 sayılı Tüketicinin Korunması Hakkında Kanun'a 24/10/2024 tarih ve 7529 sayılı Kanun'la
+    eklenen Madde 47/A doğrudan satış sistemini tanımladı. Yürürlük: yayımdan 9 ay sonra (Temmuz 2025).
+  </p>
+
+  <h3>Sözleşme Türleri Karşılaştırma</h3>
+  <table class="tbl">
+    <thead>
+      <tr><th>Sözleşme Türü</th><th>Yasal Dayanak</th><th>Uygunluk</th><th>Not</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Acentelik</td><td>TTK Madde 102–123</td><td>Uygun değil</td><td>"Meslek edinmiş" şart + denkleştirme tazminatı riski</td></tr>
+      <tr><td>Simsarlık</td><td>TBK 520–525</td><td>Kısmen</td><td>Tek seferlik aracılığa odaklı</td></tr>
+      <tr><td><b>Doğrudan Satış (47/A)</b></td><td>TKHK 47/A</td><td><b>Optimal</b></td><td>Avon "Bağımsız Satış Temsilcisi" şablonu birebir uyumlu</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout danger" style="margin-top: var(--s-5);">
+    <h3 style="margin:0 0 var(--s-2);">Muvazaalı İşçilik Risk Çizgileri</h3>
+    <p class="soft" style="margin:0;">
+      Yargıtay 9.HD 2011/533 E. — kargo acente sözleşmesinin muvazaalı kabul edildiği emsal.
+      Kritik tehlike: sabit çalışma saati, sabit ofis, münhasırlık, günlük raporlama zorunluluğu.
+      <b>Operasyonel kural:</b> saha çıkış saatleri tavsiye, AI tablet "gönüllü mentörlük aracı",
+      sözleşmede "bu sözleşme münhasır değildir" maddesi zorunlu.
+    </p>
+  </div>
+
+  <!-- KOMİSYON YAPISI -->
+  <h2 style="margin-top: var(--s-7);">Komisyon Yapısı (399€ Paket Örneği)</h2>
+  <div id="commissionFlow" class="chart chart-lg"></div>
+
+  <table class="tbl" style="margin-top: var(--s-4);">
+    <thead>
+      <tr><th>Pay</th><th>%</th><th class="num">399€ Paket (17.000 TL)</th><th class="num">599€ Paket (25.500 TL)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Pazarlamacı (öğrenci)</td><td>%40</td><td class="num">6.800 TL</td><td class="num">10.200 TL</td></tr>
+      <tr><td>Pazarlama Lideri override</td><td>%10</td><td class="num">1.700 TL</td><td class="num">2.550 TL</td></tr>
+      <tr><td>AI altyapı / CRM</td><td>~%6</td><td class="num">1.020 TL</td><td class="num">1.275 TL</td></tr>
+      <tr><td>Operasyon, KDV, mali müşavir</td><td>~%18</td><td class="num">3.060 TL</td><td class="num">3.825 TL</td></tr>
+      <tr><td><b>Şirket net marjı</b></td><td><b>%26–30</b></td><td class="num"><b>4.420 TL</b></td><td class="num"><b>7.650 TL</b></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout ok" style="margin-top: var(--s-5);">
+    <h3 style="margin:0 0 var(--s-2);">Komisyon Ödeme Zamanlaması</h3>
+    <p class="soft" style="margin:0;">
+      30-gün trial + TKHK 47/A(5) 30-gün cayma hakkı bindirme:<br>
+      • <b>Trial'ın 31. günü</b> komisyonun <b>%70'i</b> ödenir<br>
+      • <b>90. günde</b> kalan <b>%30</b> ödenir (chargeback rezervi)<br>
+      • Chargeback rezervi: <b>%7</b> komisyondan kesilir, 6 ay tutulur
+    </p>
+  </div>
+
+  <!-- AVON VS TR TRADEHUB -->
+  <h2 style="margin-top: var(--s-7);">Avon vs TR TradeHub Karşılaştırma</h2>
+  <div id="avonCompare" class="chart chart-lg"></div>
+
+  <table class="tbl" style="margin-top: var(--s-4);">
+    <thead>
+      <tr><th>Parametre</th><th>Avon Türkiye</th><th>TR TradeHub</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Ürün</td><td>Kozmetik 50–500 TL</td><td>B2B SaaS 17K–25K TL</td></tr>
+      <tr><td>Müşteri</td><td>B2C kadın</td><td>B2B esnaf</td></tr>
+      <tr><td>Temsilci</td><td>Ev hanımı, öğrenci</td><td>Üniversiteli (devlet+vakıf orta)</td></tr>
+      <tr><td>Yasal Çerçeve</td><td>47/A öncesi: TBK + bayi</td><td>47/A Doğrudan Satış (2024+)</td></tr>
+      <tr><td>Komisyon</td><td>%25–35</td><td>%40</td></tr>
+      <tr><td>Override (Ekip Lideri)</td><td>%3.5–5</td><td>%10 (TR TradeHub cömert)</td></tr>
+      <tr><td>Giriş ücreti</td><td>Yok</td><td>Yok (47/A(4) emredici)</td></tr>
+      <tr><td>Stok</td><td>Var</td><td>Yok (SaaS avantajı)</td></tr>
+      <tr><td>Eğitim</td><td>1–2 gün</td><td>7-gün bootcamp + 14-gün mentörlük</td></tr>
+      <tr><td>Cayma hakkı</td><td>30 gün</td><td>30 gün (trial ile birebir örtüşür)</td></tr>
+      <tr><td>Teknoloji</td><td>Mobil app + katalog</td><td>AI tablet co-pilot + CRM</td></tr>
+      <tr><td>Top %5–10 kazancı</td><td>100K+ TL/ay</td><td>80–120K TL/ay</td></tr>
+    </tbody>
+  </table>
+
+  <!-- "100K TL" GERÇEKLİĞİ -->
+  <h2 style="margin-top: var(--s-7);">"Ayda 100K TL" Matematik Testi</h2>
+  <p class="soft">
+    100K TL için ayda <b>14.7 satış</b> gerekir (6.800 TL × 14.7). SaaS benchmark $0.5–2K ACV →
+    tam zamanlı + inbound + deneyimli closer ayda 10–15 deal. Üniversiteli yarı-zamanlı outbound'da
+    Ay 3+ gerçekçi ortalama <b>4–6 satış/ay</b>.
+  </p>
+
+  <h3>Pareto Dağılımı (Ay 3+)</h3>
+  <div id="paretoChart" class="chart chart-lg"></div>
+
+  <table class="tbl" style="margin-top: var(--s-4);">
+    <thead>
+      <tr><th>Segment</th><th class="num">Pay %</th><th class="num">Net satış/ay</th><th class="num">Komisyon TL</th><th>Profil</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Top "Yıldızlar"</td><td class="num">%10</td><td class="num">12–18</td><td class="num">82K–122K</td><td>Anadolu kökenli, hemşehri ağı, doğal closer</td></tr>
+      <tr><td>Orta "Sağlamlar"</td><td class="num">%60</td><td class="num">4–7</td><td class="num">27K–48K</td><td>Coachable, çalışkan, sebatlı</td></tr>
+      <tr><td>Alt "Zorlananlar"</td><td class="num">%30</td><td class="num">0–2</td><td class="num">0–13K</td><td>Motivasyon düşük, ilk 2 ayda bırakır</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout warn" style="margin-top: var(--s-5);">
+    <h3 style="margin:0 0 var(--s-2);">Reklam Kurulu Riski — 3 Katmanlı Dil</h3>
+    <p class="soft" style="margin:0 0 var(--s-2);">
+      İnternet/sosyal medya 600K–6M TL ceza eşiği. "Ayda 100K TL" tek başına aldatıcı reklam riski.
+    </p>
+    <ol style="margin:0; padding-left:1.25rem;">
+      <li><b>Garanti tabaka:</b> "İlk 5 satışta 30.000 TL garanti" (somut, kanıtlanabilir)</li>
+      <li><b>Gerçekçi tabaka:</b> "Aktif satışçılarımız ortalama 30.000–50.000 TL kazanmaktadır"</li>
+      <li><b>Üst tabaka (yasal):</b> "Tavan yok, performansa bağlıdır. Görsellerdeki kazançlar bireysel vakalardır; tipik gelir değildir."</li>
+    </ol>
+  </div>
+
+  <!-- 12 AY HEDEF -->
+  <h2 style="margin-top: var(--s-7);">12 Ay Hedef Tablosu</h2>
+  <div id="yearTarget" class="chart chart-lg"></div>
+
+  <table class="tbl" style="margin-top: var(--s-4);">
+    <thead>
+      <tr>
+        <th>Ay</th><th class="num">Aktif Öğrenci</th><th class="num">Net Satış/Ay</th>
+        <th class="num">Kümülatif Paket</th><th class="num">Brüt Gelir TL</th>
+        <th class="num">Net Marj TL</th><th>Milestone</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td class="num">6–10</td><td class="num">5</td><td class="num">5</td><td class="num">85K</td><td class="num">32K</td><td>Bootcamp + ilk saha</td></tr>
+      <tr><td>2</td><td class="num">10</td><td class="num">25</td><td class="num">30</td><td class="num">425K</td><td class="num">130K</td><td>İlk satış, ödeme test</td></tr>
+      <tr><td>3</td><td class="num">20</td><td class="num">70</td><td class="num">100</td><td class="num">1.190K</td><td class="num">380K</td><td>Faz 2 başlar</td></tr>
+      <tr><td>4</td><td class="num">30</td><td class="num">130</td><td class="num">230</td><td class="num">2.210K</td><td class="num">700K</td><td>İlk "Öğrenci Şampiyonu"</td></tr>
+      <tr><td>5</td><td class="num">50</td><td class="num">220</td><td class="num">450</td><td class="num">3.740K</td><td class="num">1.190K</td><td>Faz 3 hazırlık, hemşehri yaz pilot</td></tr>
+      <tr><td>6</td><td class="num">80</td><td class="num">340</td><td class="num">790</td><td class="num">5.780K</td><td class="num">1.840K</td><td>İstoç doygunluk uyarısı</td></tr>
+      <tr><td>7</td><td class="num">100</td><td class="num">420</td><td class="num">1.210</td><td class="num">7.140K</td><td class="num">2.270K</td><td>Bursa açılış</td></tr>
+      <tr><td>8</td><td class="num">115</td><td class="num">480</td><td class="num">1.690</td><td class="num">8.160K</td><td class="num">2.600K</td><td>İlk Bölge Koordinatörü</td></tr>
+      <tr><td>9</td><td class="num">130</td><td class="num">540</td><td class="num">2.230</td><td class="num">9.180K</td><td class="num">2.920K</td><td>Ankara açılış</td></tr>
+      <tr><td>10</td><td class="num">150</td><td class="num">600</td><td class="num">2.830</td><td class="num">10.200K</td><td class="num">3.250K</td><td>İzmir açılış</td></tr>
+      <tr><td>11</td><td class="num">170</td><td class="num">660</td><td class="num">3.490</td><td class="num">11.220K</td><td class="num">3.570K</td><td>—</td></tr>
+      <tr><td>12</td><td class="num">200</td><td class="num">720</td><td class="num">4.210</td><td class="num">12.240K</td><td class="num">3.900K</td><td>Yıl review · 2. yıl planı</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ÜNİVERSİTE HEDEFLEME -->
+  <h2 style="margin-top: var(--s-7);">Üniversite Hedefleme</h2>
+  <div id="universityMap" class="chart chart-xl"></div>
+
+  <table class="tbl" style="margin-top: var(--s-4);">
+    <thead><tr><th>Faz</th><th>Hedef Sayı</th><th>Üniversite / Kanal</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Faz 1 (Ay 1–2)</td><td>6–10</td>
+        <td>Marmara MÜİK + MÜPK; YTÜ Davutpaşa Endüstri & İşletme; hemşehri dernek öğrenci şubeleri (Siirt, Trabzon, Kayseri, Gaziantep, Konya); LinkedIn 3-4. sınıf "Open to Work"</td>
+      </tr>
+      <tr>
+        <td>Faz 2 (Ay 3–4)</td><td>30</td>
+        <td>+ İstanbul Üni Beyazıt/Avcılar, Aydın, Kültür, Okan, Maltepe; KOSGEB/İŞKUR formal ilan</td>
+      </tr>
+      <tr>
+        <td>Faz 3 (Ay 5–6)</td><td>100</td>
+        <td>+ Bilgi, Beykent; Anadolu hemşehri zinciri ("abi bana da yer ayır")</td>
+      </tr>
+      <tr>
+        <td>Hariç</td><td>—</td>
+        <td>Boğaziçi, İTÜ, Koç, Sabancı → ekmek-parası motivasyonu zayıf, opportunity cost yüksek, statü çatışması</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 3 PERSONA -->
+  <h2 style="margin-top: var(--s-7);">3 Öğrenci Personası</h2>
+  <div class="grid grid-3">
+    <div class="persona">
+      <span class="pct">%50 hedef havuz</span>
+      <h3>Ekmek-Parası Mehmet</h3>
+      <p class="soft" style="margin:0 0 var(--s-3);">
+        22 yaş · Marmara İşletme 3. sınıf · Siirt doğumlu · babası emekli memur · harçlık 5K · kira 6K.
+      </p>
+      <p class="soft" style="margin:0;">
+        <b>Avantaj:</b> Anadolu esnafıyla doğal "abi/hocam" dili; Siirtliler İst Ünv. dernek şubesi.<br>
+        <b>Strateji:</b> İlk 5 satış garanti + ailesine "altın bilezik" hedefi.
+      </p>
+    </div>
+    <div class="persona">
+      <span class="pct">%20 hedef havuz</span>
+      <h3>Ambitionlu Zeynep</h3>
+      <p class="soft" style="margin:0 0 var(--s-3);">
+        21 yaş · Marmara Pazarlama 4. sınıf · İstanbul (Kayseri kökenli) · KOBİ patronu baba.
+      </p>
+      <p class="soft" style="margin:0;">
+        <b>Avantaj:</b> Pazarlama eğitimi, coachable, LinkedIn aktif.<br>
+        <b>Strateji:</b> "TR TradeHub = MBA case study" + LinkedIn-paylaşılabilir "AI Sales Specialist".
+      </p>
+    </div>
+    <div class="persona">
+      <span class="pct">%30 hedef havuz</span>
+      <h3>Hemşehri-Ağ Lideri Ali</h3>
+      <p class="soft" style="margin:0 0 var(--s-3);">
+        23 yaş · YTÜ Endüstri Müh. 4. sınıf · Gaziantep · Gaziantepli toptancı baba.
+      </p>
+      <p class="soft" style="margin:0;">
+        <b>Avantaj:</b> Gaziantepliler YTÜ şubesi 300+ üye; İstoç Antep'li toptancılara hemşehri kartı + mühendis AI dili.<br>
+        <b>Strateji:</b> Ay 9'da Bölge Koordinatörü Gaziantep teklifi.
+      </p>
+    </div>
+  </div>
+
+  <!-- ORG ŞEMASI -->
+  <h2 style="margin-top: var(--s-7);">Organizasyon — Saha Satış Hiyerarşisi</h2>
+  <div id="orgTree" class="chart chart-xl"></div>
+
+  <!-- ONBOARDING -->
+  <h2 style="margin-top: var(--s-7);">30 Günlük Onboarding</h2>
+  <table class="tbl">
+    <thead><tr><th>Gün</th><th>İçerik</th><th>Sorumlu</th></tr></thead>
+    <tbody>
+      <tr><td>0–1</td><td>Sözleşme + KVKK + AI tablet teslimi + Patron 1 saat vizyon</td><td>Stratejik Yönetici</td></tr>
+      <tr><td>2–3</td><td>Ürün: 17K vs 25K, Esnaf Modu, 30-gün trial, refund</td><td>Ürün ekibi</td></tr>
+      <tr><td>4–5</td><td>İstoç saha: 3 esnaf personası, "abi-hocam" diyalog, kadın güvenlik</td><td>Pazarlama Lideri</td></tr>
+      <tr><td>6–7</td><td>Script + objeksiyon + AI Sales Coach demo + KVKK</td><td>Pazarlama Lideri</td></tr>
+      <tr><td>8–14</td><td>Sandviç model: Mentörle 30+ dükkan; Hafta 1 izle, Hafta 2 son 3 ziyarette demo yap</td><td>Mentör</td></tr>
+      <tr><td>15–21</td><td>Bağımsız saha + akşam Slack standup</td><td>Aday</td></tr>
+      <tr><td>22–30</td><td>İlk satış kapatma; "First Sale Celebration"</td><td>Tüm ekip</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout warn" style="margin-top: var(--s-5);">
+    <h3 style="margin:0 0 var(--s-2);">Dropout Beklentisi (Huni)</h3>
+    <p class="soft" style="margin:0;">
+      Ay 1 sonu %30 · Ay 3 kümülatif %50 · Ay 6 kümülatif %60.
+      <b>100 aktif öğrenci için ~250 işe alım gerekli.</b>
+    </p>
+  </div>
+
+  <!-- 3 SENARYO -->
+  <h2 style="margin-top: var(--s-7);">3 Senaryo — Yıl 1 ARR</h2>
+  <div id="scenarios" class="chart chart-lg"></div>
+
+  <table class="tbl" style="margin-top: var(--s-4);">
+    <thead>
+      <tr><th>Senaryo</th><th class="num">Olasılık</th><th class="num">Yıl 1 Paket</th><th class="num">ARR (TL)</th><th>Tetik</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Best case</td><td class="num">%20</td><td class="num">8.500+</td><td class="num">~165M</td><td>100 öğrenci × 6 net satış, çoklu şehir</td></tr>
+      <tr><td>Base case</td><td class="num">%55</td><td class="num">5.500</td><td class="num">~105M</td><td>100 öğrenci × 4 net satış, İstoç %70 doygun</td></tr>
+      <tr><td>Worst case</td><td class="num">%25</td><td class="num">2.000</td><td class="num">~38M</td><td>Reklam Kurulu cezası, 2 muvazaa davası, %70 turnover</td></tr>
+    </tbody>
+  </table>
+
+  <!-- PSİKOLOJİ / SOSYAL -->
+  <h2 style="margin-top: var(--s-7);">Psikolojik & Sosyal Dinamikler</h2>
+
+  <div class="callout danger">
+    <h3 style="margin:0 0 var(--s-2);">Pasaj / Herbalife Travması</h3>
+    <p class="soft" style="margin:0;">
+      Şikayetvar Pasaj şikayetleri + Herbalife forum yorumları Türk gencin DNA'sına negatif kalıp işlemiştir.
+      İlk savunma refleksi: "Bu Pasaj mı? Ben dolandırıcılığa karışmıyorum."
+    </p>
+    <p class="soft" style="margin:var(--s-2) 0 0;">
+      <b>Protokol:</b> Vizyon sunumunda Patron doğrudan adresler: "Giriş ücreti yok (47/A(4) yasaklıyor),
+      ürün almıyorsunuz sadece satıyorsunuz, tüketici 30-gün cayma hakkı var, çok katmanlı override yok —
+      yalnız Pazarlama Lideri %10 alır. Avon ile aynı, dolandırıcılık değil."
+    </p>
+  </div>
+
+  <div class="callout warn">
+    <h3 style="margin:0 0 var(--s-2);">Aile Baskısı ("Devlet memurluğuna çalış")</h3>
+    <p class="soft" style="margin:0;">
+      Anadolu kökenli üniversitelinin ailesi → devlet memuru, KPSS, devamlılık-stabilite ön plan.
+      <b>Karşı protokol:</b> Ay 1 sonu "Aileye Mektup" şablonu + Ay 3 sertifika (Patron imzalı
+      "B2B SaaS Sales Specialist") + mezun mentor programı (aileye telefon).
+    </p>
+  </div>
+
+  <div class="callout danger">
+    <h3 style="margin:0 0 var(--s-2);">Kadın Temsilci Güvenliği — İstoç Gerçeği</h3>
+    <p class="soft" style="margin:0;">
+      İstoç ağırlıklı erkek-egemen toptancı kültürü. <b>Zorunlu protokol:</b>
+      hiçbir kadın öğrenci tek başına dükkâna girmez (çiftli saha), 18:00 sonrası yasak, AI tablette
+      SOS butonu (Pazarlama Lideri + Stratejik Yönetici + İSTOÇDER güvenlik bildirim),
+      bireysel kaza sigortası (~45K TL/yıl × 15 kişi), "kırmızı liste" dükkânlar erkek temsilciye.
+    </p>
+  </div>
+
+  <!-- KARAR YETKİSİ MATRİSİ (RACI) -->
+  <h2 style="margin-top: var(--s-7);">RACI — Karar Yetkisi Matrisi</h2>
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>Karar</th>
+        <th class="num">Patron</th>
+        <th class="num">Stratejik Yön.</th>
+        <th class="num">Pazarlama Lideri</th>
+        <th class="num">Asistan Lider</th>
+        <th class="num">Bölge Koord.</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Vizyon + 3 yıllık strateji</td><td class="num">A/R</td><td class="num">C</td><td class="num">I</td><td class="num">I</td><td class="num">I</td></tr>
+      <tr><td>Komisyon oranı değişimi</td><td class="num">A</td><td class="num">R</td><td class="num">C</td><td class="num">I</td><td class="num">I</td></tr>
+      <tr><td>Yeni şehir açılışı</td><td class="num">A</td><td class="num">R</td><td class="num">C</td><td class="num">C</td><td class="num">I</td></tr>
+      <tr><td>Bölge Koordinatörü işe alım</td><td class="num">A</td><td class="num">R</td><td class="num">C</td><td class="num">I</td><td class="num">I</td></tr>
+      <tr><td>Asistan Lider terfisi</td><td class="num">C</td><td class="num">A</td><td class="num">R</td><td class="num">I</td><td class="num">I</td></tr>
+      <tr><td>Öğrenci işe alımı (Faz 1)</td><td class="num">I</td><td class="num">R</td><td class="num">A</td><td class="num">—</td><td class="num">—</td></tr>
+      <tr><td>Öğrenci işe alımı (Faz 2–3)</td><td class="num">I</td><td class="num">C</td><td class="num">A</td><td class="num">R</td><td class="num">C</td></tr>
+      <tr><td>Bireysel kontrat sonlandırma</td><td class="num">I</td><td class="num">C</td><td class="num">A</td><td class="num">R</td><td class="num">C</td></tr>
+      <tr><td>50K Öğrenci Şampiyonu ödülü</td><td class="num">C</td><td class="num">A</td><td class="num">R</td><td class="num">R</td><td class="num">C</td></tr>
+      <tr><td>Pazarlama Lideri 300K+ override istisna</td><td class="num">A</td><td class="num">R</td><td class="num">C</td><td class="num">I</td><td class="num">I</td></tr>
+      <tr><td>Marka krizine müdahale</td><td class="num">A</td><td class="num">R</td><td class="num">C</td><td class="num">I</td><td class="num">I</td></tr>
+      <tr><td>Sahte satış disiplin kararı</td><td class="num">I</td><td class="num">C</td><td class="num">A</td><td class="num">R</td><td class="num">C</td></tr>
+    </tbody>
+  </table>
+  <p class="muted" style="margin-top: var(--s-2); font-size: 0.9375rem;">
+    A=Accountable (nihai sorumlu) · R=Responsible (yapıcı) · C=Consulted (görüş alınır) · I=Informed (bilgilendirilir)
+  </p>
+
+  <!-- KPI -->
+  <h2 style="margin-top: var(--s-7);">KPI Sistemi (Rol Bazlı)</h2>
+  <table class="tbl">
+    <thead>
+      <tr><th>Pozisyon</th><th>KPI 1</th><th>KPI 2</th><th>KPI 3</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Öğrenci (Pazarlamacı)</td>
+        <td>Aylık net satış (Ay 3+: 4+)</td>
+        <td>Trial→Paid %25+</td>
+        <td>Refund/chargeback <%10</td>
+      </tr>
+      <tr>
+        <td>Asistan Ekip Lideri</td>
+        <td>Ekip aylık satış</td>
+        <td>Dropout %10 altı</td>
+        <td>Recruitment hedefi tutturma</td>
+      </tr>
+      <tr>
+        <td>Pazarlama Lideri</td>
+        <td>Toplam aktif öğrenci</td>
+        <td>Sistem refund <%8</td>
+        <td>Ay 1–2 dropout <%30</td>
+      </tr>
+      <tr>
+        <td>Bölge Koordinatörü</td>
+        <td>Bölge aylık satış</td>
+        <td>Bölge aktif öğrenci</td>
+        <td>Şehir penetrasyon (toptancı/hedef)</td>
+      </tr>
+      <tr>
+        <td>Stratejik Yönetici</td>
+        <td>Aylık ARR büyüme %15+</td>
+        <td>Net marj %25+</td>
+        <td>Yasal uyum (0 ihlal)</td>
+      </tr>
+      <tr>
+        <td>Patron</td>
+        <td>Yıllık ARR + valuasyon</td>
+        <td>Brand health (NPS)</td>
+        <td>Kültür + vizyon koruması</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 90 GÜN PLAN -->
+  <h2 style="margin-top: var(--s-7);">90 Günlük Uygulama Planı</h2>
+  <div id="planTimeline" class="chart chart-lg"></div>
+
+  <!-- RİSK MATRİSİ -->
+  <h2 style="margin-top: var(--s-7);">Risk Matrisi</h2>
+  <div id="riskMatrix" class="chart chart-lg"></div>
+
+  <table class="tbl" style="margin-top: var(--s-4);">
+    <thead>
+      <tr><th>Risk</th><th>Olasılık</th><th>Etki</th><th>Önlem</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Reklam Kurulu cezası</td><td>Orta</td><td>60K–6M TL + marka</td><td>3 katmanlı dil + disclaimer; "100K TL" iddiası tek başına yasak</td></tr>
+      <tr><td>Muvazaalı işçilik davası</td><td>Orta-Yüksek</td><td>200–500K TL/dava</td><td>Bağımsızlık sözleşmede, sabit saat yok, çoklu müşteri imkânı yazılı</td></tr>
+      <tr><td>Piramit iddiası</td><td>Düşük</td><td>TCK 157 ceza</td><td>Tek katmanlı override; "yeni satıcı kazandırma >%30" yasak iç kural</td></tr>
+      <tr><td>Operasyon (100 öğrenciyi 7 kişiyle yönetememe)</td><td>Yüksek</td><td>Kalite çöküşü</td><td>Ay 4 asistan lider, Ay 8 bölge koord.</td></tr>
+      <tr><td>Esnaf travması</td><td>Orta</td><td>Marka çöküşü</td><td>AI kayıt + Pazarlama Lideri haftalık eşlik + İSTOÇDER ref</td></tr>
+      <tr><td>Sahte / akraba satış</td><td>Düşük-Orta</td><td>%5–10 ARR kaybı</td><td>Auto flag + manuel audit + chargeback rezervi</td></tr>
+      <tr><td>Kadın güvenlik olayı</td><td>Düşük</td><td>Çok yüksek</td><td>§Kadın protokolü + sigorta + SOS</td></tr>
+      <tr><td>Marka aşınması ("yeni Pasaj")</td><td>Orta</td><td>Yavaş ölüm</td><td>Değer üretme vurgusu; top performer mezun kadro</td></tr>
+      <tr><td>Bağ-Kur yükü → alt %30 dropout</td><td>Yüksek</td><td>%30 dropout</td><td>Arızi gelir + Ay 6 zorunlu şahıs şirketi + mali müşavir desteği şirketten</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout danger" style="margin-top: var(--s-6);">
+    <h3 style="margin:0 0 var(--s-2);">Tek Noktada Başarısızlık Riski</h3>
+    <p class="soft" style="margin:0;">
+      Modelin tüm operasyonel yükü ilk 6 ay <b>Pazarlama Lideri</b>'nin omuzundadır.
+      Faz 1 başlamadan önce 1-aylık liderlik koçluğu (Roberge coachability prensipleri) yatırımı zorunlu.
+      Avukat seçimi modelin en kritik tedariğidir — doğrudan satış/MLM uzmanı, Reklam Kurulu
+      kararlarını takip eden, Yargıtay 9.HD muvazaa içtihatlarına hâkim hukuk bürosu olmadan
+      üretime geçilmemeli (ilk yatırım ~₺200–300K).
+    </p>
+  </div>
+
+</div>
+
+<script>
+  const palette = ['#7c2d12','#c2410c','#b45309','#166534','#1e40af','#6b21a8','#155e75','#991b1b'];
+  const baseFont = { fontFamily: 'Roboto, sans-serif', fontWeight: 300, fontSize: 13 };
+
+  // Commission flow — sankey
+  echarts.init(document.getElementById('commissionFlow')).setOption({
+    textStyle: baseFont,
+    tooltip: { trigger: 'item' },
+    series: [{
+      type: 'sankey',
+      left: 10, right: 130, top: 10, bottom: 10,
+      data: [
+        { name: '17.000 TL paket' },
+        { name: 'Pazarlamacı %40' },
+        { name: 'Pazarlama Lideri %10' },
+        { name: 'AI altyapı %6' },
+        { name: 'Operasyon %18' },
+        { name: 'Şirket net marjı %26' }
+      ],
+      links: [
+        { source: '17.000 TL paket', target: 'Pazarlamacı %40',       value: 6800 },
+        { source: '17.000 TL paket', target: 'Pazarlama Lideri %10',  value: 1700 },
+        { source: '17.000 TL paket', target: 'AI altyapı %6',         value: 1020 },
+        { source: '17.000 TL paket', target: 'Operasyon %18',         value: 3060 },
+        { source: '17.000 TL paket', target: 'Şirket net marjı %26',  value: 4420 }
+      ],
+      label: { fontSize: 12 }
+    }]
+  });
+
+  // Avon vs TR TradeHub — radar
+  echarts.init(document.getElementById('avonCompare')).setOption({
+    color: ['#1f2937','#c2410c'],
+    textStyle: baseFont,
+    legend: { top: 10 },
+    tooltip: {},
+    radar: {
+      indicator: [
+        { name: 'Komisyon %', max: 50 },
+        { name: 'Override %', max: 12 },
+        { name: 'Eğitim gün', max: 14 },
+        { name: 'AI Teknoloji', max: 10 },
+        { name: 'Top kazanç (10K)', max: 12 },
+        { name: 'Ürün ACV (10K)', max: 30 }
+      ]
+    },
+    series: [{
+      type: 'radar',
+      data: [
+        { value: [30, 5, 2, 4, 10, 0.3], name: 'Avon Türkiye' },
+        { value: [40, 10, 14, 10, 10, 17], name: 'TR TradeHub' }
+      ]
+    }]
+  });
+
+  // Pareto bar
+  echarts.init(document.getElementById('paretoChart')).setOption({
+    color: ['#166534', '#1e40af', '#991b1b'],
+    textStyle: baseFont,
+    legend: { top: 10 },
+    tooltip: { trigger: 'axis' },
+    grid: { left: 70, right: 30, top: 60, bottom: 40 },
+    xAxis: { type: 'category', data: ['Top %10 (Yıldız)','Orta %60 (Sağlam)','Alt %30 (Zorlanan)'] },
+    yAxis: [
+      { type: 'value', name: 'Net satış/ay' },
+      { type: 'value', name: 'TL/ay (000)', position: 'right' }
+    ],
+    series: [
+      { name: 'Satış/ay (alt)', type: 'bar', data: [12, 4, 0] },
+      { name: 'Satış/ay (üst)', type: 'bar', data: [18, 7, 2] },
+      { name: 'Komisyon TL/ay (üst)', type: 'line', yAxisIndex: 1, data: [122, 48, 13] }
+    ]
+  });
+
+  // 12 month target chart
+  echarts.init(document.getElementById('yearTarget')).setOption({
+    color: ['#7c2d12','#c2410c','#166534'],
+    textStyle: baseFont,
+    legend: { top: 10 },
+    tooltip: { trigger: 'axis' },
+    grid: { left: 70, right: 70, top: 60, bottom: 40 },
+    xAxis: { type: 'category', data: Array.from({length:12}, (_,i)=>`Ay ${i+1}`) },
+    yAxis: [
+      { type: 'value', name: 'Aktif öğrenci / Satış' },
+      { type: 'value', name: 'Net marj TL (000)', position: 'right' }
+    ],
+    series: [
+      { name: 'Aktif öğrenci', type: 'bar', data: [8, 10, 20, 30, 50, 80, 100, 115, 130, 150, 170, 200] },
+      { name: 'Net satış / ay', type: 'line', smooth: true, data: [5, 25, 70, 130, 220, 340, 420, 480, 540, 600, 660, 720] },
+      { name: 'Net marj (000 TL)', type: 'line', yAxisIndex: 1, smooth: true, data: [32, 130, 380, 700, 1190, 1840, 2270, 2600, 2920, 3250, 3570, 3900] }
+    ]
+  });
+
+  // University map — graph
+  echarts.init(document.getElementById('universityMap')).setOption({
+    color: palette,
+    textStyle: baseFont,
+    tooltip: { trigger: 'item' },
+    series: [{
+      type: 'graph', layout: 'force', roam: true, symbolSize: 36,
+      label: { show: true, fontSize: 12 },
+      force: { repulsion: 220, edgeLength: 110 },
+      categories: [
+        { name: 'Faz 1', itemStyle: { color: palette[0] } },
+        { name: 'Faz 2', itemStyle: { color: palette[2] } },
+        { name: 'Faz 3', itemStyle: { color: palette[3] } },
+        { name: 'Hemşehri',  itemStyle: { color: palette[4] } }
+      ],
+      data: [
+        { name: 'TR TradeHub', symbolSize: 60, itemStyle: { color: '#1f2937' } },
+        { name: 'Marmara MÜİK',     category: 0 },
+        { name: 'Marmara MÜPK',     category: 0 },
+        { name: 'YTÜ Endüstri',     category: 0 },
+        { name: 'YTÜ İşletme',      category: 0 },
+        { name: 'İst Üni Beyazıt',  category: 1 },
+        { name: 'İst Üni Avcılar',  category: 1 },
+        { name: 'Aydın',            category: 1 },
+        { name: 'Kültür',           category: 1 },
+        { name: 'Bilgi',            category: 2 },
+        { name: 'Beykent',          category: 2 },
+        { name: 'Siirtliler',       category: 3 },
+        { name: 'Trabzonlular',     category: 3 },
+        { name: 'Kayserililer',     category: 3 },
+        { name: 'Gaziantepliler',   category: 3 },
+        { name: 'Konyalılar',       category: 3 }
+      ],
+      links: [
+        'Marmara MÜİK','Marmara MÜPK','YTÜ Endüstri','YTÜ İşletme',
+        'İst Üni Beyazıt','İst Üni Avcılar','Aydın','Kültür',
+        'Bilgi','Beykent',
+        'Siirtliler','Trabzonlular','Kayserililer','Gaziantepliler','Konyalılar'
+      ].map(t => ({ source: 'TR TradeHub', target: t })),
+      lineStyle: { color: '#d4d4d4', curveness: 0.2 }
+    }]
+  });
+
+  // Org tree
+  echarts.init(document.getElementById('orgTree')).setOption({
+    color: palette,
+    textStyle: baseFont,
+    tooltip: { trigger: 'item' },
+    series: [{
+      type: 'tree',
+      orient: 'TB',
+      symbolSize: 12,
+      label: { position: 'top', fontSize: 12 },
+      leaves: { label: { position: 'bottom' } },
+      data: [{
+        name: 'Patron',
+        children: [{
+          name: 'Stratejik Yönetici',
+          children: [
+            { name: 'Hukuk + KVKK' },
+            { name: 'Finans + Komisyon' },
+            { name: 'Teknoloji (AI tablet)' },
+            { name: 'Pazarlama Lideri (Nazlı / Alternatifi)', children: [
+              { name: 'Asistan Lider 1 (Ay 4+)', children: [
+                { name: 'Öğrenci 1–30' }
+              ]},
+              { name: 'Asistan Lider 2 (Ay 6+)', children: [
+                { name: 'Öğrenci 31–65' }
+              ]},
+              { name: 'Asistan Lider 3 (Ay 8+)', children: [
+                { name: 'Öğrenci 66–100' }
+              ]}
+            ]},
+            { name: 'Bölge Koord. Bursa (Ay 7+)', children: [
+              { name: 'Bursa Öğrencileri' }
+            ]},
+            { name: 'Bölge Koord. Ankara (Ay 9+)', children: [
+              { name: 'Ankara Öğrencileri' }
+            ]}
+          ]
+        }]
+      }],
+      top: '2%', left: '2%', bottom: '2%', right: '2%',
+      expandAndCollapse: true,
+      initialTreeDepth: 3
+    }]
+  });
+
+  // 3 senaryo
+  echarts.init(document.getElementById('scenarios')).setOption({
+    color: ['#991b1b','#1f2937','#166534'],
+    textStyle: baseFont,
+    legend: { top: 10 },
+    tooltip: { trigger: 'axis' },
+    grid: { left: 70, right: 30, top: 60, bottom: 40 },
+    xAxis: { type: 'category', data: ['Ay 3','Ay 6','Ay 9','Ay 12'] },
+    yAxis: { type: 'value', name: 'Kümülatif paket' },
+    series: [
+      { name: 'Worst (%25)', type: 'line', smooth: true, data: [40, 200, 800, 2000] },
+      { name: 'Base (%55)',  type: 'line', smooth: true, data: [100, 790, 2230, 4210] },
+      { name: 'Best (%20)',  type: 'line', smooth: true, data: [150, 1200, 3800, 8500] }
+    ]
+  });
+
+  // 90-day plan timeline
+  const planRows = [
+    { row: 'Hukuk + sözleşme',          start: 0, end: 2 },
+    { row: 'Materyal + landing',         start: 1, end: 3 },
+    { row: 'Recruitment 1. dalga',       start: 2, end: 4 },
+    { row: 'Bootcamp 1 (8 öğrenci)',     start: 4, end: 5 },
+    { row: 'Mentörlü saha',              start: 5, end: 7 },
+    { row: 'İlk satış + ödeme test',     start: 6, end: 8 },
+    { row: 'Recruitment 2. dalga',       start: 7, end: 9 },
+    { row: 'Bootcamp 2 (20 öğrenci)',    start: 9, end: 10 },
+    { row: 'Avukat çeyrek review',       start: 10, end: 11 },
+    { row: 'Faz 2 hazırlık',             start: 10, end: 12 }
+  ];
+  echarts.init(document.getElementById('planTimeline')).setOption({
+    color: palette,
+    textStyle: baseFont,
+    tooltip: { formatter: p => `${p.data.row}<br>Hafta ${p.data.start+1} → ${p.data.end}` },
+    grid: { left: 180, right: 20, top: 30, bottom: 40 },
+    xAxis: { type: 'value', min: 0, max: 12, axisLabel: { formatter: 'H{value}' } },
+    yAxis: { type: 'category', data: planRows.map(r => r.row).slice().reverse() },
+    series: [{
+      type: 'custom',
+      renderItem: function (params, api) {
+        const y  = api.coord([0, api.value(0)])[1];
+        const x1 = api.coord([api.value(1), 0])[0];
+        const x2 = api.coord([api.value(2), 0])[0];
+        const h  = api.size([0,1])[1] * 0.55;
+        return { type: 'rect', shape: { x: x1, y: y - h/2, width: x2 - x1, height: h },
+          style: api.style({ fill: palette[api.value(0) % palette.length] }) };
+      },
+      encode: { x: [1,2], y: 0 },
+      data: planRows.map((d, idx) => ({
+        value: [planRows.length - 1 - idx, d.start, d.end],
+        row: d.row, start: d.start, end: d.end
+      }))
+    }]
+  });
+
+  // Risk matrix scatter
+  echarts.init(document.getElementById('riskMatrix')).setOption({
+    color: palette,
+    textStyle: baseFont,
+    tooltip: {
+      formatter: p => `${p.data[2]}<br>Olasılık: ${p.data[0]}/5 · Etki: ${p.data[1]}/5`
+    },
+    grid: { left: 70, right: 30, top: 30, bottom: 50 },
+    xAxis: { type: 'value', name: 'Olasılık', min: 0, max: 5, nameLocation: 'middle', nameGap: 30 },
+    yAxis: { type: 'value', name: 'Etki', min: 0, max: 5, nameLocation: 'middle', nameGap: 40 },
+    visualMap: {
+      show: false, dimension: 1, min: 0, max: 5,
+      inRange: { color: ['#166534', '#b45309', '#991b1b'] }
+    },
+    series: [{
+      type: 'scatter', symbolSize: 22,
+      label: { show: true, position: 'right', fontSize: 11, formatter: p => p.data[2] },
+      data: [
+        [3, 4, 'Reklam Kurulu cezası'],
+        [3.5, 4, 'Muvazaalı işçilik'],
+        [1, 4, 'Piramit iddiası'],
+        [4, 4, 'Operasyon kapasitesi'],
+        [3, 4.5, 'Esnaf travması'],
+        [2, 3, 'Sahte/akraba satış'],
+        [1, 5, 'Kadın güvenlik olayı'],
+        [3, 3.5, 'Marka aşınması'],
+        [4, 3, 'Bağ-Kur yükü']
+      ]
+    }]
+  });
+</script>
+</body>
+</html>

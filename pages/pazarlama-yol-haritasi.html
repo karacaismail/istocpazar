@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pazarlama Yol Haritası — istoc.com</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<script src="../assets/charts.js"></script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="detail">
+<div class="container">
+
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">Pazarlama · 12 ay</span>
+      <h1>Pazarlama Yol Haritası</h1>
+      <p class="soft" style="max-width:760px;">
+        Farkındalık, aktivasyon, sadakat ve hendek inşası aşamalarını içeren 12 aylık plan.
+        AI içerik makinesi, GEO görünürlük, hemşehri WoM ve LinkedIn ABM bileşenleri.
+      </p>
+    </div>
+    <span class="tag"><i class="ph ph-target"></i> Hedef: 35–50 ödeyen üye / 90 gün</span>
+  </div>
+
+  <!-- KPI Strip -->
+  <div class="grid grid-4" style="margin-bottom: var(--s-6);">
+    <div class="kpi">
+      <span class="label">Outbound Pool</span>
+      <span class="value">~20K</span>
+      <span class="delta">10K Maps + 5–15K dış-ticaret intel</span>
+    </div>
+    <div class="kpi">
+      <span class="label">Hedef Reply Rate</span>
+      <span class="value">%5–8</span>
+      <span class="delta">Clay/Sendoso benchmark</span>
+    </div>
+    <div class="kpi">
+      <span class="label">GEO Sayfa</span>
+      <span class="value">50+</span>
+      <span class="delta">FAQ + Article schema</span>
+    </div>
+    <div class="kpi">
+      <span class="label">İçerik Çıktı</span>
+      <span class="value">~120/ay</span>
+      <span class="delta">LI + blog + video + GEO + outbound</span>
+    </div>
+  </div>
+
+  <!-- Mindmap -->
+  <h2 style="margin-top: var(--s-6);">Pazarlama Stratejisi — Mindmap</h2>
+  <div id="mindmap" class="chart chart-xl"></div>
+
+  <!-- 4 Faz Bar -->
+  <h2 style="margin-top: var(--s-7);">4 Aşamalı Yol Haritası — Aylık Bütçe Dağılımı</h2>
+  <div id="phaseBars" class="chart chart-lg"></div>
+
+  <!-- Kanal Mix -->
+  <h2 id="kanal-mix" style="margin-top: var(--s-7);">Kanal Mix</h2>
+  <div class="grid grid-2">
+    <div id="channelMix" class="chart chart-lg"></div>
+    <div>
+      <table class="tbl">
+        <thead>
+          <tr><th>Kanal</th><th>Tür</th><th>Ay 1–3</th><th>Ay 4–6</th><th>Ay 7–12</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>GEO (ChatGPT/Claude/Perplexity)</td><td>Inbound</td><td>Yüksek</td><td>Yüksek</td><td>Yüksek</td></tr>
+          <tr><td>Hemşehri WoM + İSTOÇDER</td><td>Yerel</td><td>Yüksek</td><td>Yüksek</td><td>Orta</td></tr>
+          <tr><td>AI Personalized Outbound</td><td>Outbound</td><td>Yüksek</td><td>Yüksek</td><td>Yüksek</td></tr>
+          <tr><td>LinkedIn ABM (Avrupa)</td><td>Outbound</td><td>Orta</td><td>Yüksek</td><td>Yüksek</td></tr>
+          <tr><td>Dış Ticaret Yayını (TİM)</td><td>PR</td><td>Düşük</td><td>Orta</td><td>Orta</td></tr>
+          <tr><td>İstoç saha 15 dk demo</td><td>Doğrudan</td><td>Yüksek</td><td>Yüksek</td><td>Orta</td></tr>
+          <tr><td>Referral motor</td><td>Viral</td><td>—</td><td>Düşük</td><td>Yüksek</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- İçerik takvimi -->
+  <h2 style="margin-top: var(--s-7);">Haftalık İçerik Çıktısı</h2>
+  <div id="contentMatrix" class="chart chart-lg"></div>
+
+  <!-- Persona × Mesaj -->
+  <h2 style="margin-top: var(--s-7);">Persona × Mesaj Kabuğu</h2>
+  <table class="tbl">
+    <thead>
+      <tr><th>Persona</th><th>Yaş</th><th>Tipoloji</th><th>Mesaj Kabuğu</th><th>Birincil Kanal</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Hacı Abdullah Bey</td><td>62</td><td>Klasik, hemşehri-merkezli</td>
+        <td>İnsan ağzı, "Cansu Hanım" imzalı WhatsApp, AI görünmez</td>
+        <td>WhatsApp + saha ziyaret</td>
+      </tr>
+      <tr>
+        <td>Mehmet Bey</td><td>45</td><td>Geçiş kuşağı, jargon-az</td>
+        <td>Sade dashboard, az sayı, "öneriler" formu</td>
+        <td>Web/PWA + WhatsApp</td>
+      </tr>
+      <tr>
+        <td>Ahmet</td><td>32</td><td>Dijital, AI-meraklı</td>
+        <td>"Claude AI destekli", teknik açık konuşulur</td>
+        <td>GEO + LinkedIn + blog</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- KPI tracking -->
+  <h2 style="margin-top: var(--s-7);">Pazarlama KPI Takibi</h2>
+  <div id="kpiTrend" class="chart chart-lg"></div>
+
+</div>
+
+<script>
+  // ---------- ECharts ortak teması ----------
+  const palette = ['#1f2937', '#c2410c', '#166534', '#1e40af', '#6b21a8', '#155e75', '#be123c', '#0f766e'];
+  const baseFont = { fontFamily: 'Roboto, sans-serif', fontWeight: 300, fontSize: 13 };
+
+  // 1) Mindmap (tree)
+  echarts.init(document.getElementById('mindmap')).setOption({
+    color: palette,
+    textStyle: baseFont,
+    tooltip: { trigger: 'item', triggerOn: 'mousemove' },
+    series: [{
+      type: 'tree',
+      data: [{
+        name: 'Pazarlama',
+        children: [
+          { name: 'Farkındalık', children: [
+            { name: 'GEO içerik' }, { name: 'PR / Dış ticaret yayın' },
+            { name: 'İSTOÇDER meşruiyeti' }
+          ]},
+          { name: 'Aktivasyon', children: [
+            { name: 'Outbound AI sequence' }, { name: 'Saha 15dk demo' },
+            { name: '30-gün trial' }, { name: 'Hemşehri scout' }
+          ]},
+          { name: 'Sadakat', children: [
+            { name: 'CS Agent risk skor' }, { name: 'Anchor müşteri hesap yönetimi' },
+            { name: 'AI mucize anları' }
+          ]},
+          { name: 'Hendek', children: [
+            { name: 'Referral motor' }, { name: 'Sektörel sub-agent' },
+            { name: 'Veri ağı etkisi' }
+          ]}
+        ]
+      }],
+      top: '1%', left: '7%', bottom: '1%', right: '20%',
+      symbolSize: 10,
+      label: { position: 'left', verticalAlign: 'middle', align: 'right', fontSize: 13 },
+      leaves: { label: { position: 'right', verticalAlign: 'middle', align: 'left' } },
+      emphasis: { focus: 'descendant' },
+      expandAndCollapse: true,
+      animationDuration: 500
+    }]
+  });
+
+  // 2) Phase bars
+  echarts.init(document.getElementById('phaseBars')).setOption({
+    color: palette,
+    textStyle: baseFont,
+    grid: { left: 80, right: 30, top: 50, bottom: 40 },
+    tooltip: { trigger: 'axis' },
+    legend: { top: 10 },
+    xAxis: { type: 'category', data: ['Ay 1', 'Ay 2', 'Ay 3', 'Ay 4', 'Ay 5', 'Ay 6', 'Ay 7-9', 'Ay 10-12'] },
+    yAxis: { type: 'value', name: 'USD', axisLabel: { formatter: '${value}' } },
+    series: [
+      { name: 'GEO + İçerik', type: 'bar', stack: 'total', data: [800, 1200, 1500, 1800, 2000, 2200, 7000, 8000] },
+      { name: 'Outbound (Apollo/Smartlead)', type: 'bar', stack: 'total', data: [500, 800, 1000, 1200, 1500, 1500, 4800, 5400] },
+      { name: 'AI tool subs', type: 'bar', stack: 'total', data: [600, 700, 800, 900, 1000, 1100, 3400, 3800] },
+      { name: 'Etkinlik / Fuar', type: 'bar', stack: 'total', data: [0, 0, 500, 0, 2000, 0, 3000, 4000] }
+    ]
+  });
+
+  // 3) Channel mix donut — mobil-uyumlu
+  echarts.init(document.getElementById('channelMix')).setOption(ISTOC.responsivePie({
+    color: palette,
+    textStyle: baseFont,
+    tooltip: { trigger: 'item', formatter: '{b}: {d}%' },
+    legend: { bottom: 10, type: 'scroll' },
+    series: [{
+      name: 'Bütçe Dağılımı',
+      type: 'pie',
+      radius: ['45%', '70%'],
+      avoidLabelOverlap: true,
+      label: { show: true, formatter: '{b}\n{d}%', fontSize: 12 },
+      data: [
+        { value: 30, name: 'GEO + İçerik' },
+        { value: 25, name: 'Outbound AI' },
+        { value: 15, name: 'LinkedIn ABM' },
+        { value: 12, name: 'Hemşehri saha' },
+        { value: 10, name: 'Fuar / PR' },
+        { value: 8,  name: 'Referral / Diğer' }
+      ]
+    }]
+  }));
+
+  // 4) Content matrix (heatmap)
+  const contentRows = ['LinkedIn post', 'Blog uzun-form', 'Kısa video', 'Esnaf vaka', 'GEO sayfa', 'Outbound copy'];
+  const contentCols = ['Hafta 1', 'Hafta 2', 'Hafta 3', 'Hafta 4'];
+  const contentData = [];
+  const baselines = [10, 2, 5, 1, 10, 3];
+  contentRows.forEach((_, i) => {
+    contentCols.forEach((_, j) => {
+      contentData.push([j, i, baselines[i] + (j % 2 === 0 ? 0 : 1)]);
+    });
+  });
+  echarts.init(document.getElementById('contentMatrix')).setOption({
+    textStyle: baseFont,
+    tooltip: { position: 'top' },
+    grid: { top: 50, left: 140, right: 50, bottom: 60 },
+    xAxis: { type: 'category', data: contentCols, splitArea: { show: true } },
+    yAxis: { type: 'category', data: contentRows, splitArea: { show: true } },
+    visualMap: { min: 0, max: 12, calculable: true, orient: 'horizontal', left: 'center', bottom: 10, inRange: { color: ['#fafaf9', '#1f2937'] } },
+    series: [{ name: 'Adet', type: 'heatmap', data: contentData, label: { show: true } }]
+  });
+
+  // 5) KPI trend
+  echarts.init(document.getElementById('kpiTrend')).setOption({
+    color: palette,
+    textStyle: baseFont,
+    grid: { left: 60, right: 30, top: 60, bottom: 40 },
+    tooltip: { trigger: 'axis' },
+    legend: { top: 10 },
+    xAxis: { type: 'category', data: ['Ay 1','Ay 2','Ay 3','Ay 4','Ay 5','Ay 6','Ay 9','Ay 12'] },
+    yAxis: [
+      { type: 'value', name: 'Üye / Lead', position: 'left' },
+      { type: 'value', name: '%', position: 'right', max: 12 }
+    ],
+    series: [
+      { name: 'Ödeyen Üye', type: 'line', smooth: true, data: [5, 20, 50, 95, 160, 230, 485, 780] },
+      { name: 'Hot Lead',   type: 'line', smooth: true, data: [40, 80, 150, 220, 300, 380, 600, 900] },
+      { name: 'Reply Rate %', type: 'line', smooth: true, yAxisIndex: 1, data: [2.8, 4.5, 6, 6.5, 7, 7.2, 7.5, 7.8] }
+    ]
+  });
+
+  // Resize handler
+  window.addEventListener('resize', function () {
+    ['mindmap','phaseBars','channelMix','contentMatrix','kpiTrend'].forEach(function (id) {
+      const el = document.getElementById(id);
+      if (el && el.__instance) el.__instance.resize();
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toplam Maliyetler — istoc.com</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<script src="../assets/charts.js"></script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="detail">
+<div class="container">
+
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">Finans · Kümülatif</span>
+      <h1>Toplam Maliyetler</h1>
+      <p class="soft" style="max-width:760px;">
+        90 günlük ve 12 aylık kümülatif gider kalemlerinin breakdown'ı. Ekip, AI, saha,
+        pazarlama, hukuk ve yatırım dağılımı.
+      </p>
+    </div>
+    <span class="tag"><i class="ph ph-stack"></i> Kümülatif breakdown</span>
+  </div>
+
+  <div class="grid grid-4" style="margin-bottom: var(--s-6);">
+    <div class="kpi"><span class="label">90 Gün Toplam</span><span class="value">$175K–265K</span><span class="delta">Aşama 1 + Aşama 2</span></div>
+    <div class="kpi"><span class="label">12 Ay Toplam</span><span class="value">$620K–1.05M</span><span class="delta">780 üye yörünge</span></div>
+    <div class="kpi"><span class="label">Ekip Payı</span><span class="value">%62</span><span class="delta">En büyük kalem</span></div>
+    <div class="kpi"><span class="label">AI Altyapı Payı</span><span class="value">%12</span><span class="delta">12 ay ortalaması</span></div>
+  </div>
+
+  <h2>90 Gün Kümülatif Maliyet</h2>
+  <div id="cum90" class="chart chart-lg"></div>
+
+  <h2 style="margin-top: var(--s-7);">12 Ay Kümülatif Maliyet — Kategori</h2>
+  <div id="cum12" class="chart chart-lg"></div>
+
+  <h2 style="margin-top: var(--s-7);">Maliyet Treemap</h2>
+  <div id="treemap" class="chart chart-xl"></div>
+
+  <h2 style="margin-top: var(--s-7);">90 Günlük Maliyet Detayı</h2>
+  <table class="tbl">
+    <thead><tr><th>Kategori</th><th>Alt Kalem</th><th class="num">USD</th><th class="num">Pay %</th></tr></thead>
+    <tbody>
+      <tr><td rowspan="3">Ekip</td><td>Mevcut 7 personel</td><td class="num">75.000</td><td class="num">35</td></tr>
+      <tr><td>Yeni 2 personel (AI Eng + Growth Eng)</td><td class="num">22.000</td><td class="num">10</td></tr>
+      <tr><td>Üniversiteli ordu (8 part-time)</td><td class="num">14.000</td><td class="num">7</td></tr>
+      <tr><td rowspan="3">AI altyapı</td><td>Anthropic API + GPT + Gemini</td><td class="num">8.500</td><td class="num">4</td></tr>
+      <tr><td>Voice (Vapi + ElevenLabs)</td><td class="num">2.500</td><td class="num">1</td></tr>
+      <tr><td>Görsel (Flux Kontext)</td><td class="num">2.000</td><td class="num">1</td></tr>
+      <tr><td rowspan="3">Yazılım</td><td>Apollo + ImportGenius</td><td class="num">1.500</td><td class="num">1</td></tr>
+      <tr><td>Smartlead + Apollo SDK</td><td class="num">900</td><td class="num">1</td></tr>
+      <tr><td>PostHog + Langfuse + Qdrant</td><td class="num">600</td><td class="num">0.3</td></tr>
+      <tr><td rowspan="2">Saha + ofis</td><td>Kira + ulaşım</td><td class="num">12.000</td><td class="num">6</td></tr>
+      <tr><td>Tablet filo (CapEx)</td><td class="num">3.200</td><td class="num">2</td></tr>
+      <tr><td>Pazarlama</td><td>GEO + sponsorlu LI + içerik</td><td class="num">4.000</td><td class="num">2</td></tr>
+      <tr><td>Hukuk + KVKK</td><td>Avukat + VERBIS + politika</td><td class="num">2.500</td><td class="num">1</td></tr>
+      <tr><td>Marka + tasarım</td><td>Brand + landing + Figma</td><td class="num">4.500</td><td class="num">2</td></tr>
+      <tr><td>Fuar / etkinlik</td><td>Stand + materyal</td><td class="num">8.000</td><td class="num">4</td></tr>
+      <tr><td>İhtiyat</td><td>%15 contingency</td><td class="num">25.000</td><td class="num">12</td></tr>
+    </tbody>
+    <tfoot><tr><td colspan="2">Toplam (baz)</td><td class="num">186.200</td><td class="num">100</td></tr></tfoot>
+  </table>
+
+</div>
+
+<script>
+  const palette = ['#1f2937','#c2410c','#166534','#1e40af','#6b21a8','#155e75','#be123c','#0f766e'];
+  const baseFont = { fontFamily: 'Roboto, sans-serif', fontWeight: 300, fontSize: 13 };
+
+  echarts.init(document.getElementById('cum90')).setOption({
+    color: palette,
+    textStyle: baseFont,
+    legend: { top: 10 },
+    tooltip: { trigger: 'axis' },
+    grid: { left: 70, right: 30, top: 60, bottom: 40 },
+    xAxis: { type: 'category', data: ['Hafta 2','Hafta 4','Hafta 6','Hafta 8','Hafta 10','Hafta 12'] },
+    yAxis: { type: 'value', axisLabel: { formatter: '${value}' } },
+    series: [
+      { name: 'Kümülatif Ekip', type: 'line', smooth: true, stack: 's', areaStyle: {}, data: [18000, 36000, 56000, 76000, 96000, 111000] },
+      { name: 'Kümülatif AI', type: 'line', smooth: true, stack: 's', areaStyle: {}, data: [2500, 5000, 7500, 10000, 12500, 13000] },
+      { name: 'Kümülatif Saha', type: 'line', smooth: true, stack: 's', areaStyle: {}, data: [5000, 9000, 12500, 15500, 18500, 21000] },
+      { name: 'Kümülatif Pazarlama', type: 'line', smooth: true, stack: 's', areaStyle: {}, data: [1000, 2200, 3500, 5000, 6500, 8000] },
+      { name: 'CapEx + Diğer', type: 'line', smooth: true, stack: 's', areaStyle: {}, data: [15000, 22000, 28000, 31000, 32500, 33200] }
+    ]
+  });
+
+  echarts.init(document.getElementById('cum12')).setOption({
+    color: palette,
+    textStyle: baseFont,
+    legend: { top: 10 },
+    tooltip: { trigger: 'axis' },
+    grid: { left: 70, right: 30, top: 60, bottom: 40 },
+    xAxis: { type: 'category', data: Array.from({length:12}, (_,i)=>`Ay ${i+1}`) },
+    yAxis: { type: 'value', axisLabel: { formatter: '${value}' } },
+    series: [
+      { name: 'Ekip', type: 'bar', stack: 'op', data: [32000,33000,34000,36000,38000,40000,45000,50000,55000,60000,65000,70500] },
+      { name: 'Üniversiteliler', type: 'bar', stack: 'op', data: [4000,4500,5000,5500,6000,6500,7000,7500,7800,8000,8300,8500] },
+      { name: 'AI altyapı', type: 'bar', stack: 'op', data: [5500,6000,6500,7000,7500,8000,9000,10000,11000,12000,13000,13200] },
+      { name: 'Yazılım', type: 'bar', stack: 'op', data: [1500,1700,1800,2000,2200,2400,2600,2800,3000,3100,3150,3200] },
+      { name: 'Saha + ofis', type: 'bar', stack: 'op', data: [3500,3500,4000,4200,4400,4500,5000,5200,5500,5800,6200,6500] },
+      { name: 'Pazarlama', type: 'bar', stack: 'op', data: [800,1200,1500,2000,2200,2500,3000,3500,4000,4500,5000,5500] },
+      { name: 'Hukuk + muhasebe', type: 'bar', stack: 'op', data: [600,700,750,800,850,900,1000,1050,1100,1150,1180,1200] }
+    ]
+  });
+
+  echarts.init(document.getElementById('treemap')).setOption({
+    textStyle: baseFont,
+    tooltip: { formatter: p => `${p.name}<br>$${(p.value/1000).toFixed(1)}K` },
+    series: [{
+      type: 'treemap',
+      breadcrumb: { show: false },
+      label: { show: true, formatter: '{b}\n${c}', fontSize: 12 },
+      levels: [{ itemStyle: { borderWidth: 1, borderColor: '#fff', gapWidth: 2 } }],
+      data: [
+        { name: 'Ekip (12 ay)', value: 540000, children: [
+          { name: '9 personel', value: 460000 },
+          { name: 'Üniversiteliler', value: 78000 }
+        ]},
+        { name: 'AI altyapı', value: 102000 },
+        { name: 'Saha + ofis', value: 57000 },
+        { name: 'Yazılım', value: 30000 },
+        { name: 'Pazarlama', value: 34000 },
+        { name: 'CapEx', value: 39000 },
+        { name: 'Hukuk', value: 11000 },
+        { name: 'İhtiyat', value: 50000 }
+      ]
+    }]
+  });
+</script>
+</body>
+</html>

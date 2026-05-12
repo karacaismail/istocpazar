@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3 Aylık Eylem Planı — istoc.com</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<script src="../assets/charts.js"></script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="detail">
+<div class="container">
+
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">Yürütme · 90 gün</span>
+      <h1>3 Aylık Eylem Planı</h1>
+      <p class="soft" style="max-width:760px;">
+        Faz 1 Temel Altyapı (Gün 1–30) · Faz 2 Ölçeklendirme (Gün 31–60) · Faz 3 Hendekleştirme (Gün 61–90).
+      </p>
+    </div>
+    <span class="tag"><i class="ph ph-calendar-check"></i> Hafta hafta</span>
+  </div>
+
+  <h2>12 Haftalık Gantt</h2>
+  <div id="gantt" class="chart chart-xl"></div>
+
+  <h2 style="margin-top: var(--s-7);">Hafta-Hafta Yürütme Detayı</h2>
+  <table class="tbl">
+    <thead>
+      <tr><th>Hafta</th><th>Faz</th><th>Odak</th><th>Çıktı / KPI</th><th>Sorumlu</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>Faz 1</td><td>10K Maps import + Claude classify</td><td>10K kayıt temizlendi</td><td>Data + AI Eng</td></tr>
+      <tr><td>1</td><td>Faz 1</td><td>Anthropic API + n8n + Qdrant kurulum</td><td>İlk embedding <500 ms</td><td>Backend</td></tr>
+      <tr><td>2</td><td>Faz 1</td><td>WhatsApp UI MVP + tablet PWA wireframe</td><td>Demo akışı hazır</td><td>Frontend</td></tr>
+      <tr><td>2</td><td>Faz 1</td><td>Apollo/Hunter waterfall</td><td>10K → 5K zenginleştirildi</td><td>Data</td></tr>
+      <tr><td>3</td><td>Faz 1</td><td>RFQ Matchmaker v1 + Translation v1</td><td>İlk 10 eşleşme doğrulandı</td><td>Backend</td></tr>
+      <tr><td>3</td><td>Faz 1</td><td>Langfuse + golden test set</td><td>Her ajan için eval</td><td>DevOps</td></tr>
+      <tr><td>4</td><td>Faz 1</td><td>Outbound 500 kişiye soft-launch</td><td>Reply rate %3+</td><td>Growth Eng</td></tr>
+      <tr><td>4</td><td>Faz 1</td><td>5 üniversiteli tablet ile sahaya</td><td>20 dükkan demo</td><td>Saha + Pazarlama Lideri</td></tr>
+      <tr><td>5</td><td>Faz 2</td><td>Flux Kontext canlı</td><td>100+ ürün foto enhance</td><td>Frontend + Photo</td></tr>
+      <tr><td>5</td><td>Faz 2</td><td>CS Agent canlı</td><td>İlk 5 churn-risk</td><td>Backend</td></tr>
+      <tr><td>6</td><td>Faz 2</td><td>Outbound 2.000 kişiye</td><td>Reply %5+, ilk RFQ akışı</td><td>Growth</td></tr>
+      <tr><td>6</td><td>Faz 2</td><td>İlk 20 GEO sayfası + 5 LI post/hafta</td><td>AI citation top 5</td><td>Pazarlama Lideri + Content</td></tr>
+      <tr><td>7</td><td>Faz 2</td><td>Sales Coach Agent tablet'lerde</td><td>Ziyaret dönüşüm %20 → %30</td><td>DevOps</td></tr>
+      <tr><td>7</td><td>Faz 2</td><td>Vapi + ElevenLabs TR çağrı</td><td>İlk 50 AI-assisted çağrı</td><td>Voice Eng</td></tr>
+      <tr><td>8</td><td>Faz 2</td><td>İlk anchor Avrupalı alıcı kapanır</td><td>$5–15K GMV, testimonial</td><td>Tüm ekip</td></tr>
+      <tr><td>9</td><td>Faz 3</td><td>Sektörel agent (ev tekstili uzman)</td><td>Sektör-spesifik 50 RFQ</td><td>Data + Backend</td></tr>
+      <tr><td>9</td><td>Faz 3</td><td>GEO 50 sayfa + Reddit organik</td><td>ChatGPT citation 5+ sorgu</td><td>Pazarlama Lideri</td></tr>
+      <tr><td>10</td><td>Faz 3</td><td>AI referral motor</td><td>Yeni üyelerin %15+ referral</td><td>Backend</td></tr>
+      <tr><td>10</td><td>Faz 3</td><td>Stratejik dashboard v2</td><td>Patron weekly 1 sayfa</td><td>Stratejik yönetici</td></tr>
+      <tr><td>11</td><td>Faz 3</td><td>Eval coverage %80 + circuit breaker</td><td>Pathological cost $0</td><td>DevOps + Backend</td></tr>
+      <tr><td>11</td><td>Faz 3</td><td>Üniversiteli 4 → 8 kişi</td><td>200+ aylık dükkan ziyaret</td><td>Saha</td></tr>
+      <tr><td>12</td><td>Faz 3</td><td>Q1 retrospektif + Q2 plan</td><td>30–70 ödeyen (TAM/SAM/SOM 3 senaryo), $7–18K MRR + komisyon</td><td>Tüm</td></tr>
+    </tbody>
+  </table>
+
+  <h2 style="margin-top: var(--s-7);">Faz Geçiş Eşikleri</h2>
+  <table class="tbl">
+    <thead><tr><th>Eşik</th><th>Kötümser (durdur)</th><th>Baz (devam)</th><th>İyimser (hızlandır)</th></tr></thead>
+    <tbody>
+      <tr><td>Gün 30: Reply rate</td><td>%1 altı</td><td>%2–3</td><td>%4+</td></tr>
+      <tr><td>Gün 60: Anchor alıcı</td><td>0</td><td>1–2</td><td>3+</td></tr>
+      <tr><td>Gün 90: Ödeyen üye</td><td>&lt;25</td><td>50 (medyan)</td><td>&gt;65</td></tr>
+      <tr><td>Gün 90: MRR (üyelik + komisyon)</td><td>&lt;$5K</td><td>$10–14K</td><td>&gt;$18K</td></tr>
+    </tbody>
+  </table>
+
+  <h2 style="margin-top: var(--s-7);">KPI Yörüngesi — 12 Hafta</h2>
+  <div id="kpiTrack" class="chart chart-lg"></div>
+
+</div>
+
+<script>
+  const palette = ['#1f2937','#c2410c','#166534','#1e40af','#6b21a8','#155e75','#be123c'];
+  const baseFont = { fontFamily: 'Roboto, sans-serif', fontWeight: 300, fontSize: 13 };
+
+  // Gantt — custom series
+  const ganttData = [
+    // [startWeek, endWeek, categoryIndex]
+    { row: 'Data + RAG kurulumu',         start: 0,  end: 3,  cat: 0 },
+    { row: 'Backend + Agent SDK setup',   start: 0,  end: 4,  cat: 1 },
+    { row: 'Frontend (WhatsApp + PWA)',   start: 1,  end: 6,  cat: 2 },
+    { row: 'Outbound v1 (500)',           start: 3,  end: 5,  cat: 3 },
+    { row: 'Outbound v2 (2K)',            start: 5,  end: 8,  cat: 3 },
+    { row: 'Saha demo + üniversiteliler', start: 3,  end: 11, cat: 4 },
+    { row: 'Photo Agent',                 start: 4,  end: 8,  cat: 5 },
+    { row: 'CS Agent',                    start: 4,  end: 10, cat: 5 },
+    { row: 'Voice AI (Vapi)',             start: 6,  end: 11, cat: 6 },
+    { row: 'GEO içerik makinesi',         start: 4,  end: 12, cat: 2 },
+    { row: 'Sektörel sub-agent',          start: 8,  end: 12, cat: 1 },
+    { row: 'Anchor kapama + retro',       start: 7,  end: 12, cat: 0 }
+  ];
+  const rows = ganttData.map(d => d.row);
+  echarts.init(document.getElementById('gantt')).setOption({
+    color: palette,
+    textStyle: baseFont,
+    tooltip: { formatter: p => `${p.data.row}<br>Hafta ${p.data.start+1} → ${p.data.end}` },
+    grid: { left: 220, right: 30, top: 30, bottom: 40 },
+    xAxis: { type: 'value', min: 0, max: 12, axisLabel: { formatter: 'H{value}' } },
+    yAxis: { type: 'category', data: rows.slice().reverse() },
+    series: [{
+      type: 'custom',
+      renderItem: function (params, api) {
+        const yIndex = api.value(0);
+        const start = api.coord([api.value(1), yIndex]);
+        const end = api.coord([api.value(2), yIndex]);
+        const h = api.size([0,1])[1] * 0.55;
+        return {
+          type: 'rect',
+          shape: { x: start[0], y: start[1] - h/2, width: end[0]-start[0], height: h },
+          style: api.style({ fill: palette[api.value(3) % palette.length] })
+        };
+      },
+      encode: { x: [1,2], y: 0 },
+      data: ganttData.map((d, idx) => ({
+        value: [rows.length - 1 - rows.indexOf(d.row), d.start, d.end, d.cat],
+        row: d.row, start: d.start, end: d.end
+      }))
+    }]
+  });
+
+  echarts.init(document.getElementById('kpiTrack')).setOption({
+    color: palette,
+    textStyle: baseFont,
+    legend: { top: 10 },
+    tooltip: { trigger: 'axis' },
+    grid: { left: 60, right: 60, top: 60, bottom: 40 },
+    xAxis: { type: 'category', data: Array.from({length:12}, (_,i)=>`H${i+1}`) },
+    yAxis: [
+      { type: 'value', name: 'Adet' },
+      { type: 'value', name: '%', position: 'right', max: 10 }
+    ],
+    series: [
+      { name: 'Trial başlatma', type: 'line', smooth: true, data: [0,2,5,12,20,30,42,55,68,80,92,105] },
+      { name: 'Ödeyen üye',    type: 'line', smooth: true, data: [0,0,1,3,5,10,18,25,30,37,42,48] },
+      { name: 'Reply rate %', type: 'line', smooth: true, yAxisIndex: 1, data: [0,0,3,3.2,3.5,4.5,5.2,5.8,6.0,6.5,7.0,7.4] }
+    ]
+  });
+</script>
+</body>
+</html>

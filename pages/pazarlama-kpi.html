@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Pazarlama KPI & Satıcı Adedi — istoc.com</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<script src="../assets/charts.js"></script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="detail">
+<div class="container">
+
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">Pazarlama · KPI & Satıcı Adedi</span>
+      <h1>Pazarlama Performans Tablosu</h1>
+      <p class="soft" style="max-width:760px;">
+        Dijital ve saha pazarlama kanallarından gelen satıcı (üye) adedi, dönüşüm metrikleri ve
+        kanal-bazlı CAC. Her kanalın katkısı ayrı raporlanır.
+      </p>
+    </div>
+    <span class="tag"><i class="ph ph-megaphone"></i> 12 ay</span>
+  </div>
+
+  <div class="grid grid-4" style="margin-bottom: var(--s-6);">
+    <div class="kpi"><span class="label">Toplam Satıcı (Ay 12)</span><span class="value">~600</span><span class="delta">Tüm kanallar</span></div>
+    <div class="kpi"><span class="label">Dijital Payı</span><span class="value">%48</span><span class="delta">GEO + LI + outbound</span></div>
+    <div class="kpi"><span class="label">Diğer Payı</span><span class="value">%52</span><span class="delta">Saha + hemşehri + referral</span></div>
+    <div class="kpi"><span class="label">Blended CAC</span><span class="value">$680</span><span class="delta">Q4 baz</span></div>
+  </div>
+
+  <h2>Kanal × Satıcı Adedi — 12 Ay Akışı</h2>
+  <div id="channelFlow" class="chart chart-lg"></div>
+
+  <!-- DIJITAL PAZARLAMA -->
+  <h2 style="margin-top: var(--s-7);">Dijital Pazarlama</h2>
+  <p class="soft">
+    GEO görünürlük, LinkedIn ABM, AI personalized outbound, retargeting ve içerik kanallarından
+    gelen satıcı akışı.
+  </p>
+
+  <div class="grid grid-4" style="margin-bottom: var(--s-5);">
+    <div class="kpi"><span class="label">Dijital Satıcı (Ay 12)</span><span class="value">~290</span><span class="delta">Kümülatif</span></div>
+    <div class="kpi"><span class="label">Reply Rate</span><span class="value">%6.8</span><span class="delta">3-kanal sequence</span></div>
+    <div class="kpi"><span class="label">Trial → Paid</span><span class="value">%24</span><span class="delta">Dijital lead'ler</span></div>
+    <div class="kpi"><span class="label">Dijital CAC</span><span class="value">$540</span><span class="delta">−%21 saha'ya göre</span></div>
+  </div>
+
+  <h3>Dijital Kanal Funnel</h3>
+  <div id="digitalFunnel" class="chart chart-lg"></div>
+
+  <h3 style="margin-top: var(--s-6);">Dijital Kanal Detay Metrikleri</h3>
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>Kanal</th>
+        <th class="num">Erişim</th>
+        <th class="num">Click/Reply</th>
+        <th class="num">Lead</th>
+        <th class="num">Trial</th>
+        <th class="num">Satıcı</th>
+        <th class="num">CAC</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>GEO (AI Search)</td>
+        <td class="num">14.000</td><td class="num">820</td><td class="num">410</td>
+        <td class="num">180</td><td class="num">95</td><td class="num">$420</td>
+      </tr>
+      <tr>
+        <td>AI Personalized Outbound</td>
+        <td class="num">3.000</td><td class="num">204</td><td class="num">150</td>
+        <td class="num">85</td><td class="num">42</td><td class="num">$560</td>
+      </tr>
+      <tr>
+        <td>LinkedIn ABM</td>
+        <td class="num">2.400</td><td class="num">96</td><td class="num">68</td>
+        <td class="num">38</td><td class="num">22</td><td class="num">$720</td>
+      </tr>
+      <tr>
+        <td>İçerik / Blog SEO</td>
+        <td class="num">38.000</td><td class="num">1.140</td><td class="num">320</td>
+        <td class="num">140</td><td class="num">68</td><td class="num">$390</td>
+      </tr>
+      <tr>
+        <td>Retargeting Ads</td>
+        <td class="num">8.500</td><td class="num">425</td><td class="num">180</td>
+        <td class="num">88</td><td class="num">38</td><td class="num">$640</td>
+      </tr>
+      <tr>
+        <td>Sosyal Medya Organik</td>
+        <td class="num">22.000</td><td class="num">660</td><td class="num">110</td>
+        <td class="num">50</td><td class="num">25</td><td class="num">$310</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>Dijital Toplam</td>
+        <td class="num">87.900</td><td class="num">3.345</td><td class="num">1.238</td>
+        <td class="num">581</td><td class="num">290</td><td class="num">$540</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <h3 style="margin-top: var(--s-6);">Dijital Kanal Satıcı Payları</h3>
+  <div id="digitalPie" class="chart"></div>
+
+  <!-- DİĞER PAZARLAMA -->
+  <h2 style="margin-top: var(--s-8);">Diğer Pazarlama (Saha & Geleneksel)</h2>
+  <p class="soft">
+    Hemşehri ağı WoM, İSTOÇDER meşruiyeti, üniversiteli freelance saha satış ordusu (Madde 47/A
+    kapsamı), fuar/etkinlik, basılı materyal ve referral.
+  </p>
+
+  <div class="grid grid-4" style="margin-bottom: var(--s-5);">
+    <div class="kpi"><span class="label">Diğer Satıcı (Ay 12)</span><span class="value">~310</span><span class="delta">Kümülatif</span></div>
+    <div class="kpi"><span class="label">Saha Demo → Trial</span><span class="value">%32</span><span class="delta">15 dk dükkân demo</span></div>
+    <div class="kpi"><span class="label">Trial → Paid</span><span class="value">%28</span><span class="delta">Hemşehri etkisi</span></div>
+    <div class="kpi"><span class="label">Saha CAC</span><span class="value">$830</span><span class="delta">+%54 dijital'e göre</span></div>
+  </div>
+
+  <h3>Saha Pazarlama Funnel</h3>
+  <div id="fieldFunnel" class="chart chart-lg"></div>
+
+  <h3 style="margin-top: var(--s-6);">Diğer Kanal Detay Metrikleri</h3>
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>Kanal</th>
+        <th class="num">Erişim</th>
+        <th class="num">Demo/Toplantı</th>
+        <th class="num">Trial</th>
+        <th class="num">Satıcı</th>
+        <th class="num">CAC</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Üniversiteli Saha Ordusu (47/A)</td>
+        <td class="num">22.500</td><td class="num">3.150</td><td class="num">680</td>
+        <td class="num">142</td><td class="num">$910</td>
+      </tr>
+      <tr>
+        <td>Hemşehri WoM + İSTOÇDER</td>
+        <td class="num">3.800</td><td class="num">720</td><td class="num">280</td>
+        <td class="num">88</td><td class="num">$420</td>
+      </tr>
+      <tr>
+        <td>Referral Motor (Ay 4+)</td>
+        <td class="num">1.200</td><td class="num">320</td><td class="num">140</td>
+        <td class="num">48</td><td class="num">$280</td>
+      </tr>
+      <tr>
+        <td>Fuar / Etkinlik</td>
+        <td class="num">5.000</td><td class="num">180</td><td class="num">62</td>
+        <td class="num">22</td><td class="num">$1.450</td>
+      </tr>
+      <tr>
+        <td>Basılı + Sektörel Yayın</td>
+        <td class="num">28.000</td><td class="num">90</td><td class="num">28</td>
+        <td class="num">10</td><td class="num">$1.180</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>Diğer Toplam</td>
+        <td class="num">60.500</td><td class="num">4.460</td><td class="num">1.190</td>
+        <td class="num">310</td><td class="num">$830</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <h3 style="margin-top: var(--s-6);">Diğer Kanal Satıcı Payları</h3>
+  <div id="fieldPie" class="chart"></div>
+
+  <!-- KARŞILAŞTIRMA -->
+  <h2 style="margin-top: var(--s-8);">Dijital vs Diğer — Karşılaştırma</h2>
+  <div id="compare" class="chart chart-lg"></div>
+
+  <table class="tbl" style="margin-top: var(--s-4);">
+    <thead>
+      <tr>
+        <th>Metrik</th>
+        <th class="num">Dijital</th>
+        <th class="num">Diğer (Saha)</th>
+        <th class="num">Fark</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Satıcı adedi (Ay 12)</td><td class="num">290</td><td class="num">310</td><td class="num">+20 saha</td></tr>
+      <tr><td>Pay %</td><td class="num">%48</td><td class="num">%52</td><td class="num">+4 puan saha</td></tr>
+      <tr><td>CAC</td><td class="num">$540</td><td class="num">$830</td><td class="num">−$290 dijital</td></tr>
+      <tr><td>LTV/CAC</td><td class="num">3.6×</td><td class="num">2.4×</td><td class="num">+1.2× dijital</td></tr>
+      <tr><td>Trial → Paid dönüşüm</td><td class="num">%24</td><td class="num">%28</td><td class="num">+4 puan saha</td></tr>
+      <tr><td>Net retention (12 ay)</td><td class="num">%88</td><td class="num">%93</td><td class="num">+5 puan saha (hemşehri etkisi)</td></tr>
+      <tr><td>Aylık inflow (Ay 12)</td><td class="num">48 üye</td><td class="num">52 üye</td><td class="num">+4 saha</td></tr>
+    </tbody>
+  </table>
+
+  <h2 style="margin-top: var(--s-7);">Aylık Satıcı Akışı — Kanal Bazlı</h2>
+  <div id="monthlyFlow" class="chart chart-lg"></div>
+
+  <h2 style="margin-top: var(--s-7);">Bütçe vs Satıcı Verimliliği</h2>
+  <div id="efficiency" class="chart chart-lg"></div>
+
+</div>
+
+<script>
+  const palette = ['#b45309','#1e40af','#166534','#c2410c','#6b21a8','#155e75','#be123c','#0f766e'];
+  const baseFont = { fontFamily: 'Roboto, sans-serif', fontWeight: 300, fontSize: 13 };
+
+  // 1) Channel flow — sankey
+  echarts.init(document.getElementById('channelFlow')).setOption({
+    textStyle: baseFont,
+    tooltip: { trigger: 'item' },
+    series: [{
+      type: 'sankey',
+      left: 10, right: 130, top: 10, bottom: 10,
+      data: [
+        { name: 'GEO / AI Search' },
+        { name: 'AI Outbound' },
+        { name: 'LinkedIn ABM' },
+        { name: 'İçerik / Blog SEO' },
+        { name: 'Retargeting' },
+        { name: 'Sosyal Medya' },
+        { name: 'Üniversiteli Saha (47/A)' },
+        { name: 'Hemşehri WoM' },
+        { name: 'Referral Motor' },
+        { name: 'Fuar / Etkinlik' },
+        { name: 'Basılı / Yayın' },
+        { name: 'Dijital Toplam' },
+        { name: 'Diğer Toplam' },
+        { name: 'Ödeyen Satıcı 600' }
+      ],
+      links: [
+        { source: 'GEO / AI Search', target: 'Dijital Toplam', value: 95 },
+        { source: 'AI Outbound',     target: 'Dijital Toplam', value: 42 },
+        { source: 'LinkedIn ABM',    target: 'Dijital Toplam', value: 22 },
+        { source: 'İçerik / Blog SEO', target: 'Dijital Toplam', value: 68 },
+        { source: 'Retargeting',     target: 'Dijital Toplam', value: 38 },
+        { source: 'Sosyal Medya',    target: 'Dijital Toplam', value: 25 },
+        { source: 'Üniversiteli Saha (47/A)', target: 'Diğer Toplam', value: 142 },
+        { source: 'Hemşehri WoM',    target: 'Diğer Toplam', value: 88 },
+        { source: 'Referral Motor',  target: 'Diğer Toplam', value: 48 },
+        { source: 'Fuar / Etkinlik', target: 'Diğer Toplam', value: 22 },
+        { source: 'Basılı / Yayın',  target: 'Diğer Toplam', value: 10 },
+        { source: 'Dijital Toplam',  target: 'Ödeyen Satıcı 600', value: 290 },
+        { source: 'Diğer Toplam',    target: 'Ödeyen Satıcı 600', value: 310 }
+      ],
+      label: { fontSize: 11 }
+    }]
+  });
+
+  // 2) Digital funnel
+  echarts.init(document.getElementById('digitalFunnel')).setOption({
+    color: palette,
+    textStyle: baseFont,
+    tooltip: { trigger: 'item' },
+    legend: { top: 10 },
+    series: [{
+      type: 'funnel', left: '10%', right: '10%', top: 50, bottom: 30,
+      label: { formatter: '{b}\n{c}' },
+      data: [
+        { value: 87900, name: 'Erişim' },
+        { value: 3345,  name: 'Click / Reply' },
+        { value: 1238,  name: 'Lead' },
+        { value: 581,   name: 'Trial' },
+        { value: 290,   name: 'Satıcı (Paid)' }
+      ]
+    }]
+  });
+
+  // 3) Digital pie
+  echarts.init(document.getElementById('digitalPie')).setOption(ISTOC.responsivePie({
+    color: ['#1e40af','#0f766e','#155e75','#6b21a8','#c2410c','#166534'],
+    textStyle: baseFont,
+    tooltip: { trigger: 'item', formatter: '{b}: {c} satıcı ({d}%)' },
+    legend: { bottom: 10, type: 'scroll' },
+    series: [{
+      type: 'pie', radius: ['40%','70%'],
+      label: { formatter: '{b}\n{d}%', fontSize: 12 },
+      data: [
+        { value: 95, name: 'GEO / AI Search' },
+        { value: 68, name: 'İçerik / Blog SEO' },
+        { value: 42, name: 'AI Outbound' },
+        { value: 38, name: 'Retargeting' },
+        { value: 25, name: 'Sosyal Medya' },
+        { value: 22, name: 'LinkedIn ABM' }
+      ]
+    }]
+  }));
+
+  // 4) Field funnel
+  echarts.init(document.getElementById('fieldFunnel')).setOption({
+    color: ['#c2410c','#b45309','#92400e','#7c2d12','#166534'],
+    textStyle: baseFont,
+    tooltip: { trigger: 'item' },
+    legend: { top: 10 },
+    series: [{
+      type: 'funnel', left: '10%', right: '10%', top: 50, bottom: 30,
+      label: { formatter: '{b}\n{c}' },
+      data: [
+        { value: 60500, name: 'Erişim' },
+        { value: 4460,  name: 'Demo / Toplantı' },
+        { value: 1190,  name: 'Trial' },
+        { value: 310,   name: 'Satıcı (Paid)' }
+      ]
+    }]
+  });
+
+  // 5) Field pie
+  echarts.init(document.getElementById('fieldPie')).setOption(ISTOC.responsivePie({
+    color: ['#c2410c','#166534','#0f766e','#b45309','#6b21a8'],
+    textStyle: baseFont,
+    tooltip: { trigger: 'item', formatter: '{b}: {c} satıcı ({d}%)' },
+    legend: { bottom: 10, type: 'scroll' },
+    series: [{
+      type: 'pie', radius: ['40%','70%'],
+      label: { formatter: '{b}\n{d}%', fontSize: 12 },
+      data: [
+        { value: 142, name: 'Üniversiteli Saha (47/A)' },
+        { value: 88,  name: 'Hemşehri WoM' },
+        { value: 48,  name: 'Referral Motor' },
+        { value: 22,  name: 'Fuar / Etkinlik' },
+        { value: 10,  name: 'Basılı / Yayın' }
+      ]
+    }]
+  }));
+
+  // 6) Compare bar
+  echarts.init(document.getElementById('compare')).setOption({
+    color: ['#1e40af','#c2410c'],
+    textStyle: baseFont,
+    legend: { top: 10 },
+    tooltip: { trigger: 'axis' },
+    grid: { left: 100, right: 30, top: 60, bottom: 40 },
+    xAxis: { type: 'category', data: ['Satıcı', 'Trial→Paid %', 'CAC ($)', 'LTV/CAC ×', 'Net Retention %'] },
+    yAxis: { type: 'value' },
+    series: [
+      { name: 'Dijital', type: 'bar', data: [290, 24, 540, 3.6, 88] },
+      { name: 'Diğer (Saha)', type: 'bar', data: [310, 28, 830, 2.4, 93] }
+    ]
+  });
+
+  // 7) Monthly flow stacked
+  echarts.init(document.getElementById('monthlyFlow')).setOption({
+    color: palette,
+    textStyle: baseFont,
+    legend: { top: 10 },
+    tooltip: { trigger: 'axis' },
+    grid: { left: 60, right: 30, top: 60, bottom: 40 },
+    xAxis: { type: 'category', data: Array.from({length:12}, (_,i)=>`Ay ${i+1}`) },
+    yAxis: { type: 'value', name: 'Yeni satıcı / ay' },
+    series: [
+      { name: 'GEO',         type: 'bar', stack: 's', data: [1,2,4,6,8,10,11,12,13,12,11,5] },
+      { name: 'İçerik SEO',  type: 'bar', stack: 's', data: [0,1,2,4,5,7,8,9,9,8,8,7] },
+      { name: 'Outbound',    type: 'bar', stack: 's', data: [0,1,3,4,5,6,5,5,4,4,3,2] },
+      { name: 'LinkedIn',    type: 'bar', stack: 's', data: [0,0,1,2,2,3,3,3,3,2,2,1] },
+      { name: 'Retargeting', type: 'bar', stack: 's', data: [0,0,0,2,3,4,5,5,5,5,5,4] },
+      { name: 'Sosyal',      type: 'bar', stack: 's', data: [0,0,1,2,2,3,3,3,3,3,3,2] },
+      { name: 'Üniversiteli Saha', type: 'bar', stack: 's', data: [2,4,8,14,18,18,20,18,16,12,8,4] },
+      { name: 'Hemşehri WoM',type: 'bar', stack: 's', data: [1,3,5,7,9,10,11,11,10,9,7,5] }
+    ]
+  });
+
+  // 8) Efficiency scatter
+  echarts.init(document.getElementById('efficiency')).setOption({
+    color: palette,
+    textStyle: baseFont,
+    legend: { top: 10 },
+    tooltip: {
+      trigger: 'item',
+      formatter: p => `${p.data[3]}<br>Bütçe: $${p.data[0]}/ay · Satıcı: ${p.data[1]} · CAC: $${p.data[2]}`
+    },
+    grid: { left: 80, right: 30, top: 60, bottom: 50 },
+    xAxis: { type: 'value', name: 'Aylık bütçe ($)', nameLocation: 'middle', nameGap: 30 },
+    yAxis: { type: 'value', name: 'Aylık yeni satıcı', nameLocation: 'middle', nameGap: 40 },
+    series: [
+      {
+        name: 'Dijital Kanal', type: 'scatter', symbolSize: 18,
+        data: [
+          [2200, 9, 420, 'GEO'],
+          [1500, 6, 390, 'İçerik SEO'],
+          [1800, 4, 560, 'Outbound'],
+          [900,  2, 720, 'LinkedIn'],
+          [1200, 4, 640, 'Retargeting'],
+          [400,  2, 310, 'Sosyal Medya']
+        ]
+      },
+      {
+        name: 'Diğer Kanal', type: 'scatter', symbolSize: 18,
+        data: [
+          [3500, 14, 910, 'Üniversiteli Saha'],
+          [800,  8,  420, 'Hemşehri WoM'],
+          [400,  5,  280, 'Referral'],
+          [2200, 2,  1450, 'Fuar'],
+          [600,  1,  1180, 'Basılı']
+        ]
+      }
+    ]
+  });
+</script>
+</body>
+</html>

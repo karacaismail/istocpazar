@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Pazar Boyutlandırma — TAM/SAM/SOM — istoc.com</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<script src="../assets/charts.js"></script>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .market-tier {
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-left-width: 4px;
+    border-radius: var(--radius-md);
+    padding: var(--s-5);
+    margin-bottom: var(--s-4);
+  }
+  .market-tier.tam { border-left-color: #1e40af; }
+  .market-tier.sam { border-left-color: #0f766e; }
+  .market-tier.som { border-left-color: #c2410c; }
+  .market-tier h3 { margin-top: 0; }
+  .market-tier .figure {
+    font-size: 1.5rem;
+    font-weight: var(--fw-light);
+    color: var(--c-text);
+    margin: var(--s-2) 0;
+  }
+  .source-list {
+    font-size: 0.9375rem;
+    color: var(--c-text-3);
+    margin: var(--s-3) 0 0;
+  }
+  .source-list b { color: var(--c-text-2); font-weight: var(--fw-medium); }
+  @media (min-width: 1024px) {
+    .market-tier .figure { font-size: 2rem; }
+  }
+</style>
+</head>
+<body class="detail">
+<div class="container">
+
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">Pazar Boyutlandırma · TAM / SAM / SOM</span>
+      <h1>Adreslenebilir Pazar Analizi</h1>
+      <p class="soft" style="max-width:760px;">
+        Türkiye B2B trade tech + ihracatçı KOBİ pazarının 3 katmanlı kantitatif çerçevesi
+        ve Mayıs 2026 → Aralık 2027 (20 ay) için aylık SOM payı hedefi.
+      </p>
+    </div>
+    <span class="tag"><i class="ph ph-globe-hemisphere-west"></i> 20 ay yörünge</span>
+  </div>
+
+  <!-- KPI Strip -->
+  <div class="grid grid-4" style="margin-bottom: var(--s-6);">
+    <div class="kpi">
+      <span class="label">TAM</span>
+      <span class="value">$200M/yıl</span>
+      <span class="delta">Türkiye B2B trade tech</span>
+    </div>
+    <div class="kpi">
+      <span class="label">SAM</span>
+      <span class="value">$15M/yıl</span>
+      <span class="delta">İhracatçı KOBİ hedef sektör</span>
+    </div>
+    <div class="kpi">
+      <span class="label">SOM (24 ay)</span>
+      <span class="value">$3.8M/yıl</span>
+      <span class="delta">Medyan senaryo · 1.600 üye</span>
+    </div>
+    <div class="kpi">
+      <span class="label">SOM Tavanı</span>
+      <span class="value">$7.2M/yıl</span>
+      <span class="delta">İst. toptancı doygunluğu · 3.000 üye</span>
+    </div>
+  </div>
+
+  <!-- TAM -->
+  <h2 style="margin-top: var(--s-6);">TAM — Total Addressable Market</h2>
+  <article class="market-tier tam">
+    <h3>$200M / yıl · Türkiye B2B Trade Tech + KOBİ Yazılım Pazarı</h3>
+    <p class="soft" style="margin:0 0 var(--s-3);">
+      Türkiye'de ihracat yapan veya yapma potansiyeli olan tüm KOBİ'ler için B2B marketplace,
+      yazılım ve AI servisleri toplam pazarı. Tahmini olarak ulaşılabilecek en geniş cüzdan.
+    </p>
+    <div class="figure">85.000 ihracat şirketi × ~$1.500 yıllık ARPU ≈ $127M</div>
+    <p class="soft" style="margin:var(--s-3) 0 0;">
+      Trade tech alt-segmentinin tüm Türk SaaS pazarı ($1.2-1.5B) içindeki payı %15-17 aralığında.
+      <b>Adreslenebilir TAM ≈ $180-220M/yıl</b>, baz aldığımız değer <b>$200M</b>.
+    </p>
+    <p class="source-list">
+      <b>Kaynaklar:</b> TÜİK 2024 KOBİ İstatistikleri (3.9M KOBİ, 85K ihracatçı) ·
+      TİM 2024 İhracat Raporu (sektör dağılımı) ·
+      IDC Turkey 2024 SaaS Market Report (~$1.2-1.5B pazar) ·
+      Statista 2024 Turkey B2B E-commerce GMV ($80B) ·
+      Logo Yazılım 2023 Yatırımcı Sunumu (~$140M gelir) ·
+      ETid Sektörel B2B SaaS raporu
+    </p>
+  </article>
+
+  <!-- SAM -->
+  <h2 style="margin-top: var(--s-7);">SAM — Serviceable Available Market</h2>
+  <article class="market-tier sam">
+    <h3>$15M / yıl · İhracatçı Türk KOBİ — Hedef Sektörler</h3>
+    <p class="soft" style="margin:0 0 var(--s-3);">
+      TR TradeHub'ın değer önerisine uygun sektör + dijital olgunluk + ödeme gücü filtresi.
+      Adreslenebilir TAM içinden gerçekçi servis verebileceğimiz dilim.
+    </p>
+    <div class="figure">10.000 firma × ~$1.500 ARPU = $15M/yıl</div>
+    <table class="tbl" style="margin-top: var(--s-3);">
+      <thead><tr><th>Sektör (HS Code)</th><th class="num">Yıllık İhracat</th><th class="num">Firma Sayısı</th><th class="num">Hedef Profil</th></tr></thead>
+      <tbody>
+        <tr><td>Tekstil — havlu/çarşaf/perde (HS 63)</td><td class="num">$2.8B</td><td class="num">~12.000</td><td class="num">~3.500</td></tr>
+        <tr><td>Cam / Züccaciye (HS 70)</td><td class="num">$700M</td><td class="num">~2.500</td><td class="num">~900</td></tr>
+        <tr><td>Hırdavat / El aletleri (HS 82)</td><td class="num">$900M</td><td class="num">~4.500</td><td class="num">~1.400</td></tr>
+        <tr><td>Mobilya / Dekorasyon (HS 94)</td><td class="num">$4.5B</td><td class="num">~8.000</td><td class="num">~2.700</td></tr>
+        <tr><td>Diğer (gıda, ambalaj, plastik vb.)</td><td class="num">~$3B</td><td class="num">~8.000</td><td class="num">~1.500</td></tr>
+      </tbody>
+      <tfoot>
+        <tr><td>Toplam SAM havuzu</td><td class="num">$11.9B</td><td class="num">~35.000</td><td class="num">~10.000</td></tr>
+      </tfoot>
+    </table>
+    <p class="source-list">
+      <b>Kaynaklar:</b> Trade Map (ITC) HS kod bazında 2024 Türkiye ihracat verisi ·
+      TİM Sektörel ihracat raporları 2024 · TÜİK Dış Ticaret istatistikleri ·
+      İSO İhracat 1000 listesi (büyük ihracatçıların hariç tutulması) ·
+      eIhracat dijital olgunluk değerlendirmesi (~%40 segment).
+    </p>
+  </article>
+
+  <!-- SOM -->
+  <h2 style="margin-top: var(--s-7);">SOM — Serviceable Obtainable Market</h2>
+  <article class="market-tier som">
+    <h3>$7.2M / yıl tavan · İstanbul Toptancı Bölgeleri Doygunluğu</h3>
+    <p class="soft" style="margin:0 0 var(--s-3);">
+      İlk 24 ayda fiziksel saha erişimi + hemşehri ağı + İSTOÇDER meşruiyetiyle gerçekten
+      kazanabileceğimiz pazar. Coğrafi olarak İstanbul toptancı bölgeleriyle sınırlı.
+    </p>
+    <div class="figure">3.000 hedef üye × $2.400 ARPU = $7.2M/yıl tavan</div>
+    <table class="tbl" style="margin-top: var(--s-3);">
+      <thead><tr><th>Bölge</th><th class="num">Tahmini Dükkân</th><th class="num">Hedef Sektör</th><th>Not</th></tr></thead>
+      <tbody>
+        <tr><td>İstoç (Bağcılar)</td><td class="num">~7.200</td><td class="num">~1.000</td><td>Çekirdek lokasyon · İSTOÇDER ilişki</td></tr>
+        <tr><td>İkitelli OSB + Topkapı</td><td class="num">~3.500</td><td class="num">~500</td><td>Tekstil + mobilya yoğun</td></tr>
+        <tr><td>Mahmutpaşa + Eminönü</td><td class="num">~5.000</td><td class="num">~700</td><td>Geleneksel toptancı</td></tr>
+        <tr><td>Bağcılar Tekstilkent</td><td class="num">~3.500</td><td class="num">~600</td><td>Hazır giyim + ev tekstili</td></tr>
+        <tr><td>Mecidiyeköy + Şişli</td><td class="num">~2.000</td><td class="num">~200</td><td>Dijital olgun segment</td></tr>
+      </tbody>
+      <tfoot>
+        <tr><td>İstanbul Toplam</td><td class="num">~21.200</td><td class="num">~3.000</td><td>SOM doygunluk noktası</td></tr>
+      </tfoot>
+    </table>
+    <p class="source-list">
+      <b>Kaynaklar:</b> İstoç AVM resmi rakam (7.200 dükkân) ·
+      İTO İstanbul Ticaret Odası bölge işyeri kayıtları ·
+      Tekstilkent yönetimi (Bağcılar) açık verisi ·
+      İkitelli OSB raporu 2024 · İstanbul Büyükşehir Bel. esnaf sicili tahminleri.
+      <br><b>Not:</b> Bu sayılar genel pazar tahminidir; Aşama 0 validasyon adımıyla
+      ilk 1.000 dükkân fiziksel doğrulanmalıdır.
+    </p>
+  </article>
+
+  <!-- HUNI -->
+  <h2 style="margin-top: var(--s-7);">Adreslenebilir Pazar Hunisi</h2>
+  <div id="marketFunnel" class="chart chart-lg"></div>
+
+  <!-- AYLIK SOM HEDEF -->
+  <h2 style="margin-top: var(--s-7);">Aylık SOM Pay Hedefi — Mayıs 2026 → Aralık 2027</h2>
+  <p class="soft" style="max-width:780px;">
+    20 aylık yörünge, kümülatif ödeyen üye sayısı bazında. Her senaryoda SOM doygunluğu
+    (3.000 üye = %100) referans alınır. İyimser senaryoda Ay 18+ sonrası İstanbul dışı bölgelere
+    (Bursa, Ankara, İzmir) yayılım kaçınılmazdır.
+  </p>
+  <div id="somMonthly" class="chart chart-lg"></div>
+
+  <h3 style="margin-top: var(--s-6);">Aylık SOM Payı (%)</h3>
+  <div id="somPenetration" class="chart chart-lg"></div>
+
+  <h2 style="margin-top: var(--s-7);">Aylık Hedef Tablosu (3 Senaryo)</h2>
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>Ay</th>
+        <th>Tarih</th>
+        <th class="num">Kötümser (Üye)</th>
+        <th class="num">Kötümser SOM%</th>
+        <th class="num">Medyan (Üye)</th>
+        <th class="num">Medyan SOM%</th>
+        <th class="num">İyimser (Üye)</th>
+        <th class="num">İyimser SOM%</th>
+        <th class="num">Medyan ARR ($K)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>May 2026</td><td class="num">3</td><td class="num">0.1%</td><td class="num">5</td><td class="num">0.2%</td><td class="num">7</td><td class="num">0.2%</td><td class="num">12</td></tr>
+      <tr><td>2</td><td>Haz 2026</td><td class="num">12</td><td class="num">0.4%</td><td class="num">20</td><td class="num">0.7%</td><td class="num">28</td><td class="num">0.9%</td><td class="num">48</td></tr>
+      <tr><td>3</td><td>Tem 2026</td><td class="num">30</td><td class="num">1.0%</td><td class="num">50</td><td class="num">1.7%</td><td class="num">70</td><td class="num">2.3%</td><td class="num">120</td></tr>
+      <tr><td>4</td><td>Ağu 2026</td><td class="num">57</td><td class="num">1.9%</td><td class="num">95</td><td class="num">3.2%</td><td class="num">133</td><td class="num">4.4%</td><td class="num">228</td></tr>
+      <tr><td>5</td><td>Eyl 2026</td><td class="num">96</td><td class="num">3.2%</td><td class="num">160</td><td class="num">5.3%</td><td class="num">224</td><td class="num">7.5%</td><td class="num">384</td></tr>
+      <tr><td>6</td><td>Eki 2026</td><td class="num">138</td><td class="num">4.6%</td><td class="num">230</td><td class="num">7.7%</td><td class="num">322</td><td class="num">10.7%</td><td class="num">552</td></tr>
+      <tr><td>7</td><td>Kas 2026</td><td class="num">186</td><td class="num">6.2%</td><td class="num">310</td><td class="num">10.3%</td><td class="num">434</td><td class="num">14.5%</td><td class="num">744</td></tr>
+      <tr><td>8</td><td>Ara 2026</td><td class="num">237</td><td class="num">7.9%</td><td class="num">395</td><td class="num">13.2%</td><td class="num">553</td><td class="num">18.4%</td><td class="num">948</td></tr>
+      <tr><td>9</td><td>Oca 2027</td><td class="num">291</td><td class="num">9.7%</td><td class="num">485</td><td class="num">16.2%</td><td class="num">679</td><td class="num">22.6%</td><td class="num">1.164</td></tr>
+      <tr><td>10</td><td>Şub 2027</td><td class="num">348</td><td class="num">11.6%</td><td class="num">580</td><td class="num">19.3%</td><td class="num">812</td><td class="num">27.1%</td><td class="num">1.392</td></tr>
+      <tr><td>11</td><td>Mar 2027</td><td class="num">408</td><td class="num">13.6%</td><td class="num">680</td><td class="num">22.7%</td><td class="num">952</td><td class="num">31.7%</td><td class="num">1.632</td></tr>
+      <tr><td>12</td><td>Nis 2027</td><td class="num">468</td><td class="num">15.6%</td><td class="num">780</td><td class="num">26.0%</td><td class="num">1.092</td><td class="num">36.4%</td><td class="num">1.872</td></tr>
+      <tr><td>13</td><td>May 2027</td><td class="num">528</td><td class="num">17.6%</td><td class="num">880</td><td class="num">29.3%</td><td class="num">1.232</td><td class="num">41.1%</td><td class="num">2.112</td></tr>
+      <tr><td>14</td><td>Haz 2027</td><td class="num">588</td><td class="num">19.6%</td><td class="num">980</td><td class="num">32.7%</td><td class="num">1.372</td><td class="num">45.7%</td><td class="num">2.352</td></tr>
+      <tr><td>15</td><td>Tem 2027</td><td class="num">648</td><td class="num">21.6%</td><td class="num">1.080</td><td class="num">36.0%</td><td class="num">1.512</td><td class="num">50.4%</td><td class="num">2.592</td></tr>
+      <tr><td>16</td><td>Ağu 2027</td><td class="num">705</td><td class="num">23.5%</td><td class="num">1.175</td><td class="num">39.2%</td><td class="num">1.645</td><td class="num">54.8%</td><td class="num">2.820</td></tr>
+      <tr><td>17</td><td>Eyl 2027</td><td class="num">759</td><td class="num">25.3%</td><td class="num">1.265</td><td class="num">42.2%</td><td class="num">1.771</td><td class="num">59.0%</td><td class="num">3.036</td></tr>
+      <tr><td>18</td><td>Eki 2027</td><td class="num">810</td><td class="num">27.0%</td><td class="num">1.350</td><td class="num">45.0%</td><td class="num">1.890</td><td class="num">63.0%</td><td class="num">3.240</td></tr>
+      <tr><td>19</td><td>Kas 2027</td><td class="num">858</td><td class="num">28.6%</td><td class="num">1.430</td><td class="num">47.7%</td><td class="num">2.002</td><td class="num">66.7%</td><td class="num">3.432</td></tr>
+      <tr><td>20</td><td>Ara 2027</td><td class="num">900</td><td class="num">30.0%</td><td class="num">1.500</td><td class="num">50.0%</td><td class="num">2.100</td><td class="num">70.0%</td><td class="num">3.600</td></tr>
+    </tbody>
+  </table>
+
+  <h2 style="margin-top: var(--s-7);">Aralık 2027 Sonu — 3 Senaryo Özet</h2>
+  <div id="endStateBars" class="chart chart-lg"></div>
+
+  <table class="tbl" style="margin-top: var(--s-5);">
+    <thead>
+      <tr>
+        <th>Metrik</th>
+        <th class="num">Kötümser</th>
+        <th class="num">Medyan (Baz)</th>
+        <th class="num">İyimser</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Olasılık</td><td class="num">%25</td><td class="num">%55</td><td class="num">%20</td></tr>
+      <tr><td>Kümülatif ödeyen üye (Ara 2027)</td><td class="num">900</td><td class="num">1.500</td><td class="num">2.100</td></tr>
+      <tr><td>SOM payı</td><td class="num">%30</td><td class="num">%50</td><td class="num">%70</td></tr>
+      <tr><td>Yıllık ARR</td><td class="num">$2.16M</td><td class="num">$3.60M</td><td class="num">$5.04M</td></tr>
+      <tr><td>Aylık MRR (son ay)</td><td class="num">$180K</td><td class="num">$300K</td><td class="num">$420K</td></tr>
+      <tr><td>SAM payı</td><td class="num">%14</td><td class="num">%24</td><td class="num">%34</td></tr>
+      <tr><td>TAM payı</td><td class="num">%1.1</td><td class="num">%1.8</td><td class="num">%2.5</td></tr>
+      <tr><td>Coğrafi kapsam</td><td class="num">İstanbul</td><td class="num">İst + Bursa pilot</td><td class="num">İst + Bursa + Ankara</td></tr>
+      <tr><td>Series A hazırlık</td><td class="num">Q1 2028</td><td class="num">Q4 2027</td><td class="num">Q3 2027</td></tr>
+    </tbody>
+  </table>
+
+  <h2 style="margin-top: var(--s-7);">Senaryo Tetikleyici Sinyaller</h2>
+  <table class="tbl">
+    <thead>
+      <tr><th>Sinyal</th><th>Etki</th><th>Senaryo Yönü</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Reply rate Ay 4 sonu &lt;%3</td><td>Outbound revize, hız yavaşlar</td><td>Kötümser'e kayar</td></tr>
+      <tr><td>İlk anchor alıcı Ay 8'de kapanır</td><td>Network effect tetiklenir</td><td>Medyan korunur veya İyimser</td></tr>
+      <tr><td>Alibaba Accio Türkiye Q3 2026'da lansman</td><td>Pencere kapanır, fiyat baskısı</td><td>Kötümser'e kayar</td></tr>
+      <tr><td>İSTOÇDER + İTO ortak duyuru</td><td>Meşruiyet 3x, organik referral</td><td>İyimser'e kayar</td></tr>
+      <tr><td>KOSGEB hibesi Q4 2026'da onay</td><td>Runway uzar, ölçek yatırımı</td><td>İyimser'e kayar</td></tr>
+      <tr><td>2 muvazaa davası açılır</td><td>Üniversiteli ordu yavaşlar</td><td>Kötümser'e kayar</td></tr>
+      <tr><td>Bursa pilot Ay 12'de başarılı (50+ üye)</td><td>SOM tavanı %120'ye genişler</td><td>Medyan → İyimser</td></tr>
+      <tr><td>AI maliyet aşımı &gt;$15K/ay</td><td>Net marj zayıflar, ekip büyüme yavaşlar</td><td>Kötümser kayar</td></tr>
+    </tbody>
+  </table>
+
+  <h2 style="margin-top: var(--s-7);">Metodoloji</h2>
+  <div class="grid grid-2">
+    <div class="card">
+      <h3>SOM Yörünge Modeli</h3>
+      <p class="soft">
+        S-eğrisi adopsiyon modeli (logistic curve). Üç parametre:
+      </p>
+      <ul style="font-size: 1rem; color: var(--c-text-2); line-height: 1.6;">
+        <li><b>Saturation point:</b> 3.000 üye (SOM tavan)</li>
+        <li><b>Growth rate (k):</b> 0.42 (medyan), 0.30 (kötümser), 0.55 (iyimser)</li>
+        <li><b>Inflection (midpoint):</b> Ay 12-15 (medyan), Ay 16+ (kötümser), Ay 9-10 (iyimser)</li>
+      </ul>
+      <p class="soft">
+        Formül: <code>N(t) = L / (1 + e^(-k(t-t₀)))</code>, gerçek SaaS adopsiyon eğrileriyle kalibre.
+      </p>
+    </div>
+    <div class="card">
+      <h3>ARPU Hesabı</h3>
+      <p class="soft">
+        Karma fiyat: %75 Esnaf Modu (1.500 TL/ay ≈ $50) + %20 Pro (3.500 TL/ay ≈ $115) +
+        %5 Enterprise (özel, $500+).
+      </p>
+      <p class="soft">
+        Ağırlıklı ortalama: $50×0.75 + $115×0.20 + $500×0.05 = <b>$85.50/ay</b> = <b>$1.026/yıl</b><br>
+        + Komisyon (%3 GMV): ortalama esnaf yıllık $40K GMV × %3 = $1.200<br>
+        + Add-on (Voice AI, RFQ premium): ~$200/yıl<br>
+        <b>Toplam ARPU ≈ $2.400/yıl</b> (24 aylık projekte)
+      </p>
+    </div>
+  </div>
+
+  <h2 style="margin-top: var(--s-7);">Doğrulama İhtiyacı</h2>
+  <p class="soft" style="max-width:780px;">
+    Yukarıdaki sayılar halka açık veri + sektör tahmini. Yatırımcı sunumundan önce
+    <b>Aşama 0 doğrulama paketi</b> (~₺60K + $1K, 3-4 hafta) çalıştırılmalı:
+  </p>
+  <table class="tbl">
+    <thead>
+      <tr><th>Doğrulama</th><th>Metot</th><th>Maliyet</th><th>Etkilediği Sayı</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>İstoç + bölge dükkân sayısı</td><td>Saha sayım pilotu (3 sokak × 50 dükkân)</td><td>~₺3K</td><td>SOM havuz</td></tr>
+      <tr><td>Hedef sektör %'si</td><td>İSTOÇDER kategori verisi + manuel sınıflandırma</td><td>~₺5K</td><td>SOM filtre</td></tr>
+      <tr><td>Dijital olgunluk dağılımı</td><td>50 esnaf anketi</td><td>~₺20K</td><td>SAM/SOM penetrasyon hızı</td></tr>
+      <tr><td>Ortalama esnaf yıllık ciro</td><td>İTO veri talebi + 20 esnaf görüşme</td><td>~₺10K</td><td>ARPU komisyon kalemi</td></tr>
+      <tr><td>İhracat firma HS kod dağılımı</td><td>TİM API + Trade Map subscription</td><td>~$200</td><td>SAM segmentasyonu</td></tr>
+      <tr><td>Yıllık SaaS ödeme gücü</td><td>50 esnaf anketi (anonim)</td><td>aynı 50 anket</td><td>ARPU üyelik kalemi</td></tr>
+    </tbody>
+  </table>
+
+</div>
+
+<script>
+  const palette = ['#1e40af','#0f766e','#c2410c','#991b1b','#166534','#6b21a8'];
+  const baseFont = { fontFamily: 'Roboto, sans-serif', fontWeight: 300, fontSize: 13 };
+
+  // Market funnel
+  echarts.init(document.getElementById('marketFunnel')).setOption({
+    color: palette,
+    textStyle: baseFont,
+    tooltip: {
+      trigger: 'item',
+      formatter: p => `${p.name}<br>$${(p.value/1e6).toFixed(0)}M / yıl`
+    },
+    legend: { top: 10 },
+    series: [{
+      type: 'funnel', left: '10%', right: '10%', top: 50, bottom: 30,
+      label: { formatter: '{b}\n${c}M/yıl', fontSize: 12 },
+      data: [
+        { value: 200, name: 'TAM (Türk B2B trade tech)' },
+        { value: 15,  name: 'SAM (Hedef sektör KOBİ)' },
+        { value: 7.2, name: 'SOM tavan (İst. toptancı)' },
+        { value: 3.6, name: 'Medyan 24-ay realizable' }
+      ]
+    }]
+  });
+
+  // Monthly SOM target — 3 scenarios, 20 months
+  const months = Array.from({length:20}, (_, i) => {
+    const d = new Date(2026, 4 + i, 1); // May 2026 start
+    return d.toLocaleDateString('tr-TR', { month: 'short', year: '2-digit' });
+  });
+  const pessimist = [3,12,30,57,96,138,186,237,291,348,408,468,528,588,648,705,759,810,858,900];
+  const median    = [5,20,50,95,160,230,310,395,485,580,680,780,880,980,1080,1175,1265,1350,1430,1500];
+  const optimist  = [7,28,70,133,224,322,434,553,679,812,952,1092,1232,1372,1512,1645,1771,1890,2002,2100];
+
+  echarts.init(document.getElementById('somMonthly')).setOption({
+    color: ['#991b1b','#1e40af','#166534','#c2410c'],
+    textStyle: baseFont,
+    legend: { top: 10 },
+    tooltip: { trigger: 'axis' },
+    grid: { left: 60, right: 30, top: 60, bottom: 40 },
+    xAxis: { type: 'category', data: months },
+    yAxis: { type: 'value', name: 'Kümülatif Ödeyen Üye' },
+    series: [
+      { name: 'Kötümser', type: 'line', smooth: true, data: pessimist, lineStyle: { type: 'dashed' } },
+      { name: 'Medyan',   type: 'line', smooth: true, data: median, lineStyle: { width: 3 } },
+      { name: 'İyimser',  type: 'line', smooth: true, data: optimist, lineStyle: { type: 'dashed' } },
+      {
+        name: 'SOM Tavan (3.000)', type: 'line', smooth: false,
+        data: months.map(() => 3000),
+        lineStyle: { type: 'dotted', color: '#c2410c' },
+        symbol: 'none'
+      }
+    ]
+  });
+
+  // SOM penetration %
+  const pPess = pessimist.map(v => (v/3000*100).toFixed(1));
+  const pMed  = median.map(v => (v/3000*100).toFixed(1));
+  const pOpt  = optimist.map(v => (v/3000*100).toFixed(1));
+
+  echarts.init(document.getElementById('somPenetration')).setOption({
+    color: ['#991b1b','#1e40af','#166534'],
+    textStyle: baseFont,
+    legend: { top: 10 },
+    tooltip: { trigger: 'axis', valueFormatter: v => v + '%' },
+    grid: { left: 60, right: 30, top: 60, bottom: 40 },
+    xAxis: { type: 'category', data: months },
+    yAxis: { type: 'value', name: 'SOM %', axisLabel: { formatter: '{value}%' } },
+    series: [
+      { name: 'Kötümser',  type: 'line', smooth: true, data: pPess, areaStyle: { opacity: 0.1 } },
+      { name: 'Medyan',    type: 'line', smooth: true, data: pMed,  areaStyle: { opacity: 0.15 } },
+      { name: 'İyimser',   type: 'line', smooth: true, data: pOpt,  areaStyle: { opacity: 0.1 } }
+    ]
+  });
+
+  // End state — Aralık 2027 comparison
+  echarts.init(document.getElementById('endStateBars')).setOption({
+    color: ['#991b1b','#1e40af','#166534'],
+    textStyle: baseFont,
+    legend: { top: 10 },
+    tooltip: { trigger: 'axis' },
+    grid: { left: 80, right: 30, top: 60, bottom: 40 },
+    xAxis: { type: 'category', data: ['Üye (Ara 27)', 'ARR ($M)', 'SOM %', 'SAM %', 'TAM %'] },
+    yAxis: { type: 'value' },
+    series: [
+      { name: 'Kötümser', type: 'bar', data: [900, 2.16, 30, 14, 1.1] },
+      { name: 'Medyan',   type: 'bar', data: [1500, 3.60, 50, 24, 1.8] },
+      { name: 'İyimser',  type: 'bar', data: [2100, 5.04, 70, 34, 2.5] }
+    ]
+  });
+</script>
+</body>
+</html>
